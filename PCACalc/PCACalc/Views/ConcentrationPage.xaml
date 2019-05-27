@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:PCACalc"
+             mc:Ignorable="d"
+             x:Class="PCACalc.Views.ConcentrationPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <!--<Label Text="Basal Rate: " FontSize="Medium" />-->
+            <Entry x:Name="BasalEntry"  Placeholder="Basal Rate (mg/mcg)" Keyboard="Numeric"  />
+
+            <!--<Label Text="Bolus: " FontSize="Medium"/>-->
+            <Entry x:Name="BolusEntry" Placeholder="Bolus (mg/mcg)" Keyboard="Numeric"/>
+            <Entry x:Name="BolusMinEntry" Placeholder="Bolus Interval (min)" Keyboard="Numeric"/>
+
+            <!--<Label Text="Bag Volume:" FontSize="Medium" />-->
+            <Entry x:Name="BagVolumeEntry" Placeholder="Bag Volume" Text="250"  Keyboard="Numeric"/>
+
+            <Button x:Name="CalcButton" Text="Calculate" Clicked="CalcConcentration"/>
+
+            <Entry x:Name="TPHEntry" Placeholder="Total Per Hour" IsEnabled="False" />
+            <Entry x:Name="TPDEntry" Placeholder="Total Per Day" IsEnabled="False" />
+            <Entry x:Name="TP5DEntry" Placeholder="Total Per 5 Days" IsEnabled="False" />
+            <Entry x:Name="SugConcEntry" Placeholder="Suggested Concentration" IsEnabled="False" />
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
