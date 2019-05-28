@@ -31,8 +31,6 @@
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
             </Style> 
-           
-            
             <Style x:Key="calcResult" TargetType="Label">
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
@@ -44,17 +42,17 @@
     <ContentPage.Content>
         <Grid RowSpacing="1" ColumnSpacing="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="35" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="35" />
-                <RowDefinition Height="55" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="*"  />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="80"  />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -69,25 +67,25 @@
             <Switch x:Name="SwitchMCG" IsToggled="false" Toggled="selectUOM" Grid.Row="0" Grid.Column="3" HorizontalOptions="StartAndExpand" />
 
             <Label Text="Basal Rate: " Grid.Row="1" Grid.Column="0" Style="{StaticResource entryLabel }" />
-            <Entry x:Name="BasalEntry" Grid.Row="1" Grid.Column="2" Style="{StaticResource regularEntry}"  />
+            <Entry x:Name="BasalEntry" Grid.Row="1" Grid.Column="2" Style="{StaticResource regularEntry}" Completed="CalcConcentration" />
             <Label x:Name="BasalMeasure" Text="mg" Grid.Row="1" Grid.Column="3" FontSize="Small" VerticalTextAlignment="Start" />
 
             <Label Text="Bolus:" Grid.Row="2" Grid.Column="0" Style="{StaticResource entryLabel}" />
-            <Entry x:Name="BolusEntry" Grid.Row="2" Grid.Column="2" Style="{StaticResource regularEntry}"/>
+            <Entry x:Name="BolusEntry" Grid.Row="2" Grid.Column="2" Style="{StaticResource regularEntry}" Completed="CalcConcentration"/>
             <Label x:Name="BolusMeasure" Text="mg" Grid.Row="2" Grid.Column="3" FontSize="Small" VerticalTextAlignment="Center" />
 
             <Label Text="Bolus Interval:" Grid.Row="3" Grid.Column="0" Style="{StaticResource entryLabel}"  />
-            <Entry x:Name="BolusMinEntry" Grid.Row="3" Grid.Column="2" Style="{StaticResource regularEntry}"/>
+            <Entry x:Name="BolusMinEntry" Grid.Row="3" Grid.Column="2" Text="15" Style="{StaticResource regularEntry}" Completed="CalcConcentration"/>
             <Label Text="minutes" Grid.Row="3" Grid.Column="3" FontSize="Small" VerticalTextAlignment="Center" />
 
             <Label Text="Bag Volume:" Grid.Row="4" Grid.Column="0" Style="{StaticResource entryLabel}"  />
-            <Entry x:Name="BagVolumeEntry" Grid.Row="4" Grid.Column="2" Text="250"  Style="{StaticResource regularEntry}"/>
+            <Entry x:Name="BagVolumeEntry" Grid.Row="4" Grid.Column="2" Text="250"  Style="{StaticResource regularEntry}" Completed="CalcConcentration"/>
             <Label Text="ml" Grid.Row="4" Grid.Column="3" FontSize="Small" VerticalTextAlignment="Center" />
 
             <Label BindingContext="{x:Reference StepDays}" Text="{Binding Value,StringFormat='Days supply: {0}'}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Medium" VerticalTextAlignment="End" />
-            <Stepper x:Name="StepDays" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Minimum="1" Maximum="14" Increment="1" Value="5" />
+            <Stepper x:Name="StepDays" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Minimum="1" Maximum="14" Increment="1" Value="5"  />
             
-            <Button x:Name="CalcButton" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Text="Calculate" Clicked="CalcConcentration" BackgroundColor="#E8AD00" TextColor="White"  />
+            <!--<Button x:Name="CalcButton" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Text="Calculate" Clicked="CalcConcentration" BackgroundColor="#E8AD00" TextColor="White"  />-->
 
             <Label Text="Total Per Hour:" Grid.Row="7" Grid.Column="0" Style="{StaticResource resultLable}" />
             <Label x:Name="TPHEntry" Grid.Row="7" Grid.Column="2" Style="{StaticResource calcResult}" />
@@ -99,7 +97,7 @@
             <Label x:Name="TP5DEntry" Grid.Row="9" Grid.Column="2" Style="{StaticResource calcResult}" />
 
             <Label Text="Suggested Concentration:" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Large" BackgroundColor="DarkGray" TextColor="White"/>
-            <Label x:Name="SugConcEntry" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="1" HorizontalTextAlignment="Center" FontSize="60"  BackgroundColor="DarkGray" TextColor="White" Text="0" />
+            <Label x:Name="SugConcEntry" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="2" HorizontalTextAlignment="Center" FontSize="40"  BackgroundColor="DarkGray" TextColor="White" Text="0" />
 
         </Grid>
     </ContentPage.Content>

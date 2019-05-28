@@ -1,0 +1,42 @@
+<chipgroup:SfChipGroup x:Name="MGMCGSelection" ChipBackgroundColor="Gray" ChipTextColor="Black" Type="Choice" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalOptions="Center" SelectedChipBackgroundColor="Blue" SelectedChipTextColor="White" >
+                <chipgroup:SfChipGroup.ChipLayout>
+                    <StackLayout Orientation="Horizontal"/>
+                </chipgroup:SfChipGroup.ChipLayout>
+                <chipgroup:SfChipGroup.Items >
+                    <chipgroup:SfChip Text="MG" x:Name="chipMG" WidthRequest="50"  />
+                    <chipgroup:SfChip Text="MCG" x:Name="chipMCG" WidthRequest="50" />
+                </chipgroup:SfChipGroup.Items>
+            </chipgroup:SfChipGroup>
+
+
+<Label Text="MG / MCG:" Grid.Row="0" Grid.Column="0" Style="{StaticResource entryLabel}"/>
+            <Switch x:Name="switchMG" IsToggled="true" Grid.Row="0" Grid.Column="1"/>
+            <Switch x:Name="switchMCG" IsToggled="false" Grid.Row="0" Grid.Column="2"/>
+            <Label Text="" Grid.Row="0" Grid.Column="3" Style="{StaticResource entryLabel}"/>
+
+
+<Label Text="MG" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="End" />
+            <Switch x:Name="switchMGMCG" IsToggled="true" Toggled="MGMCGSelection" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" />
+            <Label Text="MCG" Grid.Row="0" Grid.Column="3" HorizontalTextAlignment="Start"/>
+
+
+<Grid RowSpacing="1" ColumnSpacing="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*"  />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
