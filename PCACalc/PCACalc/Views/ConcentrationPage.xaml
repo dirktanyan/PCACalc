@@ -1,30 +1,106 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:chipgroup="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:PCACalc"
              mc:Ignorable="d"
              x:Class="PCACalc.Views.ConcentrationPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <!--<Label Text="Basal Rate: " FontSize="Medium" />-->
-            <Entry x:Name="BasalEntry"  Placeholder="Basal Rate (mg/mcg)" Keyboard="Numeric"  />
 
-            <!--<Label Text="Bolus: " FontSize="Medium"/>-->
-            <Entry x:Name="BolusEntry" Placeholder="Bolus (mg/mcg)" Keyboard="Numeric"/>
-            <Entry x:Name="BolusMinEntry" Placeholder="Bolus Interval (min)" Keyboard="Numeric"/>
-
-            <!--<Label Text="Bag Volume:" FontSize="Medium" />-->
-            <Entry x:Name="BagVolumeEntry" Placeholder="Bag Volume" Text="250"  Keyboard="Numeric"/>
-
-            <Button x:Name="CalcButton" Text="Calculate" Clicked="CalcConcentration"/>
-
-            <Entry x:Name="TPHEntry" Placeholder="Total Per Hour" IsEnabled="False" />
-            <Entry x:Name="TPDEntry" Placeholder="Total Per Day" IsEnabled="False" />
-            <Entry x:Name="TP5DEntry" Placeholder="Total Per 5 Days" IsEnabled="False" />
-            <Entry x:Name="SugConcEntry" Placeholder="Suggested Concentration" IsEnabled="False" />
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="entryLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="VerticalTextAlignment" Value="End"/>
+                <Setter Property="Grid.ColumnSpan" Value="2"/>
+            </Style>
+            <Style x:Key="regularEntry" TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="Cornsilk" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="Keyboard" Value="Numeric" />
+            </Style>
+            <Style x:Key="resultLable" TargetType="Label" >
+                <Setter Property="Grid.ColumnSpan" Value="2"/>
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+            <Style x:Key="measureLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+            </Style> 
+           
             
-        </StackLayout>
+            <Style x:Key="calcResult" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="Grid.ColumnSpan" Value="2" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid RowSpacing="1" ColumnSpacing="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="55" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*"  />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Text="MG" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+            <Switch x:Name="SwitchMG" IsToggled="true" Toggled="selectUOM" Grid.Row="0" Grid.Column="1" HorizontalOptions="StartAndExpand" />
+            <Label Text="MCG" Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+            <Switch x:Name="SwitchMCG" IsToggled="false" Toggled="selectUOM" Grid.Row="0" Grid.Column="3" HorizontalOptions="StartAndExpand" />
+
+            <Label Text="Basal Rate: " Grid.Row="1" Grid.Column="0" Style="{StaticResource entryLabel }" />
+            <Entry x:Name="BasalEntry" Grid.Row="1" Grid.Column="2" Style="{StaticResource regularEntry}"  />
+            <Label x:Name="BasalMeasure" Text="mg" Grid.Row="1" Grid.Column="3" FontSize="Small" VerticalTextAlignment="Start" />
+
+            <Label Text="Bolus:" Grid.Row="2" Grid.Column="0" Style="{StaticResource entryLabel}" />
+            <Entry x:Name="BolusEntry" Grid.Row="2" Grid.Column="2" Style="{StaticResource regularEntry}"/>
+            <Label x:Name="BolusMeasure" Text="mg" Grid.Row="2" Grid.Column="3" FontSize="Small" VerticalTextAlignment="Center" />
+
+            <Label Text="Bolus Interval:" Grid.Row="3" Grid.Column="0" Style="{StaticResource entryLabel}"  />
+            <Entry x:Name="BolusMinEntry" Grid.Row="3" Grid.Column="2" Style="{StaticResource regularEntry}"/>
+            <Label Text="minutes" Grid.Row="3" Grid.Column="3" FontSize="Small" VerticalTextAlignment="Center" />
+
+            <Label Text="Bag Volume:" Grid.Row="4" Grid.Column="0" Style="{StaticResource entryLabel}"  />
+            <Entry x:Name="BagVolumeEntry" Grid.Row="4" Grid.Column="2" Text="250"  Style="{StaticResource regularEntry}"/>
+            <Label Text="ml" Grid.Row="4" Grid.Column="3" FontSize="Small" VerticalTextAlignment="Center" />
+
+            <Label BindingContext="{x:Reference StepDays}" Text="{Binding Value,StringFormat='Days supply: {0}'}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Medium" VerticalTextAlignment="End" />
+            <Stepper x:Name="StepDays" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Minimum="1" Maximum="14" Increment="1" Value="5" />
+            
+            <Button x:Name="CalcButton" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Text="Calculate" Clicked="CalcConcentration" BackgroundColor="#E8AD00" TextColor="White"  />
+
+            <Label Text="Total Per Hour:" Grid.Row="7" Grid.Column="0" Style="{StaticResource resultLable}" />
+            <Label x:Name="TPHEntry" Grid.Row="7" Grid.Column="2" Style="{StaticResource calcResult}" />
+
+            <Label Text="Total Per Day:" Grid.Row="8" Grid.Column="0" Style="{StaticResource resultLable}" />
+            <Label x:Name="TPDEntry" Grid.Row="8" Grid.Column="2" Style="{StaticResource calcResult}" />
+
+            <Label BindingContext="{x:Reference StepDays}" Text="{Binding Value,StringFormat='Total per {0} days:'}" Grid.Row="9" Grid.Column="0" Style="{StaticResource resultLable}" />
+            <Label x:Name="TP5DEntry" Grid.Row="9" Grid.Column="2" Style="{StaticResource calcResult}" />
+
+            <Label Text="Suggested Concentration:" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Large" BackgroundColor="DarkGray" TextColor="White"/>
+            <Label x:Name="SugConcEntry" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="1" HorizontalTextAlignment="Center" FontSize="60"  BackgroundColor="DarkGray" TextColor="White" Text="0" />
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
