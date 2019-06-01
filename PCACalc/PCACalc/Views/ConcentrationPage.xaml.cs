@@ -107,5 +107,10 @@ namespace PCACalc.Views
                 }
             }
         }
+
+        private void StepDays_ValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            CalcConcentration(sender, e);
+        }
     }
 }

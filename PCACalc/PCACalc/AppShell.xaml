@@ -6,31 +6,53 @@
        mc:Ignorable="d"
        xmlns:local="clr-namespace:PCACalc.Views"
        Title="PCACalc"
-       x:Class="PCACalc.AppShell">
+       x:Class="PCACalc.AppShell"
+       BackgroundColor="{DynamicResource BrandColor}"
+       UnselectedColor="{DynamicResource BrandColorLight}"
+       ForegroundColor="{DynamicResource BrandColorDark}"
+       TabBarForegroundColor="{DynamicResource BrandAccentColor}"
+       TabBarBackgroundColor="{DynamicResource BrandColor}"
+       FlyoutBackgroundColor="{DynamicResource BrandColorLight}"
+       TitleColor="Black">
 
     <!-- 
         Styles and Resources 
     -->
     <Shell.Resources>
         <ResourceDictionary>
-            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <!--This doesn't appear to work very well, using direct settings above-->
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
-                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.BackgroundColor" Value="{DynamicResource BrandColor }" />
+                <Setter Property="Shell.ForegroundColor" Value="{DynamicResource BrandColorDark}" />
                 <Setter Property="Shell.TitleColor" Value="White" />
-                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
-                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.DisabledColor" Value="{DynamicResource BrandColorLight}" />
+                <Setter Property="Shell.UnselectedColor" Value="{DynamicResource BrandColorLight}" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="#FFCCBC" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="{DynamicResource BrandAccentColor}"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource BrandColorLight}"/>
                 <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+                <Setter Property="Shell.FlyoutBackgroundColor" Value="{DynamicResource  BrandColor }" />
             </Style>
             <Style TargetType="ShellItem" BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
     </Shell.Resources>
-
+   
     <!-- Your Pages -->
-    <TabBar>
+
+    <FlyoutItem Title="Concentration" FlyoutIcon="infusion.png" >
+        <Tab Title="Concentration" Icon="infusion.png">
+            <ShellContent ContentTemplate="{DataTemplate local:ConcentrationPage}"/>
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="Time Remaining" FlyoutIcon="schedule.png">
+        <Tab Title="By Volume History" Icon="timeMachine.png">
+            <ShellContent ContentTemplate="{DataTemplate local:TRVolumePage}"/>
+        </Tab>
+        <Tab Title="By Prescription" Icon="treatment.png" >
+            <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}"/>
+        </Tab>
+    </FlyoutItem>
+    <!--<TabBar>
          <Tab Title="Concentration" Icon="salinebag.png">
             <ShellContent ContentTemplate="{DataTemplate local:ConcentrationPage}"/>
         </Tab> 
@@ -40,20 +62,20 @@
         <Tab Title="About" Icon="tab_about.png">
             <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
         </Tab>
-    </TabBar>
+    </TabBar>-->
 
 
-    <!-- // These may be provided inline as below or as separate classes.
+    <!-- // These may be provided inline as below or as separate classes. -->
 
-    // This header appears at the top of the Flyout.
     <Shell.FlyoutHeaderTemplate>
 	    <DataTemplate>
-            <Grid>
-                <Image Source="salinebag.png"/>
-            </Grid>
+            <StackLayout >
+                <Label Text="PCA Calculator" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </StackLayout>
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
 
+    <!--
     // ItemTemplate is for ShellItems as displayed in a Flyout
     <Shell.ItemTemplate>
         <DataTemplate>

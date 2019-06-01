@@ -1,26 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:chipgroup="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:PCACalc"
              mc:Ignorable="d"
-             x:Class="PCACalc.Views.ConcentrationPage">
+             x:Class="PCACalc.Views.ConcentrationPage"
+             Title="Concentration"
+             Shell.TabBarIsVisible="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style x:Key="entryLabel" TargetType="Label">
-                <Setter Property="FontSize" Value="Medium" />
-                <Setter Property="VerticalTextAlignment" Value="End"/>
-                <Setter Property="Grid.ColumnSpan" Value="2"/>
-            </Style>
-            <Style x:Key="regularEntry" TargetType="Entry">
-                <Setter Property="BackgroundColor" Value="Cornsilk" />
-                <Setter Property="TextColor" Value="Black" />
-                <Setter Property="FontSize" Value="Medium" />
-                <Setter Property="Keyboard" Value="Numeric" />
-            </Style>
+            
             <Style x:Key="resultLable" TargetType="Label" >
                 <Setter Property="Grid.ColumnSpan" Value="2"/>
                 <Setter Property="FontSize" Value="Medium"/>
@@ -32,6 +23,7 @@
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
             </Style> 
             <Style x:Key="calcResult" TargetType="Label">
+                <Setter Property="BackgroundColor" Value="Thistle" />
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="Grid.ColumnSpan" Value="2" />
@@ -39,6 +31,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+        
     <ContentPage.Content>
         <Grid RowSpacing="1" ColumnSpacing="1">
             <Grid.RowDefinitions>
@@ -48,11 +41,11 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="25" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="80"  />
+                <RowDefinition Height="90"  />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -68,7 +61,7 @@
 
             <Label Text="Basal Rate: " Grid.Row="1" Grid.Column="0" Style="{StaticResource entryLabel }" />
             <Entry x:Name="BasalEntry" Grid.Row="1" Grid.Column="2" Style="{StaticResource regularEntry}" Completed="CalcConcentration" />
-            <Label x:Name="BasalMeasure" Text="mg" Grid.Row="1" Grid.Column="3" FontSize="Small" VerticalTextAlignment="Start" />
+            <Label x:Name="BasalMeasure" Text="mg" Grid.Row="1" Grid.Column="3" FontSize="Small" VerticalTextAlignment="Center" />
 
             <Label Text="Bolus:" Grid.Row="2" Grid.Column="0" Style="{StaticResource entryLabel}" />
             <Entry x:Name="BolusEntry" Grid.Row="2" Grid.Column="2" Style="{StaticResource regularEntry}" Completed="CalcConcentration"/>
@@ -82,10 +75,11 @@
             <Entry x:Name="BagVolumeEntry" Grid.Row="4" Grid.Column="2" Text="250"  Style="{StaticResource regularEntry}" Completed="CalcConcentration"/>
             <Label Text="ml" Grid.Row="4" Grid.Column="3" FontSize="Small" VerticalTextAlignment="Center" />
 
-            <Label BindingContext="{x:Reference StepDays}" Text="{Binding Value,StringFormat='Days supply: {0}'}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Medium" VerticalTextAlignment="End" />
-            <Stepper x:Name="StepDays" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Minimum="1" Maximum="14" Increment="1" Value="5"  />
+            <Label BindingContext="{x:Reference StepDays}" Text="{Binding Value,StringFormat='Days supply: {0}'}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Medium" VerticalTextAlignment="Center" />
+            <Stepper x:Name="StepDays" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Minimum="1" Maximum="14" Increment="1" Value="5"  ValueChanged="StepDays_ValueChanged"  />
             
             <!--<Button x:Name="CalcButton" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Text="Calculate" Clicked="CalcConcentration" BackgroundColor="#E8AD00" TextColor="White"  />-->
+            <Label IsVisible="False" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" />
 
             <Label Text="Total Per Hour:" Grid.Row="7" Grid.Column="0" Style="{StaticResource resultLable}" />
             <Label x:Name="TPHEntry" Grid.Row="7" Grid.Column="2" Style="{StaticResource calcResult}" />
@@ -96,8 +90,8 @@
             <Label BindingContext="{x:Reference StepDays}" Text="{Binding Value,StringFormat='Total per {0} days:'}" Grid.Row="9" Grid.Column="0" Style="{StaticResource resultLable}" />
             <Label x:Name="TP5DEntry" Grid.Row="9" Grid.Column="2" Style="{StaticResource calcResult}" />
 
-            <Label Text="Suggested Concentration:" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Large" BackgroundColor="DarkGray" TextColor="White"/>
-            <Label x:Name="SugConcEntry" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="2" HorizontalTextAlignment="Center" FontSize="40"  BackgroundColor="DarkGray" TextColor="White" Text="0" />
+            <Label Text="Suggested Concentration:" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Large" BackgroundColor="#2196F3" TextColor="White" VerticalTextAlignment="Center"/>
+            <Label x:Name="SugConcEntry" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="2" HorizontalTextAlignment="Center" FontSize="40"  BackgroundColor="#2196F3" TextColor="White" Text="0" VerticalTextAlignment="Center"/>
 
         </Grid>
     </ContentPage.Content>

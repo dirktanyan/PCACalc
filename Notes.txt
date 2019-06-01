@@ -1,0 +1,14 @@
+Built-in styles (styles that will change if a user changes preferences on his device):
+    C#:
+        public static class Styles
+        {
+            public static readonly string BodyStyleKey = "BodyStyle";
+            public static readonly string CaptionStyleKey = "CaptionStyle";
+            public static readonly string ListItemDetailTextStyleKey = "ListItemDetailTextStyle";
+            public static readonly string ListItemTextStyleKey = "ListItemTextStyle";
+            public static readonly string SubtitleStyleKey = "SubtitleStyle";
+            public static readonly string TitleStyleKey = "TitleStyle";
+        }
+
+    XML:
+        <Label Text="Welcome" Style="{DynamicResource TitleStyle}" />

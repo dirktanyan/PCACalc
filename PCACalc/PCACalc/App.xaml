@@ -6,6 +6,45 @@
              mc:Ignorable="d"
              x:Class="PCACalc.App">
     <Application.Resources>
+        <!-- Fonts -->
+        <OnPlatform x:Key="RegularFontFamily" x:TypeArguments="x:String"
+                    iOS="HelveticaNeue" Android="sans-serif" WinPhone="" />
+        <OnPlatform x:Key="LightFontFamily" x:TypeArguments="x:String"
+                    iOS="HelveticaNeue-Light" Android="sans-serif-light" WinPhone="" />
+        <OnPlatform x:Key="MediumFontFamily" x:TypeArguments="x:String"
+                    iOS="HelveticaNeue-Medium" Android="sans-serif-medium" WinPhone="" />
+
+        <x:Double x:Key="RegularLabelFontSize">14</x:Double>
+        <x:Double x:Key="SmallLabelFontSize">12</x:Double>
+        <x:Double x:Key="EntryFontSize">14</x:Double>
         
+        <!-- Colors -->
+        <Color x:Key="BrandColor">#B0BEC5</Color>
+        <Color x:Key="BrandColorLight">#E2F1F8</Color>
+        <Color x:Key="BrandColorDark">#808E95</Color>
+        <Color x:Key="BrandAccentColor">#FFCCBC</Color>
+        
+        <!-- Text Colors -->
+        <Color x:Key="PrimaryTextColor">#000000</Color>
+        <Color x:Key="PrimaryTextColorOnDark">#FAFAFA</Color>
+ 
+
+        <Style x:Key="entryLabel" TargetType="Label">
+            <Setter Property="FontFamily" Value="RegularFontFamily" />
+            <Setter Property="FontSize" Value="{StaticResource RegularLabelFontSize}" />
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+        </Style>
+        <Style x:Key="regularEntry" TargetType="Entry">
+            <Setter Property="FontFamily" Value="RegularFontFamily" />
+            <Setter Property="BackgroundColor" Value="Cornsilk" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="FontSize" Value="{StaticResource EntryFontSize}" />
+            <Setter Property="Keyboard" Value="Numeric" />
+        </Style>
+        <Style x:Key="UoMLabel" TargetType="Label">
+            <Setter Property="FontFamily" Value="LightFontFamily" />
+            <Setter Property="FontSize" Value="{StaticResource SmallLabelFontSize}"/>
+        </Style>
     </Application.Resources>
 </Application>
