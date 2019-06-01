@@ -3,20 +3,130 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:PCACalc"
              mc:Ignorable="d"
-             x:Class="PCACalc.Views.TRVolumePage">
+             x:Class="PCACalc.Views.TRVolumePage"
+             Title="Time Remaining - Volume"
+             Shell.TabBarIsVisible="True">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="boxViewSettings" TargetType="BoxView">
+                <Setter Property="Color" Value="{DynamicResource BrandColorDark}" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+        
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout Orientation="Horizontal" >
-                <Label Text="Bag Concentration:" />
-                <Entry x:Name="BagConcentration" />
-                <Label Text="mg/ml" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Label Text="MG" Style="{StaticResource entryLabel}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Switch x:Name="SwitchMG" IsToggled="true" Toggled="selectUOM" HorizontalOptions="StartAndExpand" OnColor="{StaticResource BrandAccentColor}" />
+                <Label Text="MCG" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                <Switch x:Name="SwitchMCG" IsToggled="false" Toggled="selectUOM" HorizontalOptions="StartAndExpand" OnColor="{StaticResource BrandAccentColor}" />
             </StackLayout>
-            <StackLayout Orientation="Horizontal" >
-                <Label Text="Volume Remaining:" />
-                <Entry x:Name="VolumeRemaining" />
-                <Label Text="ml" />
-            </StackLayout>
-        </StackLayout>
+            <Grid Padding="5,5,5,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Text="Bag Concentration: " Style="{StaticResource entryLabel}" />
+                <Entry Grid.Column="1" Grid.Row="0" x:Name="BagConcEntry" Style="{StaticResource regularEntry}" Completed="CalcRemainingTime" />
+                <Label Grid.Column="2" Grid.Row="0" x:Name="BagUOM" Style="{StaticResource UoMLabel}" Text="mg/ml" VerticalTextAlignment="Center" />
+
+                <Label Grid.Column="0" Grid.Row="1" Text="Volume Used:" Style="{StaticResource entryLabel}" />
+                <Entry Grid.Column="1" Grid.Row="1" x:Name="AmtUsedEntry" Style="{StaticResource regularEntry}" Completed="CalcRemainingTime"/>
+                <Label Grid.Column="2" Grid.Row="1" Style="{StaticResource UoMLabel}" Text="ml" VerticalTextAlignment="Center" />
+
+                <Label Grid.Column="0" Grid.Row="2" Text="Interval:" Style="{StaticResource entryLabel}"  />
+                <Entry Grid.Column="1" Grid.Row="2" x:Name="IntervalEntry" Text="15" Style="{StaticResource regularEntry}" Completed="CalcRemainingTime"/>
+                <Label Grid.Column="2" Grid.Row="2" Text="hours" Style="{StaticResource UoMLabel}" VerticalTextAlignment="Center" />
+
+                <Label Grid.Column="0" Grid.Row="3" Text="Amount Remaining:" Style="{StaticResource entryLabel}"  />
+                <Entry Grid.Column="1" Grid.Row="3" x:Name="RemainingEntry" Style="{StaticResource regularEntry}" Completed="CalcRemainingTime"/>
+                <Label Grid.Column="2" Grid.Row="3" Text="ml" Style="{StaticResource UoMLabel}" VerticalTextAlignment="Center" />
+
+            </Grid>
+        
+            <Grid Padding="5,5,5,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <BoxView Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Style="{StaticResource boxViewSettings}" />
+                <Label Grid.Row="0" Grid.Column="0" x:Name="MGPHLabel" Text="MG Per Hour:" Style="{StaticResource ResultLabel}" />
+                <Label Grid.Row="1" Grid.Column="0" x:Name="MGPH" Style="{StaticResource CalcResult}" />
+
+                <BoxView Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Style="{StaticResource boxViewSettings}" />
+                <Label Grid.Row="0" Grid.Column="1" x:Name="MGPDLabel" Text="MG Per Day:" Style="{StaticResource ResultLabel}" />
+                <Label Grid.Row="1" Grid.Column="1" x:Name="MGPD" Style="{StaticResource CalcResult}" />
+
+                <BoxView Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Style="{StaticResource boxViewSettings}" />
+                <Label Grid.Row="0" Grid.Column="2" x:Name="MGP7DLabel" Text="MG per 7 days:" Style="{StaticResource ResultLabel}" />
+                <Label Grid.Row="1" Grid.Column="2" x:Name="MGP7D" Style="{StaticResource CalcResult}" />
+            </Grid>
+
+            <Grid Padding="5,5,5,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <BoxView Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Style="{StaticResource boxViewSettings}" />
+                <Label Grid.Row="0" Grid.Column="0" x:Name="MLPHLabel" Text="ML Per Hour:" Style="{StaticResource ResultLabel}" />
+                <Label Grid.Row="1" Grid.Column="0" x:Name="MLPH" Style="{StaticResource CalcResult}" />
+
+                <BoxView Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Style="{StaticResource boxViewSettings}" />
+                <Label Grid.Row="0" Grid.Column="1" x:Name="MLPDLabel" Text="ML Per Day:" Style="{StaticResource ResultLabel}" />
+                <Label Grid.Row="1" Grid.Column="1" x:Name="MLPD" Style="{StaticResource CalcResult}" />
+
+                <BoxView Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Style="{StaticResource boxViewSettings}" />
+                <Label Grid.Row="0" Grid.Column="2" x:Name="MLP7DLabel" Text="ML per 7 days:" Style="{StaticResource ResultLabel}" />
+                <Label Grid.Row="1" Grid.Column="2" x:Name="MLP7D" Style="{StaticResource CalcResult}" />
+            </Grid>
+
+            <Grid Padding="5,5,5,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <BoxView Grid.Row="0" Grid.RowSpan="4" Style="{StaticResource boxViewSettings}" />
+                <Label Grid.Row="0" Text="Hours Remaining:" Style="{StaticResource FinalResultLabel}" />
+                <Label Grid.Row="1" x:Name="HoursRemaining" Text="0" Style="{StaticResource FinalResult}"/>
+                <Label Grid.Row="2" Text="Days Remaining:" Style="{StaticResource FinalResultLabel}" />
+                <Label Grid.Row="3" x:Name="DaysRemaining" Text="0" Style="{StaticResource FinalResult}"/>
+            </Grid>
+            
+        </StackLayout> 
+   
+
+            
+
+            
+
+            
+
+            
+
+     
     </ContentPage.Content>
 </ContentPage>

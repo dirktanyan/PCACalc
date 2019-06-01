@@ -11,7 +11,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            
+            <!--
             <Style x:Key="resultLable" TargetType="Label" >
                 <Setter Property="Grid.ColumnSpan" Value="2"/>
                 <Setter Property="FontSize" Value="Medium"/>
@@ -28,71 +28,99 @@
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="Grid.ColumnSpan" Value="2" />
             </Style>
+            -->
+            <Style x:Key="boxViewSettings" TargetType="BoxView">
+                <Setter Property="Color" Value="{DynamicResource BrandColorDark}" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
         
     <ContentPage.Content>
-        <Grid RowSpacing="1" ColumnSpacing="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="25" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="90"  />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Label Text="MG" Style="{StaticResource entryLabel}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Switch x:Name="SwitchMG" IsToggled="true" Toggled="selectUOM" HorizontalOptions="StartAndExpand" OnColor="{StaticResource BrandAccentColor}" />
+                <Label Text="MCG" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                <Switch x:Name="SwitchMCG" IsToggled="false" Toggled="selectUOM" HorizontalOptions="StartAndExpand" OnColor="{StaticResource BrandAccentColor}" />
+            </StackLayout>
+            <Grid Padding="5,5,5,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Text="Basal Rate: " Style="{StaticResource entryLabel}" />
+                <Entry Grid.Column="1" Grid.Row="0" x:Name="BasalEntry" Style="{StaticResource regularEntry}" Completed="CalcConcentration" />
+                <Label Grid.Column="2" Grid.Row="0" x:Name="BasalMeasure" Style="{StaticResource UoMLabel}" Text="mg" VerticalTextAlignment="Center" />
 
-            <Label Text="MG" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
-            <Switch x:Name="SwitchMG" IsToggled="true" Toggled="selectUOM" Grid.Row="0" Grid.Column="1" HorizontalOptions="StartAndExpand" />
-            <Label Text="MCG" Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
-            <Switch x:Name="SwitchMCG" IsToggled="false" Toggled="selectUOM" Grid.Row="0" Grid.Column="3" HorizontalOptions="StartAndExpand" />
+                <Label Grid.Column="0" Grid.Row="1" Text="Bolus:" Style="{StaticResource entryLabel}" />
+                <Entry Grid.Column="1" Grid.Row="1" x:Name="BolusEntry" Style="{StaticResource regularEntry}" Completed="CalcConcentration"/>
+                <Label Grid.Column="2" Grid.Row="1" x:Name="BolusMeasure" Style="{StaticResource UoMLabel}" Text="mg" VerticalTextAlignment="Center" />
 
-            <Label Text="Basal Rate: " Grid.Row="1" Grid.Column="0" Style="{StaticResource entryLabel }" />
-            <Entry x:Name="BasalEntry" Grid.Row="1" Grid.Column="2" Style="{StaticResource regularEntry}" Completed="CalcConcentration" />
-            <Label x:Name="BasalMeasure" Text="mg" Grid.Row="1" Grid.Column="3" FontSize="Small" VerticalTextAlignment="Center" />
+                <Label Grid.Column="0" Grid.Row="2" Text="Bolus Interval:" Style="{StaticResource entryLabel}"  />
+                <Entry Grid.Column="1" Grid.Row="2" x:Name="BolusMinEntry" Text="15" Style="{StaticResource regularEntry}" Completed="CalcConcentration"/>
+                <Label Grid.Column="2" Grid.Row="2" Text="minutes" Style="{StaticResource UoMLabel}" VerticalTextAlignment="Center" />
 
-            <Label Text="Bolus:" Grid.Row="2" Grid.Column="0" Style="{StaticResource entryLabel}" />
-            <Entry x:Name="BolusEntry" Grid.Row="2" Grid.Column="2" Style="{StaticResource regularEntry}" Completed="CalcConcentration"/>
-            <Label x:Name="BolusMeasure" Text="mg" Grid.Row="2" Grid.Column="3" FontSize="Small" VerticalTextAlignment="Center" />
-
-            <Label Text="Bolus Interval:" Grid.Row="3" Grid.Column="0" Style="{StaticResource entryLabel}"  />
-            <Entry x:Name="BolusMinEntry" Grid.Row="3" Grid.Column="2" Text="15" Style="{StaticResource regularEntry}" Completed="CalcConcentration"/>
-            <Label Text="minutes" Grid.Row="3" Grid.Column="3" FontSize="Small" VerticalTextAlignment="Center" />
-
-            <Label Text="Bag Volume:" Grid.Row="4" Grid.Column="0" Style="{StaticResource entryLabel}"  />
-            <Entry x:Name="BagVolumeEntry" Grid.Row="4" Grid.Column="2" Text="250"  Style="{StaticResource regularEntry}" Completed="CalcConcentration"/>
-            <Label Text="ml" Grid.Row="4" Grid.Column="3" FontSize="Small" VerticalTextAlignment="Center" />
-
-            <Label BindingContext="{x:Reference StepDays}" Text="{Binding Value,StringFormat='Days supply: {0}'}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Medium" VerticalTextAlignment="Center" />
-            <Stepper x:Name="StepDays" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Minimum="1" Maximum="14" Increment="1" Value="5"  ValueChanged="StepDays_ValueChanged"  />
+                <Label Grid.Column="0" Grid.Row="3" Text="Bag Volume:" Style="{StaticResource entryLabel}"  />
+                <Entry Grid.Column="1" Grid.Row="3" x:Name="BagVolumeEntry" Text="250"  Style="{StaticResource regularEntry}" Completed="CalcConcentration"/>
+                <Label Grid.Column="2" Grid.Row="3" Text="ml" Style="{StaticResource UoMLabel}" VerticalTextAlignment="Center" />
+            </Grid>
+                
             
-            <!--<Button x:Name="CalcButton" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Text="Calculate" Clicked="CalcConcentration" BackgroundColor="#E8AD00" TextColor="White"  />-->
-            <Label IsVisible="False" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                 <Label Style="{StaticResource entryLabel}" BindingContext="{x:Reference StepDays}" Text="{Binding Value,StringFormat='Days supply: {0}'}" VerticalTextAlignment="Center" />
+                <Stepper x:Name="StepDays" Minimum="1" Maximum="14" Increment="1" Value="5"  ValueChanged="StepDays_ValueChanged"  />
+            </StackLayout>
+            <Grid Padding="5,5,5,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <BoxView Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Style="{StaticResource boxViewSettings}" />
+                <Label Grid.Row="0" Grid.Column="0" Text="Total Per Hour:" Style="{StaticResource ResultLabel}" />
+                <Label Grid.Row="1" Grid.Column="0" x:Name="TPHEntry" Style="{StaticResource CalcResult}" />
 
-            <Label Text="Total Per Hour:" Grid.Row="7" Grid.Column="0" Style="{StaticResource resultLable}" />
-            <Label x:Name="TPHEntry" Grid.Row="7" Grid.Column="2" Style="{StaticResource calcResult}" />
+                <BoxView Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Style="{StaticResource boxViewSettings}" />
+                <Label Grid.Row="0" Grid.Column="1" Text="Total Per Day:" Style="{StaticResource ResultLabel}" />
+                <Label Grid.Row="1" Grid.Column="1" x:Name="TPDEntry" Style="{StaticResource CalcResult}" />
 
-            <Label Text="Total Per Day:" Grid.Row="8" Grid.Column="0" Style="{StaticResource resultLable}" />
-            <Label x:Name="TPDEntry" Grid.Row="8" Grid.Column="2" Style="{StaticResource calcResult}" />
+                <BoxView Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Style="{StaticResource boxViewSettings}" />
+                <Label Grid.Row="0" Grid.Column="2" BindingContext="{x:Reference StepDays}" Text="{Binding Value,StringFormat='Total per {0} days:'}" Style="{StaticResource ResultLabel}" />
+                <Label Grid.Row="1" Grid.Column="2" x:Name="TP5DEntry" Style="{StaticResource CalcResult}" />
+            </Grid>
+            <Grid Padding="5,5,5,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <BoxView Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource boxViewSettings}" />
+                <Label Grid.Row="0" Text="Suggested Concentration:" Style="{StaticResource FinalResultLabel}" />
+                <Label Grid.Row="1" x:Name="SugConcEntry" Text="0" Style="{StaticResource FinalResult}"/>
+            </Grid>
+            
+        </StackLayout> 
+   
 
-            <Label BindingContext="{x:Reference StepDays}" Text="{Binding Value,StringFormat='Total per {0} days:'}" Grid.Row="9" Grid.Column="0" Style="{StaticResource resultLable}" />
-            <Label x:Name="TP5DEntry" Grid.Row="9" Grid.Column="2" Style="{StaticResource calcResult}" />
+            
 
-            <Label Text="Suggested Concentration:" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Large" BackgroundColor="#2196F3" TextColor="White" VerticalTextAlignment="Center"/>
-            <Label x:Name="SugConcEntry" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="2" HorizontalTextAlignment="Center" FontSize="40"  BackgroundColor="#2196F3" TextColor="White" Text="0" VerticalTextAlignment="Center"/>
+            
 
-        </Grid>
+            
+
+            
+
+     
     </ContentPage.Content>
 </ContentPage>

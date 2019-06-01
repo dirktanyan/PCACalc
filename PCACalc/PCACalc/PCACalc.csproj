@@ -17,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\TRVolumePage.xaml.cs">
+      <DependentUpon>TRVolumePage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ConcentrationPage.xaml.cs">
       <DependentUpon>ConcentrationPage.xaml</DependentUpon>
     </Compile>
@@ -27,9 +30,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PCAvsInj.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\TRVolumePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
