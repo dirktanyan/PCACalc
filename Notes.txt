@@ -12,3 +12,5 @@ Built-in styles (styles that will change if a user changes preferences on his de
 
     XML:
         <Label Text="Welcome" Style="{DynamicResource TitleStyle}" />
+
+Check out Google Material Design

@@ -21,10 +21,16 @@
         <x:Double x:Key="FinalResultFontSize">40</x:Double>
         
         <!-- Colors -->
-        <Color x:Key="BrandColor">#B0BEC5</Color>
+        <!--<Color x:Key="BrandColor">#B0BEC5</Color>
         <Color x:Key="BrandColorLight">#E2F1F8</Color>
         <Color x:Key="BrandColorDark">#808E95</Color>
-        <Color x:Key="BrandAccentColor">#FFCCBC</Color>
+        <Color x:Key="BrandAccentColor">#FFCCBC</Color>-->
+
+        <Color x:Key="BrandColor">#EDEDED</Color>
+        <Color x:Key="BrandColorLight">#FFFFFF</Color>
+        <Color x:Key="BrandColorDark">#BBBBBB</Color>
+        <Color x:Key="BrandAccentColor">#E53935</Color>
+        <Color x:Key="BrandAccentColorDark">#AB000D</Color>
         
         <!-- Text Colors -->
         <Color x:Key="PrimaryTextColor">#000000</Color>

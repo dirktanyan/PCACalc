@@ -14,7 +14,6 @@ namespace PCACalc.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TRVolumePage : ContentPage
     {
-        private string unitOfMeasure = "mg";
         public TRVolumePage()
         {
             InitializeComponent();
@@ -45,7 +44,6 @@ namespace PCACalc.Views
                 if (SwitchMG.IsToggled == true)
                 {
                     SwitchMCG.IsToggled = false;
-                    unitOfMeasure = "mg";
                     BagUOM.Text = "mg/ml";
                     MGPHLabel.Text = "MG Per Hour:";
                     MGPDLabel.Text = "MG Per Day:";
@@ -54,7 +52,6 @@ namespace PCACalc.Views
                 else
                 {
                     SwitchMCG.IsToggled = true;
-                    unitOfMeasure = "mcg";
                     BagUOM.Text = "mcg/ml";
                     MGPHLabel.Text = "MCG Per Hour:";
                     MGPDLabel.Text = "MCG Per Day:";
@@ -66,7 +63,6 @@ namespace PCACalc.Views
                 if(SwitchMCG.IsToggled == true)
                 {
                     SwitchMG.IsToggled = false;
-                    unitOfMeasure = "mcg";
                     BagUOM.Text = "mcg/ml";
                     MGPHLabel.Text = "MCG Per Hour:";
                     MGPDLabel.Text = "MCG Per Day:";
@@ -75,7 +71,6 @@ namespace PCACalc.Views
                 else
                 {
                     SwitchMG.IsToggled = true;
-                    unitOfMeasure = "mg";
                     BagUOM.Text = "mg/ml";
                     MGPHLabel.Text = "MG Per Hour:";
                     MGPDLabel.Text = "MG Per Day:";

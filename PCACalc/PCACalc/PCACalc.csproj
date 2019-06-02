@@ -11,12 +11,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.1.0.48" />
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.425677" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\PCAvsInjPage.xaml.cs">
+      <DependentUpon>PCAvsInjPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\TRVolumePage.xaml.cs">
       <DependentUpon>TRVolumePage.xaml</DependentUpon>
     </Compile>
@@ -29,7 +31,10 @@
     <EmbeddedResource Update="Views\ConcentrationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PCAvsInj.xaml">
+    <EmbeddedResource Update="Views\PCAvsInjPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PCAvsInjSettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
