@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCACalc.Android", "PCACalc\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCACalc.iOS", "PCACalc\PCACalc.iOS\PCACalc.iOS.csproj", "{9B082B0A-6B8F-4A7B-992E-837EC49F8BC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCACalc", "PCACalc\PCACalc\PCACalc.csproj", "{66B404BB-F7BC-48F7-9221-E6A68DFF1204}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PCACalc", "PCACalc\PCACalc\PCACalc.csproj", "{66B404BB-F7BC-48F7-9221-E6A68DFF1204}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PCACalc.Views.MedDetailPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <StackLayout Padding="15" Spacing="20">
+            <Label FontSize="Medium" Text="Medication:" />
+            <Entry d:Text="Medication Name" Text="{Binding Medication.Name}" />
+            <Label FontSize="Medium" Text="Concentration:" />
+            <Entry
+                d:Text="Concentration"
+                Keyboard="Numeric"
+                Text="{Binding Medication.VialConcentration}" />
+
+            <ListView x:Name="PCAsListView" ItemsSource="{Binding PCAs}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10" Orientation="Horizontal">
+                                <Label Text="{Binding PCASize}" />
+                                <Label Text="{Binding PCAPrice}" />
+                                <Button
+                                    Text="Edit"
+                                    TextColor="Black" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Label Text="Add PCA" />
+            <StackLayout Orientation="Horizontal">
+                <Label Style="{DynamicResource entryLabel}" Text="Size:" />
+                <Entry
+                    x:Name="PCASize"
+                    Keyboard="Numeric"
+                    Style="{DynamicResource regularEntry}" />
+                <Label Style="{DynamicResource entryLabel}" Text="Price:" />
+                <Entry
+                    x:Name="PCAPrice"
+                    Keyboard="Numeric"
+                    Style="{DynamicResource regularEntry}" />
+                <Button Clicked="AddPCA_Clicked" Text="Add PCA" />
+                <Button Clicked="CancelPCA_Clicked" Text="Cancel" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

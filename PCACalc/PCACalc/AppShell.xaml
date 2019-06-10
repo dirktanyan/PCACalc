@@ -1,27 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-       mc:Ignorable="d"
-       xmlns:local="clr-namespace:PCACalc.Views"
-       Title="PCACalc"
-       x:Class="PCACalc.AppShell"
-       BackgroundColor="{DynamicResource BrandColor}"
-       UnselectedColor="{DynamicResource BrandColorLight}"
-       ForegroundColor="{DynamicResource BrandColorDark}"
-       TabBarForegroundColor="{DynamicResource BrandAccentColor}"
-       TabBarBackgroundColor="{DynamicResource BrandColor}"
-       FlyoutBackgroundColor="White"
-       TitleColor="Black"
-       >
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="PCACalc.AppShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:local="clr-namespace:PCACalc.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="PCACalc"
+    BackgroundColor="{DynamicResource BrandColorDark}"
+    FlyoutBackgroundColor="White"
+    ForegroundColor="{DynamicResource BrandColorDark}"
+    TabBarBackgroundColor="{DynamicResource BrandColorDark}"
+    TabBarForegroundColor="{DynamicResource BrandColorLight}"
+    TitleColor="{DynamicResource BrandColorLight}"
+    UnselectedColor="{DynamicResource BrandAccentColor}"
+    mc:Ignorable="d">
 
-    <!-- 
-        Styles and Resources 
+    <!--
+        Styles and Resources
     -->
     <!--<Shell.Resources>
         <ResourceDictionary>
-            --><!--This doesn't appear to work very well, using direct settings above--><!--
+    -->
+    <!--  This doesn't appear to work very well, using direct settings above  -->
+    <!--
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{DynamicResource BrandColor }" />
                 <Setter Property="Shell.ForegroundColor" Value="{DynamicResource BrandColorDark}" />
@@ -37,35 +39,35 @@
             <Style TargetType="ShellItem" BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
     </Shell.Resources>-->
-   
-    <!-- Your Pages -->
+
+    <!--  Your Pages  -->
 
     <FlyoutItem Title="PCA vs Injectables" FlyoutIcon="syringe.png">
         <Tab Title="PVA vs Inj" Icon="syringe.png">
             <ShellContent ContentTemplate="{DataTemplate local:PCAvsInjPage}" />
         </Tab>
-        <Tab Title="Prices">
-            <ShellContent ContentTemplate="{DataTemplate local:PCAvsInjSettingsPage}" />
+        <Tab Title="Prices" Icon="pharmacist.png">
+            <ShellContent ContentTemplate="{DataTemplate local:MedicationsPage}" />
         </Tab>
     </FlyoutItem>
-    
+
     <FlyoutItem Title="Time Remaining" FlyoutIcon="schedule.png">
         <Tab Title="By Volume History" Icon="timeMachine.png">
-            <ShellContent ContentTemplate="{DataTemplate local:TRVolumePage}"/>
+            <ShellContent ContentTemplate="{DataTemplate local:TRVolumePage}" />
         </Tab>
-        <Tab Title="By Prescription" Icon="treatment.png" >
-            <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}"/>
+        <Tab Title="By Prescription" Icon="treatment.png">
+            <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}" />
         </Tab>
     </FlyoutItem>
-    <FlyoutItem Title="Concentration" FlyoutIcon="infusion.png" >
+    <FlyoutItem Title="Concentration" FlyoutIcon="infusion.png">
         <Tab Title="Concentration" Icon="infusion.png">
-            <ShellContent ContentTemplate="{DataTemplate local:ConcentrationPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate local:ConcentrationPage}" />
         </Tab>
     </FlyoutItem>
     <!--<TabBar>
          <Tab Title="Concentration" Icon="salinebag.png">
             <ShellContent ContentTemplate="{DataTemplate local:ConcentrationPage}"/>
-        </Tab> 
+        </Tab>
         <Tab Title="Browse" Icon="tab_feed.png">
             <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}" />
         </Tab>
@@ -75,12 +77,20 @@
     </TabBar>-->
 
 
-    <!-- // These may be provided inline as below or as separate classes. -->
+    <!--  // These may be provided inline as below or as separate classes.  -->
 
     <Shell.FlyoutHeaderTemplate>
-	    <DataTemplate>
-            <StackLayout >
-                <Label Text="PCA Calculator" FontFamily="{StaticResource MediumFontFamily}" TextColor="{StaticResource BrandAccentColor}" BackgroundColor="{StaticResource BrandColorDark}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+        <DataTemplate>
+            <StackLayout>
+                <!--<Image Source="pharmacist.png" />-->
+                <Label
+                    BackgroundColor="{StaticResource BrandColorDark}"
+                    FontFamily="{StaticResource LightFontFamily}"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Text="PCA Calculator"
+                    TextColor="{StaticResource BrandColorLight}"
+                    VerticalTextAlignment="Center" />
             </StackLayout>
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
@@ -102,7 +112,7 @@
                 Bindable Properties: Text, Icon
             </ContentView>
         </DataTemplate>
-    </Shell.MenuItemTemplate> -->
+    </Shell.MenuItemTemplate>-->
 
 
 </Shell>
