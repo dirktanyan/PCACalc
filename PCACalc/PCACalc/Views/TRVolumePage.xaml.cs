@@ -89,17 +89,17 @@ namespace PCACalc.Views
                 try
                 {
                     mlperhour = double.Parse(AmtUsedEntry.Text) / double.Parse(IntervalEntry.Text);
-                    MLPH.Text = mlperhour.ToString();
-                    MLPD.Text = (mlperhour * 24).ToString();
-                    MLP7D.Text = (mlperhour * 24 * 7).ToString();
+                    MLPH.Text = mlperhour.ToString("F2");
+                    MLPD.Text = (mlperhour * 24).ToString("F2");
+                    MLP7D.Text = (mlperhour * 24 * 7).ToString("F2");
 
                     unitsperhour = (double.Parse(AmtUsedEntry.Text) * double.Parse(BagConcEntry.Text)) / double.Parse(IntervalEntry.Text);
-                    MGPH.Text = unitsperhour.ToString();
-                    MGPD.Text = (unitsperhour * 24).ToString();
-                    MGP7D.Text = (unitsperhour * 24 * 7).ToString();
+                    MGPH.Text = unitsperhour.ToString("F2");
+                    MGPD.Text = (unitsperhour * 24).ToString("F2");
+                    MGP7D.Text = (unitsperhour * 24 * 7).ToString("F2");
 
-                    HoursRemaining.Text = (double.Parse(RemainingEntry.Text) / mlperhour).ToString();
-                    DaysRemaining.Text = (double.Parse(RemainingEntry.Text) / (mlperhour * 24)).ToString();
+                    HoursRemaining.Text = (double.Parse(RemainingEntry.Text) / mlperhour).ToString("F2");
+                    DaysRemaining.Text = (double.Parse(RemainingEntry.Text) / (mlperhour * 24)).ToString("F2");
                 }
                 catch
                 {

@@ -49,5 +49,11 @@ namespace PCACalc.Services
             PCAList.Add(pca);
             return await Task.FromResult(true);
         }
+
+        public async Task<bool> DeletePCAAsync(MedsPCA pcaInstance)
+        {
+            database.Delete<MedsPCA>(pcaInstance.ID);
+            return await Task.FromResult(true);
+        }
     }
 }

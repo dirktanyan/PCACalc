@@ -1,52 +1,83 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="PCACalc.Views.MedDetailPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
-    <ContentPage.Content>
-        <StackLayout Padding="15" Spacing="20">
-            <Label FontSize="Medium" Text="Medication:" />
-            <Entry d:Text="Medication Name" Text="{Binding Medication.Name}" />
-            <Label FontSize="Medium" Text="Concentration:" />
-            <Entry
-                d:Text="Concentration"
-                Keyboard="Numeric"
-                Text="{Binding Medication.VialConcentration}" />
+<ContentPage x:Class="PCACalc.Views.MedDetailPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="Medication Details" mc:Ignorable="d">
 
-            <ListView x:Name="PCAsListView" ItemsSource="{Binding PCAs}">
+    <ContentPage.Content>
+
+
+        <Grid Padding="10" HorizontalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="80" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"
+                   Style="{StaticResource entryLabel}"
+                   Text="Medication:" VerticalOptions="End" />
+            <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" d:Text="Medication Name"
+                   Style="{StaticResource regularEntry}"
+                   Text="{Binding Medication.Name}" />
+            <Label Grid.Row="2" Grid.Column="0"
+                   Style="{StaticResource entryLabel}"
+                   Text="Concentration:" VerticalOptions="End" />
+            <Label Grid.Row="2" Grid.Column="1"
+                   Style="{StaticResource entryLabel}"
+                   Text="Vial Size (ml):" VerticalOptions="End" />
+            <Label Grid.Row="2" Grid.Column="2"
+                   Style="{StaticResource entryLabel}"
+                   Text="Vial Price:" VerticalOptions="End" />
+            <Entry x:Name="Concentration" Grid.Row="3" Grid.Column="0" d:Text="Concentration" Completed="Entry_Complete" Keyboard="Numeric"
+                   Style="{StaticResource regularEntry}"
+                   Text="{Binding Medication.VialConcentration}" />
+            <Entry x:Name="VialSize" Grid.Row="3" Grid.Column="1" d:Text="Size" Completed="Entry_Complete" Keyboard="Numeric"
+                   Style="{StaticResource regularEntry}"
+                   Text="{Binding Medication.VialSize}" />
+
+            <Entry x:Name="VialPrice" Grid.Row="3" Grid.Column="2" d:Text="Price" Completed="Entry_Complete" Keyboard="Numeric"
+                   Style="{StaticResource regularEntry}"
+                   Text="{Binding Medication.VialPrice}" />
+
+
+            <Frame Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Style="{DynamicResource frameSettings}" />
+            <ListView x:Name="PCAsListView" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" ItemSelected="PCAsListView_ItemSelected"
+                      ItemsSource="{Binding PCAs}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="10" Orientation="Horizontal">
-                                <Label Text="{Binding PCASize}" />
-                                <Label Text="{Binding PCAPrice}" />
-                                <Button
-                                    Text="Edit"
-                                    TextColor="Black" />
+                                <Label Text="{Binding PCASize, StringFormat='{0} ml'}" />
+                                <Label Text="{Binding PCAPrice, StringFormat='{0:C}'}" />
+                                <Label x:Name="labelPCAID" IsVisible="False" Text="{Binding ID}" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Label Text="Add PCA" />
-            <StackLayout Orientation="Horizontal">
-                <Label Style="{DynamicResource entryLabel}" Text="Size:" />
-                <Entry
-                    x:Name="PCASize"
-                    Keyboard="Numeric"
-                    Style="{DynamicResource regularEntry}" />
-                <Label Style="{DynamicResource entryLabel}" Text="Price:" />
-                <Entry
-                    x:Name="PCAPrice"
-                    Keyboard="Numeric"
-                    Style="{DynamicResource regularEntry}" />
-                <Button Clicked="AddPCA_Clicked" Text="Add PCA" />
-                <Button Clicked="CancelPCA_Clicked" Text="Cancel" />
+            <StackLayout Grid.Row="4" Grid.Column="3" VerticalOptions="Center">
+                <Button x:Name="editPCA" Clicked="EditPCA_Clicked" FontSize="Small" IsEnabled="False" Text="Edit" />
+                <Button x:Name="deletePCA" Clicked="DeletePCA_Clicked" FontSize="Small" IsEnabled="False" Text="Delete" />
             </StackLayout>
-        </StackLayout>
+
+            <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" HorizontalOptions="Center" Text="Add PCA" />
+            <Label Grid.Row="6" Grid.Column="0" Text="Size" />
+            <Label Grid.Row="6" Grid.Column="1" Text="Price" />
+
+            <Entry x:Name="PCASize" Grid.Row="7" Grid.Column="0" Style="{StaticResource regularEntry}" />
+            <Entry x:Name="PCAPrice" Grid.Row="7" Grid.Column="1" Style="{StaticResource regularEntry}" />
+            <Button x:Name="AddPCA" Grid.Row="7" Grid.Column="2" Clicked="AddPCA_Clicked" FontSize="Small" Text="Add" />
+            <Button x:Name="Cancel" Grid.Row="7" Grid.Column="3" Clicked="CancelPCA_Clicked" FontSize="Small" Text="Cancel" />
+
+        </Grid>
+
     </ContentPage.Content>
 
 </ContentPage>

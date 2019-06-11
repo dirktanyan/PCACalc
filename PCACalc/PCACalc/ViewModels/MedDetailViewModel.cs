@@ -50,7 +50,7 @@ namespace PCACalc.ViewModels
             }
         }
 
-        public async Task<bool> AddPCA(int medID, int pcaSize, decimal pcaPrice)
+        public async Task<bool> AddPCA(int medID, int pcaSize, decimal pcaPrice, int pcaID = 0)
         {
             MedsPCA newPCA = new MedsPCA();
 
@@ -67,6 +67,11 @@ namespace PCACalc.ViewModels
             return await Task.FromResult(true);
         }
 
+        public async Task<bool> DeletePCA(MedsPCA doomedPCA)
+        {
+            await DataStore.DeletePCAAsync(doomedPCA);
+            return await Task.FromResult(true);
+        }
         
 
         string _name = string.Empty;

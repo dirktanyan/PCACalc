@@ -1,37 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application
-    x:Class="PCACalc.App"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+<Application x:Class="PCACalc.App" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
     <Application.Resources>
         <!--  Fonts  -->
-        <OnPlatform
-            x:Key="RegularFontFamily"
-            x:TypeArguments="x:String"
-            Android="sans-serif"
-            WinPhone=""
-            iOS="HelveticaNeue" />
-        <OnPlatform
-            x:Key="LightFontFamily"
-            x:TypeArguments="x:String"
-            Android="sans-serif-light"
-            WinPhone=""
-            iOS="HelveticaNeue-Light" />
-        <OnPlatform
-            x:Key="MediumFontFamily"
-            x:TypeArguments="x:String"
-            Android="sans-serif-medium"
-            WinPhone=""
-            iOS="HelveticaNeue-Medium" />
+        <OnPlatform x:Key="RegularFontFamily" x:TypeArguments="x:String" Android="sans-serif" WinPhone="" iOS="HelveticaNeue" />
+        <OnPlatform x:Key="LightFontFamily" x:TypeArguments="x:String" Android="sans-serif-light" WinPhone="" iOS="HelveticaNeue-Light" />
+        <OnPlatform x:Key="MediumFontFamily" x:TypeArguments="x:String" Android="sans-serif-medium" WinPhone="" iOS="HelveticaNeue-Medium" />
 
         <x:Double x:Key="RegularLabelFontSize">14</x:Double>
         <x:Double x:Key="SmallLabelFontSize">12</x:Double>
         <x:Double x:Key="EntryFontSize">14</x:Double>
-        <x:Double x:Key="FinalResultLabelFontSize">20</x:Double>
-        <x:Double x:Key="FinalResultFontSize">40</x:Double>
+        <x:Double x:Key="FinalResultLabelFontSize">16</x:Double>
+        <x:Double x:Key="FinalResultFontSize">26</x:Double>
 
         <!--  Colors  -->
         <!--<Color x:Key="BrandColor">#B0BEC5</Color>
@@ -46,11 +25,14 @@
         <Color x:Key="BrandAccentColor">#E53935</Color>
         <Color x:Key="BrandAccentColorDark">#AB000D</Color>-->
 
-        <Color x:Key="BrandColor">#EDEDED</Color>
-        <Color x:Key="BrandColorLight">#F0F5F7</Color>
-        <Color x:Key="BrandColorDark">#00BBD3</Color>
-        <Color x:Key="BrandAccentColor">#2ECC71</Color>
-        <Color x:Key="BrandAccentColorDark">#AB000D</Color>
+        <Color x:Key="BrandColor">#00BBD3</Color>
+        <Color x:Key="BrandColorLight">#62EEFF</Color>
+        <Color x:Key="BrandColorDark">#008BA2</Color>
+        <Color x:Key="BrandGray">#E1E2E1</Color>
+        <Color x:Key="BrandGrayDark">#AFB0AF</Color>
+        <Color x:Key="BrandGrayLight">#FFFFFF</Color>
+        <Color x:Key="BrandAccentColor">#21D321</Color>
+        <Color x:Key="BrandAccentColorDark">#00A000</Color>
 
         <!--  Text Colors  -->
         <Color x:Key="PrimaryTextColor">#000000</Color>
@@ -70,6 +52,7 @@
             <Setter Property="Keyboard" Value="Numeric" />
             <Setter Property="WidthRequest" Value="50" />
             <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="BackgroundColor" Value="{StaticResource BrandGray}" />
         </Style>
         <Style x:Key="UoMLabel" TargetType="Label">
             <Setter Property="FontFamily" Value="LightFontFamily" />
@@ -84,21 +67,39 @@
         <Style x:Key="CalcResult" TargetType="Label">
             <Setter Property="FontFamily" Value="MediumFontFamily" />
             <Setter Property="FontSize" Value="{StaticResource RegularLabelFontSize}" />
-            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="TextColor" Value="{StaticResource BrandGrayDark}" />
             <Setter Property="HorizontalTextAlignment" Value="Center" />
         </Style>
         <Style x:Key="FinalResultLabel" TargetType="Label">
-            <Setter Property="FontFamily" Value="RegularFontFamily" />
+            <Setter Property="FontFamily" Value="LightFontFamily" />
             <Setter Property="FontSize" Value="{StaticResource FinalResultLabelFontSize}" />
-            <Setter Property="TextColor" Value="White" />
+            <Setter Property="TextColor" Value="Black" />
             <Setter Property="Margin" Value="5,5,5,0" />
         </Style>
         <Style x:Key="FinalResult" TargetType="Label">
-            <Setter Property="FontFamily" Value="MediumFontFamily" />
+            <Setter Property="FontFamily" Value="LightFontFamily" />
             <Setter Property="FontSize" Value="{StaticResource FinalResultFontSize}" />
-            <Setter Property="TextColor" Value="White" />
+            <Setter Property="TextColor" Value="{StaticResource BrandGrayDark}" />
             <Setter Property="HorizontalTextAlignment" Value="Center" />
             <Setter Property="VerticalTextAlignment" Value="Center" />
         </Style>
+        <Style x:Key="boxViewSettings" TargetType="BoxView">
+            <Setter Property="Color" Value="{StaticResource BrandColorLight}" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="VerticalOptions" Value="FillAndExpand" />
+        </Style>
+        <Style x:Key="frameSettings" TargetType="Frame">
+            <Setter Property="BorderColor" Value="{StaticResource BrandGrayDark}" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HasShadow" Value="True" />
+        </Style>
+        <Style x:Key="roundButton" TargetType="Button">
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="WidthRequest" Value="40" />
+            <Setter Property="HeightRequest" Value="40" />
+
+        </Style>
+        
     </Application.Resources>
 </Application>

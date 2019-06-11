@@ -18,7 +18,6 @@ namespace PCACalc.ViewModels
 
         public MedsViewModel()
         {
-            Title = "Medication List";
             Medications = new ObservableCollection<Med>();
             LoadMedsCommand = new Command(async () => await ExecuteLoadMedsCommand());
 
