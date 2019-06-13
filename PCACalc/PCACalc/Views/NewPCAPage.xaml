@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PCACalc.Views.NewPCAPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms" Title="New PCA" mc:Ignorable="d">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="Cancel_Clicked" Text="Cancel" />
+        <ToolbarItem Clicked="Save_Clicked" Text="Save" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Padding="15" Spacing="20">
+
+            <inputLayout:SfTextInputLayout HelperText="PCA Size in ML" Hint="PCA Size" WidthRequest="100">
+                <syncfusion:SfNumericTextBox x:Name="PCASize" FormatString="ml" MaximumNumberDecimalDigits="2" Value="{Binding thisPCA.PCASize}" />
+            </inputLayout:SfTextInputLayout>
+            <inputLayout:SfTextInputLayout Hint="PCA Price" WidthRequest="100">
+                <syncfusion:SfNumericTextBox x:Name="PCAPrice" FormatString="c" MaximumNumberDecimalDigits="2" Value="{Binding thisPCA.PCAPrice}" />
+            </inputLayout:SfTextInputLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

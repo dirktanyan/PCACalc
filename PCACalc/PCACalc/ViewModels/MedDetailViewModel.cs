@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using PCACalc.Views;
 
 namespace PCACalc.ViewModels
 {
@@ -30,6 +31,22 @@ namespace PCACalc.ViewModels
             VialSize = med.VialSize;
 
             PCAs = new ObservableCollection<MedsPCA>();
+
+            MessagingCenter.Subscribe<NewPCAPage, MedsPCA>(this, "AddPCA", async (obj, item) =>
+            {
+                var newPCA = item as MedsPCA;
+                if (newPCA.ID == 0)
+                {
+                    PCAs.Add(newPCA);
+                }
+                else
+                {
+                    PCAs.Remove(newPCA);
+                    PCAs.Add(newPCA);
+                }
+                
+                await PCADataStore.AddPCAAsync(newPCA);
+            });
 
             LoadAssocPCAs = new Command(async () => await LoadAssociatedPCAs());
         }

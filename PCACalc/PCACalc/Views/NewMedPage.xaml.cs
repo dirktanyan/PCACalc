@@ -21,13 +21,13 @@ namespace PCACalc.Views
         {
             InitializeComponent();
 
-            Medication = new Med
-            {
-                Name = "Medication Name",
-                VialSize = 1,
-                VialConcentration = 2,
-                VialPrice = 1.00M
-            };
+            Medication = new Med();
+            //{
+            //    Name = null,
+            //    VialSize = 0,
+            //    VialConcentration = 2,
+            //    VialPrice = 1.00M
+            //};
 
             dataaccess = new MedsDataAccess();
 
@@ -41,7 +41,11 @@ namespace PCACalc.Views
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            //this.dataaccess.SaveMedication(Medication);
+            //Medication.Name = MedicationName.Text;
+            //Medication.VialConcentration = float.Parse(VialConcentration.Value.ToString());
+            //Medication.VialSize = float.Parse(VialSize.Value.ToString());
+            //Medication.VialPrice = decimal.Parse(VialPrice.Value.ToString());
+
             MessagingCenter.Send(this, "AddItem", Medication);
             await Navigation.PopModalAsync();
         }

@@ -51,7 +51,12 @@ namespace PCACalc.Views
 
         async void OnAddClick(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewMedPage()));
+            await Navigation.PushModalAsync(new NavigationPage(new NewMedPage())
+            {
+                BarBackgroundColor = Color.FromHex("#00BBD3"),
+                BarTextColor = Color.White 
+            }) ;
+            
         }
 
         
