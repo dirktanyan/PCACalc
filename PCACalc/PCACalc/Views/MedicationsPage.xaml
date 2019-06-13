@@ -7,7 +7,7 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Padding="10">
-                            <Label FontSize="16" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" Text="{Binding Name}" />
+                            <Label FontSize="16" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" Text="{Binding FullMedName}" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
@@ -16,6 +16,5 @@
     </ContentPage.Content>
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="Add" Activated="OnAddClick" Order="Secondary" Priority="0" />
-
     </ContentPage.ToolbarItems>
 </ContentPage>

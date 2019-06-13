@@ -17,7 +17,8 @@ namespace PCACalc.ViewModels
         public Med Medication { get; set; }
         public Command LoadAssocPCAs { get; set; }
         public ObservableCollection<MedsPCA> PCAs { get; set; }
-        public PCADataAccess DataStore = new PCADataAccess();
+        public PCADataAccess PCADataStore = new PCADataAccess();
+        public MedsDataAccess MedsDataStore = new MedsDataAccess();
 
         public MedDetailViewModel(Med med = null)
         {
@@ -38,7 +39,7 @@ namespace PCACalc.ViewModels
             try
             {
                 PCAs.Clear();
-                var _pcas = await DataStore.GetMedsPCAAsync(ID);
+                var _pcas = await PCADataStore.GetMedsPCAAsync(ID);
                 foreach (var _pca in _pcas)
                 {
                     PCAs.Add(_pca);
@@ -57,9 +58,10 @@ namespace PCACalc.ViewModels
             newPCA.FK_MedsID = medID; 
             newPCA.PCASize = pcaSize;
             newPCA.PCAPrice = pcaPrice;
+            newPCA.ID = pcaID;
 
 
-            bool result = await DataStore.AddPCAAsync(newPCA);
+            bool result = await PCADataStore.AddPCAAsync(newPCA);
 
             if (result == true)
                 await LoadAssociatedPCAs();
@@ -69,10 +71,20 @@ namespace PCACalc.ViewModels
 
         public async Task<bool> DeletePCA(MedsPCA doomedPCA)
         {
-            await DataStore.DeletePCAAsync(doomedPCA);
+            await PCADataStore.DeletePCAAsync(doomedPCA);
             return await Task.FromResult(true);
         }
-        
+
+        public async Task<bool> UpdateMedication(Med updatingMed)
+        {
+            await MedsDataStore.AddMedicationAsync(updatingMed);
+            return await Task.FromResult(true);
+        }
+
+        public async Task DeleteMedication(Med medInstance)
+        {
+            await MedsDataStore.DeleteMedication(medInstance.ID);
+        }
 
         string _name = string.Empty;
         public string Name

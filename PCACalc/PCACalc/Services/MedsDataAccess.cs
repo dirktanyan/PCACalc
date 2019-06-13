@@ -57,6 +57,12 @@ namespace PCACalc.Services
             }
         }
 
+        public async Task<bool> DeleteMedication(int medID)
+        {
+            database.Delete<Med>(medID);
+            return await Task.FromResult(true);
+        }
+
         //public int SaveMedication(Med medinstance)
         //{
         //    lock (collisionLock)

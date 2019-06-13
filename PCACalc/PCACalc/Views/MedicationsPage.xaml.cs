@@ -53,5 +53,7 @@ namespace PCACalc.Views
         {
             await Navigation.PushModalAsync(new NavigationPage(new NewMedPage()));
         }
+
+        
     }
 }

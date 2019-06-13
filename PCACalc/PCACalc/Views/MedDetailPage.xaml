@@ -18,12 +18,15 @@
                 <RowDefinition Height="30" />
                 <RowDefinition Height="40" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="40" />
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"
                    Style="{StaticResource entryLabel}"
                    Text="Medication:" VerticalOptions="End" />
-            <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" d:Text="Medication Name"
+            <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" IsEnabled="False"
                    Style="{StaticResource regularEntry}"
                    Text="{Binding Medication.Name}" />
             <Label Grid.Row="2" Grid.Column="0"
@@ -35,16 +38,15 @@
             <Label Grid.Row="2" Grid.Column="2"
                    Style="{StaticResource entryLabel}"
                    Text="Vial Price:" VerticalOptions="End" />
-            <Entry x:Name="Concentration" Grid.Row="3" Grid.Column="0" d:Text="Concentration" Completed="Entry_Complete" Keyboard="Numeric"
+            <Entry x:Name="Concentration" Grid.Row="3" Grid.Column="0" Completed="ConcentrationUpdated" Keyboard="Numeric"
                    Style="{StaticResource regularEntry}"
-                   Text="{Binding Medication.VialConcentration}" />
-            <Entry x:Name="VialSize" Grid.Row="3" Grid.Column="1" d:Text="Size" Completed="Entry_Complete" Keyboard="Numeric"
+                   Text="{Binding Medication.VialConcentration, Mode=OneWay}" />
+            <Entry x:Name="VialSize" Grid.Row="3" Grid.Column="1" Completed="VialSizeUpdated" Keyboard="Numeric"
                    Style="{StaticResource regularEntry}"
-                   Text="{Binding Medication.VialSize}" />
-
-            <Entry x:Name="VialPrice" Grid.Row="3" Grid.Column="2" d:Text="Price" Completed="Entry_Complete" Keyboard="Numeric"
+                   Text="{Binding Medication.VialSize, Mode=OneWay}" />
+            <Entry x:Name="VialPrice" Grid.Row="3" Grid.Column="2" Completed="VialPriceUpdated" Keyboard="Numeric"
                    Style="{StaticResource regularEntry}"
-                   Text="{Binding Medication.VialPrice}" />
+                   Text="{Binding Medication.VialPrice, Mode=OneWay}" />
 
 
             <Frame Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Style="{DynamicResource frameSettings}" />
@@ -67,7 +69,8 @@
                 <Button x:Name="deletePCA" Clicked="DeletePCA_Clicked" FontSize="Small" IsEnabled="False" Text="Delete" />
             </StackLayout>
 
-            <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" HorizontalOptions="Center" Text="Add PCA" />
+            <Label x:Name="LabelAddPCA" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Center" Text="Add PCA" />
+            
             <Label Grid.Row="6" Grid.Column="0" Text="Size" />
             <Label Grid.Row="6" Grid.Column="1" Text="Price" />
 
@@ -80,4 +83,8 @@
 
     </ContentPage.Content>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Delete" Activated="OnDeleteClick" Order="Secondary" Priority="0" />
+    </ContentPage.ToolbarItems>
+    
 </ContentPage>

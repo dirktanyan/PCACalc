@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PCACalc.ViewModels;
 using PCACalc.Models;
 
@@ -16,6 +12,7 @@ namespace PCACalc.Views
     {
         MedDetailViewModel viewModel;
         MedsPCA selectedPCA = new MedsPCA();
+        Med selectedMed = new Med();
         bool updatePCAMode = false;
 
         public MedDetailPage(MedDetailViewModel viewModel)
@@ -23,6 +20,8 @@ namespace PCACalc.Views
             InitializeComponent();
 
             BindingContext = this.viewModel = viewModel;
+
+            selectedMed = viewModel.Medication;
         }
 
         public MedDetailPage()
@@ -61,6 +60,7 @@ namespace PCACalc.Views
             {
                 updatePCAMode = false;
                 AddPCA.Text = "Add";
+                LabelAddPCA.Text = "Add PCA";
                 viewModel.LoadAssocPCAs.Execute(null);
                 PCASize.Text = "";
                 PCAPrice.Text = "";
@@ -71,6 +71,8 @@ namespace PCACalc.Views
         {
             PCASize.Text = "";
             PCAPrice.Text = "";
+            AddPCA.Text = "Add";
+            LabelAddPCA.Text = "Add PCA";
             updatePCAMode = false;
         }
 
@@ -79,25 +81,38 @@ namespace PCACalc.Views
             base.OnAppearing();
 
             if (viewModel.PCAs.Count == 0)
-                viewModel.LoadAssocPCAs.Execute(null);
-
-            
+                viewModel.LoadAssocPCAs.Execute(null);       
         }
 
-        private void Entry_Complete(object sender, EventArgs e)
+        private async void ConcentrationUpdated(object sender, EventArgs e)
         {
-            
-            
+            Entry thisEntry = sender as Entry;
+            selectedMed.VialConcentration = float.Parse(thisEntry.Text);
+            await viewModel.UpdateMedication(selectedMed);
+        }
+
+        private async void VialSizeUpdated(object sender, EventArgs e)
+        {
+            Entry thisEntry = sender as Entry;
+            selectedMed.VialSize = float.Parse(thisEntry.Text);
+            await viewModel.UpdateMedication(selectedMed);
+        }
+
+        private async void VialPriceUpdated(object sender, EventArgs e)
+        {
+            Entry thisEntry = sender as Entry;
+            selectedMed.VialPrice = decimal.Parse(thisEntry.Text);
+            await viewModel.UpdateMedication(selectedMed);
         }
 
         private void EditPCA_Clicked(object sender, EventArgs e)
         {
             updatePCAMode = true;
             AddPCA.Text = "Update";
+            LabelAddPCA.Text = "Update PCA";
             
             PCASize.Text = selectedPCA.PCASize.ToString();
             PCAPrice.Text = selectedPCA.PCAPrice.ToString();
-
         }
 
         private async void DeletePCA_Clicked(object sender, EventArgs e)
@@ -107,6 +122,7 @@ namespace PCACalc.Views
             if (result == true)
             {
                 await viewModel.DeletePCA(selectedPCA);
+                viewModel.LoadAssocPCAs.Execute(null);
             }
         }
 
@@ -119,6 +135,18 @@ namespace PCACalc.Views
 
             editPCA.IsEnabled = true;
             deletePCA.IsEnabled = true;
+        }
+
+        async void OnDeleteClick(object sender, EventArgs e)
+        {
+            
+            bool result = await DisplayAlert("Delete Medication", string.Format("Are you sure you want to delete {0}?", selectedMed.FullMedName), "Yes", "No");
+            if (result == false) return;
+
+            MessagingCenter.Send(this, "DeleteItem", selectedMed);
+            await Navigation.PushAsync(new MedicationsPage(),true);
+
+            //await viewModel.DeleteMedication(selectedMed);
         }
     }
 }
