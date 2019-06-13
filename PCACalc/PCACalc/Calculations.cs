@@ -22,6 +22,15 @@ namespace PCACalc
                  
         }
 
+        public static double MGPerHour(double mg, double hours)
+        {
+            double mgperhour;
+
+            mgperhour = mg / hours;
+
+            return Math.Round(mgperhour, 3);
+        }
+
     }
 
 }

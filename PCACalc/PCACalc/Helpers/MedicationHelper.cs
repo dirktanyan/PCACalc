@@ -23,7 +23,7 @@ namespace PCACalc.Helpers
         // Get list of Medications
         public List<Med> GetAllMeds()
         {
-            return (from data in sqliteconnection.Table<Med>() select data).ToList();
+            return (from data in sqliteconnection.Table<Med>() select data).OrderBy(t=>t.Name).ToList();
         }
         
         // Get specific Medication
