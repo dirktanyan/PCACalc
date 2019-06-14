@@ -1,0 +1,3 @@
+1 parameter - uniform size
+2 parameters - horizontal, vertical
+3 parameters - left, top, right, bottom

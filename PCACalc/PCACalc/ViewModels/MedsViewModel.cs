@@ -24,7 +24,9 @@ namespace PCACalc.ViewModels
             MessagingCenter.Subscribe<NewMedPage, Med>(this, "AddItem", async (obj, item) =>
             {
                 var newMed = item as Med;
+
                 Medications.Add(newMed);
+                              
                 await DataStore.AddMedicationAsync(newMed);
 
             });
@@ -34,6 +36,15 @@ namespace PCACalc.ViewModels
                   Medications.Remove(doomedMed);
                   await DataStore.DeleteMedication(doomedMed.ID);
               });
+
+            MessagingCenter.Subscribe<MedDetailPage, Med>(this, "UpdateItem", async (obj, item) =>
+            {
+                var updatedMed = item as Med;
+                Medications.Remove(updatedMed);
+                Medications.Add(updatedMed);
+                await DataStore.AddMedicationAsync(updatedMed);
+            });
+
         }
 
         async Task ExecuteLoadMedsCommand()

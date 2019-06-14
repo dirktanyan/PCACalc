@@ -44,8 +44,13 @@ namespace PCACalc.Views
             var item = args.SelectedItem as Med;
             if (item == null) return;
 
+            try { // Having trouble with app crashed if a medication is updated, the detail page closed then reopened
             await Navigation.PushAsync(new MedDetailPage(new ViewModels.MedDetailViewModel(item)));
-
+            }
+            catch
+            {
+                return;
+            }
             MedsListView.SelectedItem = null;
         }
 

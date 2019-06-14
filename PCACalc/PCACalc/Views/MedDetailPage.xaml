@@ -1,24 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="PCACalc.Views.MedDetailPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms" Title="Medication Details" mc:Ignorable="d">
+<ContentPage
+    x:Class="PCACalc.Views.MedDetailPage" xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+    Title="Medication Details" mc:Ignorable="d">
 
     <ContentPage.Content>
         <StackLayout>
 
             <inputLayout:SfTextInputLayout Hint="Medication">
-                <Entry Text="{Binding Medication.Name}" />
+                <Entry Completed="NameUpdated" Text="{Binding Medication.Name}" Unfocused="SfNumericTextBox_Unfocused" />
             </inputLayout:SfTextInputLayout>
 
             <Grid Padding="10,0,10,10">
                 <inputLayout:SfTextInputLayout Grid.Column="0" Hint="Concentration">
-                    <syncfusion:SfNumericTextBox Completed="ConcentrationUpdated" FontSize="12" FormatString="mg/ml" Value="{Binding Medication.VialConcentration}" />
+                    <syncfusion:SfNumericTextBox
+                        Completed="SfNumericTextBox_Updated" FontSize="12" FormatString="mg/ml" SelectAllOnFocus="True"
+                        Unfocused="SfNumericTextBox_Unfocused"
+                        Value="{Binding Medication.VialConcentration}" />
                 </inputLayout:SfTextInputLayout>
                 <inputLayout:SfTextInputLayout Grid.Column="1" Hint="Vial Size">
-                    <syncfusion:SfNumericTextBox Completed="VialSizeUpdated" FontSize="12" FormatString="ml" Value="{Binding Medication.VialSize}" />
+                    <syncfusion:SfNumericTextBox
+                        Completed="SfNumericTextBox_Updated" FontSize="12" FormatString="ml" SelectAllOnFocus="True"
+                        Unfocused="SfNumericTextBox_Unfocused"
+                        Value="{Binding Medication.VialSize}" />
                 </inputLayout:SfTextInputLayout>
                 <inputLayout:SfTextInputLayout Grid.Column="2" Hint="Vial Price">
-                    <syncfusion:SfNumericTextBox Completed="VialPriceUpdated" FontSize="12" FormatString="c" Value="{Binding Medication.VialPrice}" />
+                    <syncfusion:SfNumericTextBox
+                        Completed="SfNumericTextBox_Updated" FontSize="12" FormatString="c" SelectAllOnFocus="True"
+                        Unfocused="SfNumericTextBox_Unfocused"
+                        Value="{Binding Medication.VialPrice}" />
                 </inputLayout:SfTextInputLayout>
             </Grid>
 
@@ -35,8 +49,10 @@
                 </Grid.RowDefinitions>
 
                 <Frame Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{DynamicResource frameSettings}" />
-                <ListView x:Name="PCAsListView" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" ItemSelected="PCAsListView_ItemSelected"
-                          ItemsSource="{Binding PCAs}">
+                <ListView
+                    x:Name="PCAsListView" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                    ItemSelected="PCAsListView_ItemSelected"
+                    ItemsSource="{Binding PCAs}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

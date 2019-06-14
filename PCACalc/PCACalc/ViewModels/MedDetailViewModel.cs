@@ -96,6 +96,7 @@ namespace PCACalc.ViewModels
         {
             await MedsDataStore.AddMedicationAsync(updatingMed);
             return await Task.FromResult(true);
+            
         }
 
         public async Task DeleteMedication(Med medInstance)

@@ -44,44 +44,7 @@ namespace PCACalc.Views
                 BarBackgroundColor = Color.FromHex("#00BBD3"),
                 BarTextColor = Color.White
             });
-
-            //bool result = false;
-
-            //if (PCASize.Value == null)
-            //    return;
-            //if (PCAPrice.Value == null)
-            //    return;
-
-            //if (updatePCAMode == false)
-            //{
-            //    result = await viewModel.AddPCA(viewModel.ID, Int32.Parse(PCASize.Value.ToString()), Decimal.Parse(PCAPrice.Value.ToString()));
-            //}
-            //else
-            //{
-            //    selectedPCA.PCAPrice = Decimal.Parse(PCAPrice.Value.ToString());
-            //    selectedPCA.PCASize = int.Parse(PCASize.Value.ToString());
-            //    result = await viewModel.AddPCA(selectedPCA.FK_MedsID, selectedPCA.PCASize, selectedPCA.PCAPrice, selectedPCA.ID);
-            //}
-
-            //if (result == true)
-            //{
-            //    updatePCAMode = false;
-            //    AddPCA.Text = "Add";
-            //    LabelAddPCA.Text = "Add PCA";
-            //    viewModel.LoadAssocPCAs.Execute(null);
-            //    PCASize.Value = null;
-            //    PCAPrice.Value  = null;
-            //}
         }
-
-        //private void CancelPCA_Clicked(object sender, EventArgs e)
-        //{
-        //    PCASize.Value = null;
-        //    PCAPrice.Value = null;
-        //    AddPCA.Text = "Add";
-        //    LabelAddPCA.Text = "Add PCA";
-        //    updatePCAMode = false;
-        //}
 
         protected override void OnAppearing()
         {
@@ -91,26 +54,17 @@ namespace PCACalc.Views
                 viewModel.LoadAssocPCAs.Execute(null);       
         }
 
-        private async void ConcentrationUpdated(object sender, EventArgs e)
+        private void NameUpdated(object sender, EventArgs e)
         {
 
-            SfNumericTextBox thisEntry = sender as SfNumericTextBox;
-            selectedMed.VialConcentration = float.Parse(thisEntry.Value.ToString());
-            await viewModel.UpdateMedication(selectedMed);
+            MessagingCenter.Send(this, "UpdateItem", selectedMed);
+
+            //await viewModel.UpdateMedication(selectedMed);
         }
 
-        private async void VialSizeUpdated(object sender, EventArgs e)
+        private void SfNumericTextBox_Updated (object sender, EventArgs e)
         {
-            SfNumericTextBox thisEntry = sender as SfNumericTextBox;
-            selectedMed.VialSize = float.Parse(thisEntry.Value.ToString());
-            await viewModel.UpdateMedication(selectedMed);
-        }
-
-        private async void VialPriceUpdated(object sender, EventArgs e)
-        {
-            SfNumericTextBox thisEntry = sender as SfNumericTextBox;
-            selectedMed.VialPrice = decimal.Parse(thisEntry.Value.ToString());
-            await viewModel.UpdateMedication(selectedMed);
+            MessagingCenter.Send(this, "UpdateItem", selectedMed);
         }
 
         private async void EditPCA_Clicked(object sender, EventArgs e)
@@ -121,12 +75,6 @@ namespace PCACalc.Views
                 BarTextColor = Color.White
             });
 
-            //updatePCAMode = true;
-            //AddPCA.Text = "Update";
-            //LabelAddPCA.Text = "Update PCA";
-
-            //PCASize.Value = selectedPCA.PCASize.ToString();
-            //PCAPrice.Value = selectedPCA.PCAPrice.ToString();
         }
 
         private async void DeletePCA_Clicked(object sender, EventArgs e)
@@ -161,6 +109,11 @@ namespace PCACalc.Views
             await Navigation.PushAsync(new MedicationsPage(),true);
 
             //await viewModel.DeleteMedication(selectedMed);
+        }
+
+        private void SfNumericTextBox_Unfocused(object sender, Xamarin.Forms.FocusEventArgs e)
+        {
+            SfNumericTextBox_Updated(sender, e);
         }
     }
 }
