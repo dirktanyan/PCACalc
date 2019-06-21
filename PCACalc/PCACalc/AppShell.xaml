@@ -44,6 +44,12 @@
 
     <!--  Your Pages  -->
 
+    <FlyoutItem>
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:TRRxPage}" />
+        </Tab>
+    </FlyoutItem>
+    
     <FlyoutItem Title="Infusions vs Injectables" FlyoutIcon="syringe.png">
         <Tab Title="PVA vs Inj" Icon="syringe.png">
             <ShellContent ContentTemplate="{DataTemplate local:PCAvsInjPage}" />

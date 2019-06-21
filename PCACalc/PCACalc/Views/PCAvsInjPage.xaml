@@ -18,61 +18,63 @@
             <StackLayout>
                 <Picker x:Name="MedicationPicker" Title="-- Select Medication --" ItemDisplayBinding="{Binding Name}" ItemsSource="{Binding medicationList}" SelectedIndexChanged="MedicationPicker_SelectedIndexChanged" />
 
-                <Frame Margin="5" Style="{StaticResource frameSettings}">
-                    <Grid Padding="1" RowSpacing="1" VerticalOptions="Start">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="20" />
-                            <RowDefinition Height="40" />
-                            <RowDefinition Height="20" />
-                        </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Text="ATC Order" VerticalOptions="Center" />
-                        <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="0" Hint="ATC MG" InputViewPadding="0,10">
-                            <syncfusion:SfNumericTextBox
-                                x:Name="EntryATCmg" FormatString="0.## mg" MaximumNumberDecimalDigits="2" SelectAllOnFocus="True"
-                                Style="{StaticResource OrderEntryBox}"
-                                ValueChanged="RunCalcs" />
-                        </inputLayout:SfTextInputLayout>
 
-                        <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="1" Hint="Hours" InputViewPadding="0,10">
-                            <syncfusion:SfNumericTextBox
-                                x:Name="EntryATCHours" MaximumNumberDecimalDigits="0" Minimum="1" SelectAllOnFocus="True"
-                                Style="{StaticResource OrderEntryBox}"
-                                ValueChanged="RunCalcs" Value="1" />
-                        </inputLayout:SfTextInputLayout>
-                        <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalOptions="End">
-                            <Label FontSize="Small" Text="Mg Per Hour" />
-                            <Label x:Name="LabelATCMGPerHour" FontSize="Small" />
-                        </StackLayout>
-                    </Grid>
-                </Frame>
+                <Grid Padding="1" RowSpacing="1" VerticalOptions="Start">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Text="ATC Order" VerticalOptions="Center" />
+                    <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="0" Hint="ATC MG" InputViewPadding="0,10">
+                        <syncfusion:SfNumericTextBox
+                            x:Name="EntryATCmg" FormatString="0.## mg" MaximumNumberDecimalDigits="2" SelectAllOnFocus="True"
+                            Style="{StaticResource OrderEntryBox}"
+                            ValueChanged="RunCalcs" />
+                    </inputLayout:SfTextInputLayout>
 
-                <Frame Margin="5" Style="{StaticResource frameSettings}">
-                    <Grid Padding="1" RowSpacing="1" VerticalOptions="Start">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="20" />
-                            <RowDefinition Height="40" />
-                            <RowDefinition Height="20" />
-                        </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Text="PRN Order" VerticalOptions="Center" />
-                        <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="0" Hint="PRN MG" InputViewPadding="0,10">
-                            <syncfusion:SfNumericTextBox
-                                x:Name="EntryPRNmg" FormatString="0.## mg" MaximumNumberDecimalDigits="2" SelectAllOnFocus="True"
-                                Style="{StaticResource OrderEntryBox}"
-                                ValueChanged="RunCalcs" />
-                        </inputLayout:SfTextInputLayout>
+                    <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="1" Hint="Hours" InputViewPadding="0,10">
+                        <syncfusion:SfNumericTextBox
+                            x:Name="EntryATCHours" MaximumNumberDecimalDigits="0" Minimum="1" SelectAllOnFocus="True"
+                            Style="{StaticResource OrderEntryBox}"
+                            ValueChanged="RunCalcs" Value="1" />
+                    </inputLayout:SfTextInputLayout>
+                    <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalOptions="End">
+                        <Label FontSize="Small" Text="Mg Per Hour:" />
+                        <Label x:Name="LabelATCMGPerHour" FontSize="Small" />
+                        <Label FontSize="Small" Text="Vials Per Day:" />
+                        <Label x:Name="LabelATCVialsPerDay" FontSize="Small" />
+                    </StackLayout>
+                </Grid>
 
-                        <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="1" Hint="Hours" InputViewPadding="0,10">
-                            <syncfusion:SfNumericTextBox
-                                x:Name="EntryPRNHours" MaximumNumberDecimalDigits="0" Minimum="1" SelectAllOnFocus="True"
-                                Style="{StaticResource OrderEntryBox}"
-                                ValueChanged="RunCalcs" Value="1" />
-                        </inputLayout:SfTextInputLayout>
-                        <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalOptions="End">
-                            <Label FontSize="Small" Text="Mg Per Hour" />
-                            <Label x:Name="LabelPRNMGPerHour" FontSize="Small" />
-                        </StackLayout>
-                    </Grid>
-                </Frame>
+
+
+                <Grid Padding="1" RowSpacing="1" VerticalOptions="Start">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Text="PRN Order" VerticalOptions="Center" />
+                    <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="0" Hint="PRN MG" InputViewPadding="0,10">
+                        <syncfusion:SfNumericTextBox
+                            x:Name="EntryPRNmg" FormatString="0.## mg" MaximumNumberDecimalDigits="2" SelectAllOnFocus="True"
+                            Style="{StaticResource OrderEntryBox}"
+                            ValueChanged="RunCalcs" />
+                    </inputLayout:SfTextInputLayout>
+
+                    <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="1" Hint="Hours" InputViewPadding="0,10">
+                        <syncfusion:SfNumericTextBox
+                            x:Name="EntryPRNHours" MaximumNumberDecimalDigits="0" Minimum="1" SelectAllOnFocus="True"
+                            Style="{StaticResource OrderEntryBox}"
+                            ValueChanged="RunCalcs" Value="1" />
+                    </inputLayout:SfTextInputLayout>
+                    <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalOptions="End">
+                        <Label FontSize="Small" Text="Mg Per Hour" />
+                        <Label x:Name="LabelPRNMGPerHour" FontSize="Small" />
+                    </StackLayout>
+                </Grid>
+
 
                 <ListView
                     x:Name="PCAsListView" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
@@ -83,7 +85,8 @@
                             <ViewCell>
                                 <Grid Padding="10">
                                     <Label Grid.Column="0" Text="{Binding PCASize, StringFormat='{0} ml'}" />
-                                    <Label Grid.Column="1" Text="{Binding PCAPrice, StringFormat='{0:C}'}" />
+                                    <Label Grid.Column="1" Text="{Binding PCAConcnAndUnits}" />
+                                    <Label Grid.Column="2" Text="{Binding PCAPrice, StringFormat='{0:C}'}" />
                                     <Label x:Name="labelPCAID" Grid.Column="0" IsVisible="False" Text="{Binding ID}" />
                                 </Grid>
                             </ViewCell>

@@ -12,8 +12,20 @@ namespace PCACalc.Models
         public int ID { get; set; }
         public int FK_MedsID { get; set; }
         public int PCASize  { get; set; }
+        public int PCAConcn { get; set; }
+
+        public string PCAUnits { get; set; }
+        
 
         public decimal PCAPrice { get; set; }
+
+        public string PCAConcnAndUnits
+        {
+            get
+            {
+                return $"{PCAConcn} {PCAUnits}/ml";
+            }
+        }
 
 
     }

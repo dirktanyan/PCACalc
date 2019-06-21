@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="PCACalc.Views.NewPCAPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms" Title="New PCA" mc:Ignorable="d">
+<ContentPage
+    x:Class="PCACalc.Views.NewPCAPage" xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+    Title="New PCA" mc:Ignorable="d">
     <ContentPage.ToolbarItems>
         <ToolbarItem Clicked="Cancel_Clicked" Text="Cancel" />
         <ToolbarItem Clicked="Save_Clicked" Text="Save" />
@@ -11,6 +18,19 @@
             <inputLayout:SfTextInputLayout HelperText="PCA Size in ML" Hint="PCA Size" WidthRequest="100">
                 <syncfusion:SfNumericTextBox x:Name="PCASize" FormatString="ml" MaximumNumberDecimalDigits="2" Value="{Binding thisPCA.PCASize}" />
             </inputLayout:SfTextInputLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <inputLayout:SfTextInputLayout Hint="Concentration" WidthRequest="100" VerticalOptions="Center">
+                    <syncfusion:SfNumericTextBox x:Name="PCAConcn" MaximumNumberDecimalDigits="0" Value="{Binding thisPCA.PCAConcn}" />
+                </inputLayout:SfTextInputLayout>
+                <Picker x:Name="PCAUnits" Title="Select Units" SelectedItem="{Binding thisPCA.PCAUnits}" VerticalOptions="Center">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>mg</x:String>
+                            <x:String>mcg</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </StackLayout>
             <inputLayout:SfTextInputLayout Hint="PCA Price" WidthRequest="100">
                 <syncfusion:SfNumericTextBox x:Name="PCAPrice" FormatString="c" MaximumNumberDecimalDigits="2" Value="{Binding thisPCA.PCAPrice}" />
             </inputLayout:SfTextInputLayout>

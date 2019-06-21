@@ -1,23 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="PCACalc.Views.TRVolumePage" xmlns="http://xamarin.com/schemas/2014/forms"
+    x:Class="PCACalc.Views.TRRxPage" xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:local="clr-namespace:PCACalc"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="Time Remaining - Volume" Shell.TabBarIsVisible="True" mc:Ignorable="d">
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="boxViewSettings" TargetType="BoxView">
-                <Setter Property="Color" Value="{DynamicResource BrandColorDark}" />
-                <Setter Property="CornerRadius" Value="10" />
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="VerticalOptions" Value="FillAndExpand" />
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
-
+    xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+    Title="Time Remaining - Order" mc:Ignorable="d">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -28,35 +17,27 @@
                     <Switch x:Name="SwitchMCG" HorizontalOptions="StartAndExpand" IsToggled="false" OnColor="{StaticResource BrandAccentColor}" Toggled="selectUOM" />
                 </StackLayout>
                 <Grid Padding="5,5,5,5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="130" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource entryLabel}" Text="Bag Concentration: " />
-                    <Entry x:Name="BagConcEntry" Grid.Row="0" Grid.Column="1" Completed="CalcRemainingTime" Style="{StaticResource regularEntry}" />
-                    <Label
-                        x:Name="BagUOM" Grid.Row="0" Grid.Column="2"
-                        Style="{StaticResource UoMLabel}"
-                        Text="mg/ml" VerticalTextAlignment="Center" />
 
-                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource entryLabel}" Text="Volume Used:" />
-                    <Entry x:Name="AmtUsedEntry" Grid.Row="1" Grid.Column="1" Completed="CalcRemainingTime" Style="{StaticResource regularEntry}" />
-                    <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource UoMLabel}" Text="ml" VerticalTextAlignment="Center" />
 
-                    <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource entryLabel}" Text="Interval:" />
-                    <Entry
-                        x:Name="IntervalEntry" Grid.Row="2" Grid.Column="1" Completed="CalcRemainingTime"
-                        Style="{StaticResource regularEntry}"
-                        Text="15" />
-                    <Label Grid.Row="2" Grid.Column="2" Style="{StaticResource UoMLabel}" Text="hours" VerticalTextAlignment="Center" />
+                    <inputLayout:SfTextInputLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Hint="Bag Concentration">
+                        <syncfusion:SfNumericTextBox x:Name="BagConcEntry" FormatString="mg/hr" SelectAllOnFocus="True" />
+                    </inputLayout:SfTextInputLayout>
 
-                    <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource entryLabel}" Text="Amount Remaining:" />
-                    <Entry x:Name="RemainingEntry" Grid.Row="3" Grid.Column="1" Completed="CalcRemainingTime" Style="{StaticResource regularEntry}" />
-                    <Label Grid.Row="3" Grid.Column="2" Style="{StaticResource UoMLabel}" Text="ml" VerticalTextAlignment="Center" />
+                    <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="0" Hint="Basal Rate">
+                        <syncfusion:SfNumericTextBox x:Name="BasalEntry" FormatString="mg" SelectAllOnFocus="True" />
+                    </inputLayout:SfTextInputLayout>
+
+                    <inputLayout:SfTextInputLayout Grid.Row="2" Grid.Column="0" Hint="Bolus Amount">
+                        <syncfusion:SfNumericTextBox x:Name="BolusEntry" FormatString="mg" SelectAllOnFocus="True" />
+                    </inputLayout:SfTextInputLayout>
+
+                    <inputLayout:SfTextInputLayout Grid.Row="2" Grid.Column="1" HelperText="Minutes" Hint="Bolus Interval">
+                        <syncfusion:SfNumericTextBox x:Name="BolusIntervalEntry" FormatString="min" SelectAllOnFocus="True" />
+                    </inputLayout:SfTextInputLayout>
+
+                    <inputLayout:SfTextInputLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Hint="Volume Remaining">
+                        <syncfusion:SfNumericTextBox x:Name="VolumeEntry" FormatString="ml" SelectAllOnFocus="True" />
+                    </inputLayout:SfTextInputLayout>
 
                 </Grid>
 
@@ -131,6 +112,5 @@
                 </Grid>
             </StackLayout>
         </ScrollView>
-
     </ContentPage.Content>
 </ContentPage>

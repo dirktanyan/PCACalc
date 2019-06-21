@@ -24,13 +24,6 @@ namespace PCACalc.Views
             BindingContext = viewModel = new PCAvsInjViewModel();
         }
 
-        private int VialsPerDose(double mgPerDose, double mgPerVial)
-        {
-           
-            return (int)Math.Ceiling(mgPerVial / mgPerDose);
-                        
-        }
-
         private bool VerifyEntryFields()
         {
             try // This will fail if either of the Entries' values are null
@@ -56,6 +49,19 @@ namespace PCACalc.Views
             {
                 return 0;
             }
+        }
+
+        private double GetATCVialsPerDay()
+        {
+            try
+            {
+                
+            }
+            catch
+            {
+
+            }
+            return 0;
         }
 
         private double GetPRNMGPerHour()

@@ -32,6 +32,8 @@ namespace PCACalc.Views
 
             thisPCA = editedPCA as MedsPCA;
             PCAPrice.Value = thisPCA.PCAPrice;
+            PCAConcn.Value = thisPCA.PCAConcn;
+            PCAUnits.SelectedItem = thisPCA.PCAUnits;
             PCASize.Value = thisPCA.PCASize;
 
             BindingContext = this;
@@ -48,5 +50,6 @@ namespace PCACalc.Views
             MessagingCenter.Send(this, "AddPCA", thisPCA);
             await Navigation.PopModalAsync();
         }
+
     }
 }

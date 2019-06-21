@@ -58,7 +58,8 @@
                             <ViewCell>
                                 <Grid Padding="10">
                                     <Label Grid.Column="0" Text="{Binding PCASize, StringFormat='{0} ml'}" />
-                                    <Label Grid.Column="1" Text="{Binding PCAPrice, StringFormat='{0:C}'}" />
+                                    <Label Grid.Column="1" Text="{Binding PCAConcnAndUnits, StringFormat='{0}'}" />
+                                    <Label Grid.Column="2" Text="{Binding PCAPrice, StringFormat='{0:C}'}" />
                                     <Label x:Name="labelPCAID" Grid.Column="0" IsVisible="False" Text="{Binding ID}" />
                                 </Grid>
                             </ViewCell>

@@ -31,6 +31,19 @@ namespace PCACalc
             return Math.Round(mgperhour, 3);
         }
 
+        private static int VialsPerDose(double mgPerDose, double mgPerVial)
+        {
+
+            return (int)Math.Ceiling(mgPerVial / mgPerDose);
+
+        }
+
+        private static int DosesPerDay()
+        {
+            return 0;
+        }
+
+
     }
 
 }
