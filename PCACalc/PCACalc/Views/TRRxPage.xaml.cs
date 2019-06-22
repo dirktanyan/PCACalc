@@ -12,34 +12,15 @@ namespace PCACalc.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TRRxPage : ContentPage
     {
+        public Helpers.TRRXHelper calchelper { get; set; }
         public TRRxPage()
         {
+            calchelper = new Helpers.TRRXHelper();
+
             InitializeComponent();
+
+            BindingContext = this;
         }
-
-        private bool checkEntries()
-        {
-            //if (BagConcEntry.Text != null)
-            //{
-            //    if (BasalEntry.Text != null)
-            //    {
-            //        if (IntervalEntry.Text != null)
-            //        {
-            //            if (RemainingEntry.Text != null)
-            //            {
-            //                return true;
-            //            }
-            //            else { return false; }
-            //        }
-            //        else { return false; }
-            //    }
-            //    else { return false; }
-            //}
-            //else { return false; }
-
-            return false;
-        }
-
 
         private void selectUOM(object sender, ToggledEventArgs e)
         {
@@ -48,7 +29,7 @@ namespace PCACalc.Views
                 if (SwitchMG.IsToggled == true)
                 {
                     SwitchMCG.IsToggled = false;
-                    BagConcEntry.FormatString = "mg/hr";
+                    BagConcEntry.FormatString = "mg/ml";
                     BasalEntry.FormatString = "mg";
                     BolusEntry.FormatString = "mg";
                     MGPHLabel.Text = "MG Per Hour:";
@@ -58,7 +39,7 @@ namespace PCACalc.Views
                 else
                 {
                     SwitchMCG.IsToggled = true;
-                    BagConcEntry.FormatString = "mcg/hr";
+                    BagConcEntry.FormatString = "mcg/ml";
                     BasalEntry.FormatString = "mcg";
                     BolusEntry.FormatString = "mcg";
                     MGPHLabel.Text = "MCG Per Hour:";
@@ -71,7 +52,7 @@ namespace PCACalc.Views
                 if (SwitchMCG.IsToggled == true)
                 {
                     SwitchMG.IsToggled = false;
-                    BagConcEntry.FormatString = "mcg/hr";
+                    BagConcEntry.FormatString = "mcg/ml";
                     BasalEntry.FormatString = "mcg";
                     BolusEntry.FormatString = "mcg";
                     MGPHLabel.Text = "MCG Per Hour:";
@@ -81,7 +62,7 @@ namespace PCACalc.Views
                 else
                 {
                     SwitchMG.IsToggled = true;
-                    BagConcEntry.FormatString = "mg/hr";
+                    BagConcEntry.FormatString = "mg/ml";
                     BasalEntry.FormatString = "mg";
                     BolusEntry.FormatString = "mg";
                     MGPHLabel.Text = "MG Per Hour:";
@@ -96,33 +77,27 @@ namespace PCACalc.Views
             double unitsperhour;
             double mlperhour;
 
-            if (checkEntries() == true)
-            {
-                try
-                {
-                    //mlperhour = double.Parse(AmtUsedEntry.Text) / double.Parse(IntervalEntry.Text);
-                    //MLPH.Text = mlperhour.ToString("F2");
-                    //MLPD.Text = (mlperhour * 24).ToString("F2");
-                    //MLP7D.Text = (mlperhour * 24 * 7).ToString("F2");
+            unitsperhour = calchelper.UnitsPerHour();
 
-                    //unitsperhour = (double.Parse(AmtUsedEntry.Text) * double.Parse(BagConcEntry.Text)) / double.Parse(IntervalEntry.Text);
-                    //MGPH.Text = unitsperhour.ToString("F2");
-                    //MGPD.Text = (unitsperhour * 24).ToString("F2");
-                    //MGP7D.Text = (unitsperhour * 24 * 7).ToString("F2");
+            MGPH.Text = unitsperhour.ToString("F2");
+            MGPD.Text = (unitsperhour * 24).ToString("F2");
+            MGP7D.Text = (unitsperhour * 24 * 7).ToString("F2");
 
-                    //HoursRemaining.Text = (double.Parse(RemainingEntry.Text) / mlperhour).ToString("F2");
-                    //DaysRemaining.Text = (double.Parse(RemainingEntry.Text) / (mlperhour * 24)).ToString("F2");
-                }
-                catch
-                {
-                    // Don't do anything, just don't crash
-                }
-            }
+            mlperhour = calchelper.MLPerHour();
+            MLPH.Text = mlperhour.ToString("F2");
+            MLPD.Text = (mlperhour * 24).ToString("F2");
+            MLP7D.Text = (mlperhour * 24 * 7).ToString("F2");
+
+            if(calchelper.VolumeRemaining != 0)
+                HoursRemaining.Text = (calchelper.VolumeRemaining / mlperhour).ToString("F2");
+
+            if (calchelper.VolumeRemaining != 0)
+                DaysRemaining.Text = (calchelper.VolumeRemaining / (mlperhour * 24)).ToString("F2");
         }
 
-        private void StepDays_ValueChanged(object sender, ValueChangedEventArgs e)
+        private void Entry_FocusChanged(object sender, Syncfusion.SfNumericTextBox.XForms.FocusEventArgs e)
         {
-            CalcRemainingTime(sender, e);
+            CalcRemainingTime(sender,e);
         }
     }
 }

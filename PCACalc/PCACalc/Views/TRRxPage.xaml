@@ -8,7 +8,7 @@
     xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
     Title="Time Remaining - Order" mc:Ignorable="d">
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView Visual="Material">
             <StackLayout>
                 <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                     <Label HorizontalTextAlignment="Center" Style="{StaticResource entryLabel}" Text="MG" VerticalTextAlignment="Center" />
@@ -20,23 +20,26 @@
 
 
                     <inputLayout:SfTextInputLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Hint="Bag Concentration">
-                        <syncfusion:SfNumericTextBox x:Name="BagConcEntry" FormatString="mg/hr" SelectAllOnFocus="True" />
+                        <syncfusion:SfNumericTextBox x:Name="BagConcEntry" Completed="CalcRemainingTime" FocusChanged="Entry_FocusChanged" FormatString="mg/ml" SelectAllOnFocus="True" Value="{Binding calchelper.BagConcentration}" />
                     </inputLayout:SfTextInputLayout>
 
                     <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="0" Hint="Basal Rate">
-                        <syncfusion:SfNumericTextBox x:Name="BasalEntry" FormatString="mg" SelectAllOnFocus="True" />
+                        <syncfusion:SfNumericTextBox x:Name="BasalEntry" Completed="CalcRemainingTime" FocusChanged="Entry_FocusChanged" FormatString="mg" SelectAllOnFocus="True" Value="{Binding calchelper.BasalRate}" />
                     </inputLayout:SfTextInputLayout>
 
                     <inputLayout:SfTextInputLayout Grid.Row="2" Grid.Column="0" Hint="Bolus Amount">
-                        <syncfusion:SfNumericTextBox x:Name="BolusEntry" FormatString="mg" SelectAllOnFocus="True" />
+                        <syncfusion:SfNumericTextBox x:Name="BolusEntry" Completed="CalcRemainingTime" FocusChanged="Entry_FocusChanged" FormatString="mg" SelectAllOnFocus="True" Value="{Binding calchelper.BolusAmount}" />
                     </inputLayout:SfTextInputLayout>
 
                     <inputLayout:SfTextInputLayout Grid.Row="2" Grid.Column="1" HelperText="Minutes" Hint="Bolus Interval">
-                        <syncfusion:SfNumericTextBox x:Name="BolusIntervalEntry" FormatString="min" SelectAllOnFocus="True" />
+                        <syncfusion:SfNumericTextBox
+                            x:Name="BolusIntervalEntry" Completed="CalcRemainingTime" FocusChanged="Entry_FocusChanged" FormatString="min" Maximum="60"
+                            MaximumNumberDecimalDigits="0" Minimum="1" SelectAllOnFocus="True"
+                            Value="{Binding calchelper.BolusInterval}" />
                     </inputLayout:SfTextInputLayout>
 
                     <inputLayout:SfTextInputLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Hint="Volume Remaining">
-                        <syncfusion:SfNumericTextBox x:Name="VolumeEntry" FormatString="ml" SelectAllOnFocus="True" />
+                        <syncfusion:SfNumericTextBox x:Name="VolumeEntry" Completed="CalcRemainingTime" FocusChanged="Entry_FocusChanged" FormatString="ml" SelectAllOnFocus="True" Value="{Binding calchelper.VolumeRemaining}" />
                     </inputLayout:SfTextInputLayout>
 
                 </Grid>

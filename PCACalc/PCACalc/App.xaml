@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application x:Class="PCACalc.App" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+<Application
+    x:Class="PCACalc.App" xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
     <Application.Resources>
         <!--  Fonts  -->
         <OnPlatform x:Key="RegularFontFamily" x:TypeArguments="x:String" Android="sans-serif" WinPhone="" iOS="HelveticaNeue" />
@@ -79,7 +84,7 @@
         <Style x:Key="FinalResult" TargetType="Label">
             <Setter Property="FontFamily" Value="LightFontFamily" />
             <Setter Property="FontSize" Value="{StaticResource FinalResultFontSize}" />
-            <Setter Property="TextColor" Value="{StaticResource BrandGrayDark}" />
+            <Setter Property="TextColor" Value="{StaticResource BrandAccentColor}" />
             <Setter Property="HorizontalTextAlignment" Value="Center" />
             <Setter Property="VerticalTextAlignment" Value="Center" />
         </Style>
@@ -94,12 +99,6 @@
             <Setter Property="CornerRadius" Value="10" />
             <Setter Property="HasShadow" Value="True" />
         </Style>
-        <Style x:Key="roundButton" TargetType="Button">
-            <Setter Property="CornerRadius" Value="20" />
-            <Setter Property="WidthRequest" Value="40" />
-            <Setter Property="HeightRequest" Value="40" />
 
-        </Style>
-        
     </Application.Resources>
 </Application>

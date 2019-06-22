@@ -44,8 +44,11 @@
 
     <!--  Your Pages  -->
 
-    <FlyoutItem>
-        <Tab>
+    <FlyoutItem Title="Time Remaining" FlyoutIcon="schedule.png">
+        <Tab Title="By Volume History" Icon="timeMachine.png">
+            <ShellContent ContentTemplate="{DataTemplate local:TRVolumePage}" />
+        </Tab>
+        <Tab Title="By Prescription" Icon="treatment.png">
             <ShellContent ContentTemplate="{DataTemplate local:TRRxPage}" />
         </Tab>
     </FlyoutItem>
@@ -59,14 +62,6 @@
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="Time Remaining" FlyoutIcon="schedule.png">
-        <Tab Title="By Volume History" Icon="timeMachine.png">
-            <ShellContent ContentTemplate="{DataTemplate local:TRVolumePage}" />
-        </Tab>
-        <Tab Title="By Prescription" Icon="treatment.png">
-            <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}" />
-        </Tab>
-    </FlyoutItem>
     <FlyoutItem Title="Concentration" FlyoutIcon="infusion.png">
         <Tab Title="Concentration" Icon="infusion.png">
             <ShellContent ContentTemplate="{DataTemplate local:ConcentrationPage}" />

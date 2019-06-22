@@ -14,8 +14,9 @@
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.1.0.51" />
     <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="17.1.0.51" />
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.425677" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.496342-pre2" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />  
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.1.0.496342-pre2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,9 +53,5 @@
     <EmbeddedResource Update="Views\TRRxPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Helpers\" />
   </ItemGroup>
 </Project>
