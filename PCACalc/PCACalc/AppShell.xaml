@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="PCACalc.AppShell"
-    xmlns="http://xamarin.com/schemas/2014/forms"
+    x:Class="PCACalc.AppShell" xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:local="clr-namespace:PCACalc.Views"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="PCACalc"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:local="clr-namespace:PCACalc.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="PCACalc"
     BackgroundColor="{DynamicResource BrandColor}"
     FlyoutBackgroundColor="{DynamicResource BrandGrayLight}"
     ForegroundColor="White"
-    TitleColor="White"
     TabBarBackgroundColor="{DynamicResource BrandColor}"
     TabBarForegroundColor="{DynamicResource BrandColorLight}"
+    TitleColor="White"
     UnselectedColor="{DynamicResource BrandGrayDark}"
     mc:Ignorable="d">
 
-    <!-- NOTE: ForegroundColor above controls the color of the hamburger icon in the navigation bar, not the Title text itself-->
-    
+    <!--  NOTE: ForegroundColor above controls the color of the hamburger icon in the navigation bar, not the Title text itself  -->
+
     <!--
         Styles and Resources
     -->
@@ -44,6 +41,15 @@
 
     <!--  Your Pages  -->
 
+    <FlyoutItem Title="Medications" FlyoutIcon="treatment.png">
+        <Tab Title="Injectables" Icon="syringe.png">
+            <ShellContent ContentTemplate="{DataTemplate local:InjectionsPage}" />
+        </Tab>
+        <Tab Title="PCAs" Icon="treatment.png">
+            <ShellContent ContentTemplate="{DataTemplate local:PCAPage}" />
+        </Tab>
+    </FlyoutItem>
+
     <FlyoutItem Title="Time Remaining" FlyoutIcon="schedule.png">
         <Tab Title="By Volume History" Icon="timeMachine.png">
             <ShellContent ContentTemplate="{DataTemplate local:TRVolumePage}" />
@@ -52,13 +58,10 @@
             <ShellContent ContentTemplate="{DataTemplate local:TRRxPage}" />
         </Tab>
     </FlyoutItem>
-    
+
     <FlyoutItem Title="Infusions vs Injectables" FlyoutIcon="syringe.png">
         <Tab Title="PVA vs Inj" Icon="syringe.png">
             <ShellContent ContentTemplate="{DataTemplate local:PCAvsInjPage}" />
-        </Tab>
-        <Tab Title="Prices" Icon="pharmacist.png">
-            <ShellContent ContentTemplate="{DataTemplate local:MedicationsPage}" />
         </Tab>
     </FlyoutItem>
 
@@ -67,6 +70,13 @@
             <ShellContent ContentTemplate="{DataTemplate local:ConcentrationPage}" />
         </Tab>
     </FlyoutItem>
+
+    <FlyoutItem Title="Helpers">
+        <Tab Title="PCA Bags">
+            <ShellContent ContentTemplate="{DataTemplate local:dbTableViewerPage}" />
+        </Tab>
+    </FlyoutItem>
+
     <!--<TabBar>
          <Tab Title="Concentration" Icon="salinebag.png">
             <ShellContent ContentTemplate="{DataTemplate local:ConcentrationPage}"/>
@@ -89,10 +99,7 @@
                 <Label
                     BackgroundColor="{StaticResource BrandColor}"
                     FontFamily="{StaticResource LightFontFamily}"
-                    FontSize="20"
-                    HorizontalTextAlignment="Center"
-                    Text="PCA Calculator"
-                    TextColor="White"
+                    FontSize="20" HorizontalTextAlignment="Center" Text="PCA Calculator" TextColor="White"
                     VerticalTextAlignment="Center" />
             </StackLayout>
         </DataTemplate>

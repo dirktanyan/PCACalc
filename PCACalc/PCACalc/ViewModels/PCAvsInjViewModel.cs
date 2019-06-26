@@ -15,7 +15,7 @@ namespace PCACalc.ViewModels
     public class PCAvsInjViewModel
     {
         public List<Med> medicationList { get; set; }
-        public ObservableCollection<MedsPCA> PCAs { get; set; }
+        public ObservableCollection<PCA> PCAs { get; set; }
         public Command LoadAssocPCAs { get; set; }
         public Med selectedMed = new Med();
         public PCADataAccess PCADataStore = new PCADataAccess();
@@ -26,25 +26,10 @@ namespace PCACalc.ViewModels
         {
             medicationList = medicationHelper.GetAllMeds();
 
-            PCAs = new ObservableCollection<MedsPCA>();
-            LoadAssocPCAs = new Command(async () => await LoadAssociatedPCAs());
+            //PCAs = new ObservableCollection<PCA>();
+            //LoadAssocPCAs = new Command(async () => await LoadAssociatedPCAs());
         }
 
-        async Task LoadAssociatedPCAs()
-        {
-            try
-            {
-                PCAs.Clear();
-                var _pcas = await PCADataStore.GetMedsPCAAsync(selectedMed.ID);
-                foreach (var _pca in _pcas)
-                {
-                    PCAs.Add(_pca);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-        }
+        
     }
 }

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PCACalc.Views.InjDetailPage" xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+    Title="Injection Details" mc:Ignorable="d">
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <inputLayout:SfTextInputLayout Hint="Medication">
+                <Entry Completed="NameUpdated" Text="{Binding Medication.Name}" Unfocused="SfNumericTextBox_Unfocused" />
+            </inputLayout:SfTextInputLayout>
+
+            <inputLayout:SfTextInputLayout Hint="Concentration">
+                <syncfusion:SfNumericTextBox Completed="SfNumericTextBox_Updated" FormatString="mg/ml" SelectAllOnFocus="True" Unfocused="SfNumericTextBox_Unfocused" Value="{Binding Medication.VialConcentration}" />
+            </inputLayout:SfTextInputLayout>
+            <StackLayout Orientation="Horizontal">
+                <inputLayout:SfTextInputLayout Hint="Vial Size">
+                    <syncfusion:SfNumericTextBox Completed="SfNumericTextBox_Updated" FormatString="ml" SelectAllOnFocus="True" Unfocused="SfNumericTextBox_Unfocused" Value="{Binding Medication.VialSize}" />
+                </inputLayout:SfTextInputLayout>
+                <inputLayout:SfTextInputLayout Hint="Vial Price">
+                    <syncfusion:SfNumericTextBox Completed="SfNumericTextBox_Updated" FormatString="c" SelectAllOnFocus="True" Unfocused="SfNumericTextBox_Unfocused" Value="{Binding Medication.VialPrice}" />
+                </inputLayout:SfTextInputLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Delete" Activated="OnDeleteClick" Order="Secondary" Priority="0" />
+    </ContentPage.ToolbarItems>
+
+</ContentPage>

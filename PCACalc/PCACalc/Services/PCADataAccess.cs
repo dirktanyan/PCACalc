@@ -13,29 +13,68 @@ namespace PCACalc.Services
     public class PCADataAccess
     {
         private SQLiteConnection database;
-        public ObservableCollection<MedsPCA> PCAList { get; set; }
-        public ObservableCollection<MedsPCA> PCAByMedID { get; set; }
+        public ObservableCollection<PCA> PCAList { get; set; }
+        public ObservableCollection<PCABags> PCABagsList { get; set; }
 
         public PCADataAccess()
         {
             database = DependencyService.Get<IDatabaseConnection>().DbConnection();
-            database.CreateTable<MedsPCA>();
+            database.CreateTable<PCA>();
+            database.CreateTable<PCABags>();
 
-            this.PCAList = new ObservableCollection<MedsPCA>(database.Table<MedsPCA>());
+            this.PCAList = new ObservableCollection<PCA>(database.Query<PCA>("SELECT * FROM PCA ORDER BY PCADrug"));
+            this.PCABagsList = new ObservableCollection<PCABags>(database.Table<PCABags>());
 
-            //if (!database.Table<MedsPCA>().Any())
-            //{
-            //    InitializePCA();
-            //}
+            // If the table is empty, initialize the collection
+            if (!database.Table<PCA>().Any())
+            {
+                InitializePCAList();
+            }
+
+            if (!database.Table<PCABags>().Any())
+            {
+                InitialisePCABagsList();
+            }
         }
 
-        public async Task<ObservableCollection<MedsPCA>> GetMedsPCAAsync(int intMedID)
+        private void InitializePCAList()
         {
-            PCAByMedID = new ObservableCollection<MedsPCA>(database.Query<MedsPCA>("Select * from MedsPCA Where FK_MedsID=?", intMedID));
-            return await Task.FromResult(PCAByMedID);
+            this.PCAList.Add(new PCA
+            {
+                PCADrug = "Morphine",
+                PCAConcn = 6,
+                PCAUnits= "mg",
+            });
         }
 
-        public async Task<bool> AddPCAAsync(MedsPCA pca)
+        private void InitialisePCABagsList()
+        {
+            this.PCABagsList.Add(new PCABags
+            {
+                FK_PCAID = PCAList.FirstOrDefault().ID,
+                PCASize = 250,
+                PCAPrice = 300.00m
+            });
+        }
+
+        public async Task<ObservableCollection<PCA>> GetPCAsAsync()
+        {
+            return await Task.FromResult(PCAList);
+        }
+
+        public async Task<ObservableCollection<PCABags>> GetPCABagsAsync(int intPCAID)
+        {
+            PCABagsList = new ObservableCollection<PCABags>(database.Query<PCABags>("Select * from PCABags Where FK_PCAID=? ORDER BY PCASize", intPCAID));
+            return await Task.FromResult(PCABagsList);
+        }
+
+        public async Task<ObservableCollection<PCABags>> GetAllPCABagsAsync()
+        {
+            PCABagsList = new ObservableCollection<PCABags>(database.Query<PCABags>("Select * from PCABags"));
+            return await Task.FromResult(PCABagsList);
+        }
+
+        public async Task<bool> AddPCAAsync(PCA pca)
         {
             if (pca.ID != 0)
             {
@@ -50,9 +89,32 @@ namespace PCACalc.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> DeletePCAAsync(MedsPCA pcaInstance)
+        public async Task<bool> AddPCABagAsync(PCABags pcaBagInstance)
         {
-            database.Delete<MedsPCA>(pcaInstance.ID);
+            if (pcaBagInstance.ID != 0)
+            {
+                database.Update(pcaBagInstance);
+            }
+            else
+            {
+                database.Insert(pcaBagInstance);
+            }
+
+            PCABagsList.Add(pcaBagInstance);
+            return await Task.FromResult(true);
+        }
+
+        public async Task<bool> DeletePCAAsync(PCA pcaInstance)
+        {
+            database.Execute("DELETE FROM PCABags WHERE FK_PCAID=?", pcaInstance.ID);
+
+            database.Delete<PCA>(pcaInstance.ID);
+            return await Task.FromResult(true);
+        }
+
+        public async Task<bool> DeletePCABagAsync(PCABags pcaBagInstance)
+        {
+            database.Delete<PCABags>(pcaBagInstance.ID);
             return await Task.FromResult(true);
         }
     }

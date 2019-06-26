@@ -16,7 +16,6 @@ namespace PCACalc
 
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 

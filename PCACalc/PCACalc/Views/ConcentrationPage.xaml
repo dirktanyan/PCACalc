@@ -3,32 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:PCACalc"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
              mc:Ignorable="d"
              x:Class="PCACalc.Views.ConcentrationPage"
-             Title="Concentration"
-             Shell.TabBarIsVisible="False">
+             Title="Concentration">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <!--
-            <Style x:Key="resultLable" TargetType="Label" >
-                <Setter Property="Grid.ColumnSpan" Value="2"/>
-                <Setter Property="FontSize" Value="Medium"/>
-                <Setter Property="VerticalTextAlignment" Value="Center" />
-            </Style>
-            <Style x:Key="measureLabel" TargetType="Label">
-                <Setter Property="FontSize" Value="Small" />
-                <Setter Property="VerticalTextAlignment" Value="Center"/>
-                <Setter Property="HorizontalTextAlignment" Value="Start" />
-            </Style> 
-            <Style x:Key="calcResult" TargetType="Label">
-                <Setter Property="BackgroundColor" Value="Thistle" />
-                <Setter Property="FontSize" Value="Medium" />
-                <Setter Property="VerticalTextAlignment" Value="Center"/>
-                <Setter Property="Grid.ColumnSpan" Value="2" />
-            </Style>
-            -->
+            
             <Style x:Key="boxViewSettings" TargetType="BoxView">
                 <Setter Property="Color" Value="{DynamicResource BrandColorLight}" />
                 <Setter Property="CornerRadius" Value="10" />
@@ -53,25 +36,25 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Grid.Row="0" Text="Basal Rate: " Style="{StaticResource entryLabel}" />
-                    <Entry Grid.Column="1" Grid.Row="0" x:Name="BasalEntry" Style="{StaticResource regularEntry}" Completed="CalcConcentration" />
-                    <Label Grid.Column="2" Grid.Row="0" x:Name="BasalMeasure" Style="{StaticResource UoMLabel}" Text="mg" VerticalTextAlignment="Center" />
 
-                    <Label Grid.Column="0" Grid.Row="1" Text="Bolus:" Style="{StaticResource entryLabel}" />
-                    <Entry Grid.Column="1" Grid.Row="1" x:Name="BolusEntry" Style="{StaticResource regularEntry}" Completed="CalcConcentration"/>
-                    <Label Grid.Column="2" Grid.Row="1" x:Name="BolusMeasure" Style="{StaticResource UoMLabel}" Text="mg" VerticalTextAlignment="Center" />
+                    <inputLayout:SfTextInputLayout Grid.Column="0" Grid.Row="0" Hint="Bag Volume:">
+                        <syncfusion:SfNumericTextBox x:Name="BagVolumeEntry" Completed="CalcConcentration" MaximumNumberDecimalDigits="0" FormatString="ml" Value="250" SelectAllOnFocus="True"/>
+                    </inputLayout:SfTextInputLayout>
+                    
+                    <inputLayout:SfTextInputLayout Grid.Column="1" Grid.Row="0" Hint="Basal Rate:">
+                        <syncfusion:SfNumericTextBox x:Name="BasalEntry" Completed="CalcConcentration" MaximumNumberDecimalDigits="2" FormatString="mg/hr" SelectAllOnFocus="True" />
+                    </inputLayout:SfTextInputLayout>
+                    
+                    <inputLayout:SfTextInputLayout Grid.Column="0" Grid.Row="1" Hint="Bolus Amount:">
+                        <syncfusion:SfNumericTextBox x:Name="BolusEntry" Completed="CalcConcentration" MaximumNumberDecimalDigits="2" FormatString="mg" SelectAllOnFocus="True"/>
+                    </inputLayout:SfTextInputLayout>
 
-                    <Label Grid.Column="0" Grid.Row="2" Text="Bolus Interval:" Style="{StaticResource entryLabel}"  />
-                    <Entry Grid.Column="1" Grid.Row="2" x:Name="BolusMinEntry" Text="15" Style="{StaticResource regularEntry}" Completed="CalcConcentration"/>
-                    <Label Grid.Column="2" Grid.Row="2" Text="minutes" Style="{StaticResource UoMLabel}" VerticalTextAlignment="Center" />
-
-                    <Label Grid.Column="0" Grid.Row="3" Text="Bag Volume:" Style="{StaticResource entryLabel}"  />
-                    <Entry Grid.Column="1" Grid.Row="3" x:Name="BagVolumeEntry" Text="250"  Style="{StaticResource regularEntry}" Completed="CalcConcentration"/>
-                    <Label Grid.Column="2" Grid.Row="3" Text="ml" Style="{StaticResource UoMLabel}" VerticalTextAlignment="Center" />
+                    <inputLayout:SfTextInputLayout Grid.Column="1" Grid.Row="1" Hint="Bolus Interval:" HelperText="Minutes">
+                        <syncfusion:SfNumericTextBox x:Name="BolusMinEntry" Completed="CalcConcentration" MaximumNumberDecimalDigits="0" FormatString="min" Value="15" SelectAllOnFocus="True" />
+                    </inputLayout:SfTextInputLayout>
                 </Grid>
 
 
@@ -89,24 +72,24 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <BoxView Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Style="{StaticResource boxViewSettings}" />
+                    <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"  Style="{StaticResource frameSettings}" />
                     <Label Grid.Row="0" Grid.Column="0" Text="Total Per Hour:" Style="{StaticResource ResultLabel}" />
                     <Label Grid.Row="1" Grid.Column="0" x:Name="TPHEntry" Style="{StaticResource CalcResult}" />
-
-                    <BoxView Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Style="{StaticResource boxViewSettings}" />
+                    
+                    <Frame Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"  Style="{StaticResource frameSettings}" />
                     <Label Grid.Row="0" Grid.Column="1" Text="Total Per Day:" Style="{StaticResource ResultLabel}" />
                     <Label Grid.Row="1" Grid.Column="1" x:Name="TPDEntry" Style="{StaticResource CalcResult}" />
 
-                    <BoxView Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Style="{StaticResource boxViewSettings}" />
+                    <Frame Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"  Style="{StaticResource frameSettings}" />
                     <Label Grid.Row="0" Grid.Column="2" BindingContext="{x:Reference StepDays}" Text="{Binding Value,StringFormat='Total per {0} days:'}" Style="{StaticResource ResultLabel}" />
                     <Label Grid.Row="1" Grid.Column="2" x:Name="TP5DEntry" Style="{StaticResource CalcResult}" />
-                </Grid>
+                </Grid> 
                 <Grid Padding="5,5,5,5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="60" />
                     </Grid.RowDefinitions>
-                    <BoxView Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource boxViewSettings}" />
+                    <Frame Grid.Row="0" Grid.RowSpan="2"  Style="{StaticResource frameSettings}" />
                     <Label Grid.Row="0" Text="Suggested Concentration:" Style="{StaticResource FinalResultLabel}" />
                     <Label Grid.Row="1" x:Name="SugConcEntry" Text="0" Style="{StaticResource FinalResult}"/>
                 </Grid>

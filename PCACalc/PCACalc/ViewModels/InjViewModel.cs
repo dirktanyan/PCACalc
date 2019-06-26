@@ -11,38 +11,38 @@ using Xamarin.Forms;
 
 namespace PCACalc.ViewModels
 {
-    public class MedsViewModel : PCACBaseViewModel
+    public class InjViewModel : PCACBaseViewModel
     {
         public ObservableCollection<Med> Medications { get; set; }
         public Command LoadMedsCommand { get; set; }
 
-        public MedsViewModel()
+        public InjViewModel()
         {
             Medications = new ObservableCollection<Med>();
             LoadMedsCommand = new Command(async () => await ExecuteLoadMedsCommand());
 
-            MessagingCenter.Subscribe<NewMedPage, Med>(this, "AddItem", async (obj, item) =>
+            MessagingCenter.Subscribe<NewInjPage, Med>(this, "AddItem", async (obj, item) =>
             {
                 var newMed = item as Med;
 
                 Medications.Add(newMed);
                               
-                await DataStore.AddMedicationAsync(newMed);
+                await InjDataStore.AddMedicationAsync(newMed);
 
             });
-            MessagingCenter.Subscribe<MedDetailPage, Med>(this, "DeleteItem", async (obj, item) =>
+            MessagingCenter.Subscribe<InjDetailPage, Med>(this, "DeleteItem", async (obj, item) =>
               {
                   var doomedMed = item as Med;
                   Medications.Remove(doomedMed);
-                  await DataStore.DeleteMedication(doomedMed.ID);
+                  await InjDataStore.DeleteMedication(doomedMed.ID);
               });
 
-            MessagingCenter.Subscribe<MedDetailPage, Med>(this, "UpdateItem", async (obj, item) =>
+            MessagingCenter.Subscribe<InjDetailPage, Med>(this, "UpdateItem", async (obj, item) =>
             {
                 var updatedMed = item as Med;
                 Medications.Remove(updatedMed);
                 Medications.Add(updatedMed);
-                await DataStore.AddMedicationAsync(updatedMed);
+                await InjDataStore.AddMedicationAsync(updatedMed);
             });
 
         }
@@ -57,7 +57,7 @@ namespace PCACalc.ViewModels
             try
             {
                 Medications.Clear();
-                var _meds = await DataStore.GetMedsAsync();
+                var _meds = await InjDataStore.GetMedsAsync();
                 foreach (var _med in _meds)
                 {
                     Medications.Add(_med);

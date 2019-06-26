@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PCACalc.Views.dbTableViewerPage" xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="PCABagsListView" ItemsSource="{Binding BagList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Label Grid.Column="0" Text="{Binding ID}" />
+                                <Label Grid.Column="1" Text="{Binding FK_PCAID}" />
+                                <Label Grid.Column="2" Text="{Binding PCASize, StringFormat='{0} ml'}" />
+                                <Label Grid.Column="3" Text="{Binding PCAPrice, StringFormat='{0:C}'}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

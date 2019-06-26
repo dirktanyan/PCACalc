@@ -14,12 +14,11 @@
 
     <ContentPage.Content>
         <StackLayout Padding="15" Spacing="20">
-
-            <inputLayout:SfTextInputLayout HelperText="PCA Size in ML" Hint="PCA Size" WidthRequest="100">
-                <syncfusion:SfNumericTextBox x:Name="PCASize" FormatString="ml" MaximumNumberDecimalDigits="2" Value="{Binding thisPCA.PCASize}" />
+            <inputLayout:SfTextInputLayout Hint="Medication Name">
+                <Entry x:Name="MedicationName" Text="{Binding thisPCA.PCADrug}" />
             </inputLayout:SfTextInputLayout>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                <inputLayout:SfTextInputLayout Hint="Concentration" WidthRequest="100" VerticalOptions="Center">
+            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                <inputLayout:SfTextInputLayout Hint="Concentration" VerticalOptions="Center" WidthRequest="100">
                     <syncfusion:SfNumericTextBox x:Name="PCAConcn" MaximumNumberDecimalDigits="0" Value="{Binding thisPCA.PCAConcn}" />
                 </inputLayout:SfTextInputLayout>
                 <Picker x:Name="PCAUnits" Title="Select Units" SelectedItem="{Binding thisPCA.PCAUnits}" VerticalOptions="Center">
@@ -31,10 +30,42 @@
                     </Picker.ItemsSource>
                 </Picker>
             </StackLayout>
-            <inputLayout:SfTextInputLayout Hint="PCA Price" WidthRequest="100">
-                <syncfusion:SfNumericTextBox x:Name="PCAPrice" FormatString="c" MaximumNumberDecimalDigits="2" Value="{Binding thisPCA.PCAPrice}" />
-            </inputLayout:SfTextInputLayout>
 
+            <Grid Margin="10" Padding="10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="80" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Frame Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{DynamicResource frameSettings}" />
+                <ListView
+                    x:Name="PCASizesListView" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                    ItemSelected="PCASizesListView_ItemSelected"
+                    ItemsSource="{Binding thisPCASizes}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Label Grid.Column="0" Text="{Binding PCASize, StringFormat='{0} ml'}" />
+                                    <Label Grid.Column="2" Text="{Binding PCAPrice, StringFormat='{0:C}'}" />
+                                    <Label x:Name="labelPCAID" Grid.Column="0" IsVisible="False" Text="{Binding ID}" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout Grid.Row="0" Grid.Column="3" VerticalOptions="Center">
+                    <Button x:Name="addPCA" Clicked="AddPCA_Clicked" FontSize="Small" Text="Add" />
+                    <Button x:Name="editPCA" Clicked="EditPCA_Clicked" FontSize="Small" IsEnabled="False" Text="Edit" />
+                    <Button x:Name="deletePCA" Clicked="DeletePCA_Clicked" FontSize="Small" IsEnabled="False" Text="Delete" />
+                </StackLayout>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

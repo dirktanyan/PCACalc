@@ -12,7 +12,8 @@ namespace PCACalc.ViewModels
 {
     public class PCACBaseViewModel : INotifyPropertyChanged
     {
-        public MedsDataAccess DataStore = new MedsDataAccess();
+        public InjDataAccess InjDataStore = new InjDataAccess();
+        public PCADataAccess PCADataStore = new PCADataAccess();
 
         bool isBusy = false;
         public bool IsBusy

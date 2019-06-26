@@ -22,13 +22,13 @@ namespace PCACalc.Views
 
         private bool checkEntries()
         {
-            if(BasalEntry.Text != null)
+            if(BasalEntry.Value != null)
             {
-                if(BolusEntry.Text != null)
+                if(BolusEntry.Value != null)
                 {
-                    if(BolusMinEntry.Text != null)
+                    if(BolusMinEntry.Value != null)
                     {
-                        if(BagVolumeEntry.Text != null)
+                        if(BagVolumeEntry.Value != null)
                         {
                             return true;
                         } else { return false; }
@@ -48,7 +48,7 @@ namespace PCACalc.Views
             {
                 try
                 {
-                    totalPerHour = Calculations.CalcTPH(double.Parse(BasalEntry.Text), double.Parse(BolusEntry.Text), double.Parse(BolusMinEntry.Text));
+                    totalPerHour = Calculations.CalcTPH(double.Parse(BasalEntry.Value.ToString()), double.Parse(BolusEntry.Value.ToString()), double.Parse(BolusMinEntry.Value.ToString()));
                     TPHEntry.Text = totalPerHour.ToString() + unitOfMeasure;
 
                     totalPerDay = totalPerHour * 24;
@@ -57,7 +57,7 @@ namespace PCACalc.Views
                     totalPerDS = totalPerDay * StepDays.Value;
                     TP5DEntry.Text = totalPerDS.ToString() + unitOfMeasure;
 
-                    bagVolume = double.Parse(BagVolumeEntry.Text);
+                    bagVolume = double.Parse(BagVolumeEntry.Value.ToString());
                     suggestedConcentration = Math.Round(totalPerDS / bagVolume, 0);
 
 
@@ -78,15 +78,15 @@ namespace PCACalc.Views
                 {
                     SwitchMCG.IsToggled = false;
                     unitOfMeasure = "mg";
-                    BasalMeasure.Text = "mg";
-                    BolusMeasure.Text = "mg";
+                    BasalEntry.FormatString = "mg/hr";
+                    BolusEntry.FormatString = "mg";
                 }
                 else
                 {
                     SwitchMCG.IsToggled = true;
                     unitOfMeasure = "mcg";
-                    BasalMeasure.Text = "mcg";
-                    BolusMeasure.Text = "mcg";
+                    BasalEntry.FormatString = "mcg/hr";
+                    BolusEntry.FormatString = "mcg";
                 }
             }
             else
@@ -95,15 +95,15 @@ namespace PCACalc.Views
                 {
                     SwitchMG.IsToggled = false;
                     unitOfMeasure = "mcg";
-                    BasalMeasure.Text = "mcg";
-                    BolusMeasure.Text = "mcg";
+                    BasalEntry.FormatString = "mcg/hr";
+                    BolusEntry.FormatString = "mcg";
                 }
                 else
                 {
                     SwitchMG.IsToggled = true;
                     unitOfMeasure = "mg";
-                    BasalMeasure.Text = "mg";
-                    BolusMeasure.Text = "mg";
+                    BasalEntry.FormatString = "mg/hr";
+                    BolusEntry.FormatString = "mg";
                 }
             }
         }

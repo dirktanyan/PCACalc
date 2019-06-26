@@ -13,16 +13,16 @@ using Xamarin.Forms.Xaml;
 namespace PCACalc.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MedicationsPage : ContentPage
+    public partial class InjectionsPage : ContentPage
     {
-        MedsViewModel viewModel;
+        InjViewModel viewModel;
 
-        private MedsDataAccess dataAccess;
-        public MedicationsPage()
+        private InjDataAccess dataAccess;
+        public InjectionsPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new MedsViewModel();
+            BindingContext = viewModel = new InjViewModel();
         }
 
 
@@ -45,7 +45,7 @@ namespace PCACalc.Views
             if (item == null) return;
 
             try { // Having trouble with app crashed if a medication is updated, the detail page closed then reopened
-            await Navigation.PushAsync(new MedDetailPage(new ViewModels.MedDetailViewModel(item)));
+            await Navigation.PushAsync(new InjDetailPage(new ViewModels.InjDetailViewModel(item)));
             }
             catch
             {
@@ -56,7 +56,7 @@ namespace PCACalc.Views
 
         async void OnAddClick(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewMedPage())
+            await Navigation.PushModalAsync(new NavigationPage(new NewInjPage())
             {
                 BarBackgroundColor = Color.FromHex("#00BBD3"),
                 BarTextColor = Color.White 

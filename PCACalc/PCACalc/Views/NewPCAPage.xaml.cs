@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using PCACalc.Models;
+using PCACalc.Services;
 
 
 namespace PCACalc.Views
@@ -15,26 +16,26 @@ namespace PCACalc.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewPCAPage : ContentPage
     {
-        public MedsPCA thisPCA { get; set; }
-        public NewPCAPage(int medID)
+        public PCA thisPCA { get; set; }
+        public PCABags thisPCASizes { get; set; }
+        public NewPCAPage()
         {
             InitializeComponent();
 
-            thisPCA = new MedsPCA();
-            thisPCA.FK_MedsID = medID;
+            thisPCA = new PCA();
+            thisPCASizes = new PCABags();
 
             BindingContext = this;
         }
 
-        public NewPCAPage(MedsPCA editedPCA)
+        public NewPCAPage(PCA editedPCA)
         {
             InitializeComponent();
 
-            thisPCA = editedPCA as MedsPCA;
-            PCAPrice.Value = thisPCA.PCAPrice;
+            thisPCA = editedPCA as PCA;
             PCAConcn.Value = thisPCA.PCAConcn;
+
             PCAUnits.SelectedItem = thisPCA.PCAUnits;
-            PCASize.Value = thisPCA.PCASize;
 
             BindingContext = this;
         }
@@ -51,5 +52,24 @@ namespace PCACalc.Views
             await Navigation.PopModalAsync();
         }
 
+        private void AddPCA_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EditPCA_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeletePCA_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PCASizesListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+
+        }
     }
 }

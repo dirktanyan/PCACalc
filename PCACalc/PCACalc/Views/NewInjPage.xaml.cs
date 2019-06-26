@@ -13,11 +13,11 @@ using Xamarin.Forms.Xaml;
 namespace PCACalc.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewMedPage : ContentPage
+    public partial class NewInjPage : ContentPage
     {
         public Med Medication { get; set; }
-        private MedsDataAccess dataaccess;
-        public NewMedPage()
+        private InjDataAccess dataaccess;
+        public NewInjPage()
         {
             InitializeComponent();
 
@@ -29,7 +29,7 @@ namespace PCACalc.Views
             //    VialPrice = 1.00M
             //};
 
-            dataaccess = new MedsDataAccess();
+            dataaccess = new InjDataAccess();
 
             BindingContext = this;
         }

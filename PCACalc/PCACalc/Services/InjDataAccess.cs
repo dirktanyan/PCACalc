@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace PCACalc.Services
 {
-    public class MedsDataAccess
+    public class InjDataAccess
     {
         private SQLiteConnection database;
         private static object collisionLock = new object();
 
         public ObservableCollection<Med> MedsList { get; set; }
 
-        public MedsDataAccess()
+        public InjDataAccess()
         {
             database = DependencyService.Get<IDatabaseConnection>().DbConnection();
             database.CreateTable<Med>();

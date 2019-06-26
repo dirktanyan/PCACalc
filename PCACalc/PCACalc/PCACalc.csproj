@@ -20,6 +20,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\InjDetailPage.xaml.cs">
+      <DependentUpon>InjDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\InjectionsPage.xaml.cs">
+      <DependentUpon>InjectionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\NewInjPage.xaml.cs">
+      <DependentUpon>NewInjPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\PCAvsInjPage.xaml.cs">
       <DependentUpon>PCAvsInjPage.xaml</DependentUpon>
     </Compile>
@@ -35,16 +44,28 @@
     <EmbeddedResource Update="Views\ConcentrationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MedDetailPage.xaml">
+    <EmbeddedResource Update="Views\dbTableViewerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MedicationsPage.xaml">
+    <EmbeddedResource Update="Views\InjDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\NewMedPage.xaml">
+    <EmbeddedResource Update="Views\InjectionsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\NewInjPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\NewPCAPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\NewPCASizePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PCADetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PCAPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PCAvsInjPage.xaml">

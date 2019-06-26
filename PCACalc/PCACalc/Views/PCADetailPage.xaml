@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PCACalc.Views.PCADetailPage" xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+    Title="PCA Details" mc:Ignorable="d">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <inputLayout:SfTextInputLayout Hint="Drug Name">
+                <Entry Text="{Binding thisPCA.PCADrug}" />
+            </inputLayout:SfTextInputLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <inputLayout:SfTextInputLayout Hint="Concentration" VerticalOptions="Center">
+                    <syncfusion:SfNumericTextBox SelectAllOnFocus="True" Value="{Binding thisPCA.PCAConcn}" />
+                </inputLayout:SfTextInputLayout>
+                <Picker x:Name="UnitsPicker" SelectedItem="{Binding thisPCA.PCAUnits}" VerticalOptions="Center" WidthRequest="100">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>mg</x:String>
+                            <x:String>mcg</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Label Text="/ml" VerticalOptions="Center" />
+            </StackLayout>
+
+            <Grid Margin="10" Padding="10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="80" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200" />
+                </Grid.RowDefinitions>
+
+                <Frame Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{DynamicResource frameSettings}" />
+                <ListView
+                    x:Name="PCABagsListView" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                    ItemSelected="PCABagsListView_ItemSelected"
+                    ItemsSource="{Binding thisPCABagList}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Label Grid.Column="0" Text="{Binding PCASize, StringFormat='{0} ml'}" />
+                                    <Label Grid.Column="1" Text="{Binding PCAPrice, StringFormat='{0:C}'}" />
+                                    <Label x:Name="labelPCAID" Grid.Column="0" IsVisible="False" Text="{Binding ID}" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout Grid.Row="0" Grid.Column="3" VerticalOptions="Center">
+                    <Button x:Name="addBag" Clicked="AddBag_Clicked" FontSize="Small" Text="Add" />
+                    <Button x:Name="editBag" Clicked="EditBag_Clicked" FontSize="Small" IsEnabled="False" Text="Edit" />
+                    <Button x:Name="deleteBag" Clicked="DeleteBag_Clicked" FontSize="Small" IsEnabled="False" Text="Delete" />
+                </StackLayout>
+            </Grid>
+
+            <Grid x:Name="AddEditBag" IsVisible="False">
+                <inputLayout:SfTextInputLayout Grid.Column="0" Hint="Size">
+                    <syncfusion:SfNumericTextBox x:Name="BagSizeEntry" FormatString=" ml" MaximumNumberDecimalDigits="0" SelectAllOnFocus="True" />
+                </inputLayout:SfTextInputLayout>
+                <inputLayout:SfTextInputLayout Grid.Column="1" Hint="Price">
+                    <syncfusion:SfNumericTextBox x:Name="BagPriceEntry" FormatString="c" MaximumNumberDecimalDigits="2" SelectAllOnFocus="True" />
+                </inputLayout:SfTextInputLayout>
+                <Button x:Name="SaveButton" Grid.Column="2" Clicked="Save_Clicked" Text="+" />
+                <Button x:Name="CancelButton" Grid.Column="3" Clicked="Cancel_Clicked" Text="Cancel" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Save" Activated="OnSaveClick" Order="Primary" Priority="0" />
+        <ToolbarItem Name="Delete" Activated="OnDeleteClick" Order="Secondary" Priority="1" />
+    </ContentPage.ToolbarItems>
+</ContentPage>

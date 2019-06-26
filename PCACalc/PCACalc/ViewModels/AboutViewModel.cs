@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace PCACalc.ViewModels
 {
-    public class AboutViewModel : BaseViewModel
+    public class AboutViewModel
     {
         public AboutViewModel()
         {
@@ -14,6 +14,7 @@ namespace PCACalc.ViewModels
             OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://xamarin.com/platform")));
         }
 
+        public string Title { get; set; }
         public ICommand OpenWebCommand { get; }
     }
 }
