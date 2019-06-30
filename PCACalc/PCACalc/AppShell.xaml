@@ -40,6 +40,11 @@
     </Shell.Resources>-->
 
     <!--  Your Pages  -->
+    <FlyoutItem Title="Infusions vs Injectables" FlyoutIcon="syringe.png">
+        <Tab Title="PVA vs Inj" Icon="syringe.png">
+            <ShellContent ContentTemplate="{DataTemplate local:PCAvsInjPage}" />
+        </Tab>
+    </FlyoutItem>
 
     <FlyoutItem Title="Medications" FlyoutIcon="treatment.png">
         <Tab Title="Injectables" Icon="syringe.png">
@@ -56,12 +61,6 @@
         </Tab>
         <Tab Title="By Prescription" Icon="treatment.png">
             <ShellContent ContentTemplate="{DataTemplate local:TRRxPage}" />
-        </Tab>
-    </FlyoutItem>
-
-    <FlyoutItem Title="Infusions vs Injectables" FlyoutIcon="syringe.png">
-        <Tab Title="PVA vs Inj" Icon="syringe.png">
-            <ShellContent ContentTemplate="{DataTemplate local:PCAvsInjPage}" />
         </Tab>
     </FlyoutItem>
 

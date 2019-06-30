@@ -12,7 +12,7 @@ namespace PCACalc.Services
 {
     public class PCADataAccess
     {
-        private SQLiteConnection database;
+        public SQLiteConnection database;
         public ObservableCollection<PCA> PCAList { get; set; }
         public ObservableCollection<PCABags> PCABagsList { get; set; }
 
@@ -33,7 +33,7 @@ namespace PCACalc.Services
 
             if (!database.Table<PCABags>().Any())
             {
-                InitialisePCABagsList();
+                InitializePCABagsList();
             }
         }
 
@@ -47,7 +47,7 @@ namespace PCACalc.Services
             });
         }
 
-        private void InitialisePCABagsList()
+        private void InitializePCABagsList()
         {
             this.PCABagsList.Add(new PCABags
             {
@@ -57,6 +57,11 @@ namespace PCACalc.Services
             });
         }
 
+        // Get list of PCAs
+        public List<PCA> GetPCAList()
+        {
+            return (from data in database.Table<PCA>() select data).OrderBy(t => t.PCAFullName).ToList();
+        }
         public async Task<ObservableCollection<PCA>> GetPCAsAsync()
         {
             return await Task.FromResult(PCAList);

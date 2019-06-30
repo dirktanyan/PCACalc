@@ -16,78 +16,104 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Picker x:Name="MedicationPicker" Title="-- Select Medication --" ItemDisplayBinding="{Binding Name}" ItemsSource="{Binding medicationList}" SelectedIndexChanged="MedicationPicker_SelectedIndexChanged" />
-
+                <Picker x:Name="MedicationPicker" Title="-- Select Injectable --" ItemDisplayBinding="{Binding FullMedName}" ItemsSource="{Binding medicationList}" SelectedIndexChanged="MedicationPicker_SelectedIndexChanged" />
+                <Picker x:Name="PCAPicker" Title="-- Select PCA --" ItemDisplayBinding="{Binding PCAFullName}" ItemsSource="{Binding pcaList}" SelectedIndexChanged="PCAPicker_SelectedIndexChangedAsync" />
 
                 <Grid Padding="1" RowSpacing="1" VerticalOptions="Start">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="20" />
+                        <RowDefinition Height="30" />
                         <RowDefinition Height="40" />
-                        <RowDefinition Height="20" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Text="ATC Order" VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Text="ATC Order"
+                        VerticalOptions="Center" />
                     <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="0" Hint="ATC MG" InputViewPadding="0,10">
                         <syncfusion:SfNumericTextBox
                             x:Name="EntryATCmg" FormatString="0.## mg" MaximumNumberDecimalDigits="2" SelectAllOnFocus="True"
                             Style="{StaticResource OrderEntryBox}"
-                            ValueChanged="RunCalcs" />
+                            ValueChanged="RunCalcs" Value="0" />
                     </inputLayout:SfTextInputLayout>
 
                     <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="1" Hint="Hours" InputViewPadding="0,10">
                         <syncfusion:SfNumericTextBox
-                            x:Name="EntryATCHours" MaximumNumberDecimalDigits="0" Minimum="1" SelectAllOnFocus="True"
+                            x:Name="EntryATCHours" Maximum="24" MaximumNumberDecimalDigits="0" Minimum="1"
+                            SelectAllOnFocus="True"
                             Style="{StaticResource OrderEntryBox}"
                             ValueChanged="RunCalcs" Value="1" />
                     </inputLayout:SfTextInputLayout>
-                    <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalOptions="End">
-                        <Label FontSize="Small" Text="Mg Per Hour:" />
-                        <Label x:Name="LabelATCMGPerHour" FontSize="Small" />
-                        <Label FontSize="Small" Text="Vials Per Day:" />
-                        <Label x:Name="LabelATCVialsPerDay" FontSize="Small" />
-                    </StackLayout>
+                    <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="End">
+                        <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                            <Label FontSize="Small" Text="Mg Per Hour:" />
+                            <Label x:Name="LabelATCMGPerHour" FontSize="Small" />
+                        </StackLayout>
+                        <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                            <Label FontSize="Small" Text="Vials Per Day:" />
+                            <Label x:Name="LabelATCVialsPerDay" FontSize="Small" />
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                            <Label FontSize="Small" Text="Cost Per Day:" />
+                            <Label x:Name="LabelATCCostPerDay" FontSize="Small" />
+                        </StackLayout>
+                    </Grid>
                 </Grid>
-
-
 
                 <Grid Padding="1" RowSpacing="1" VerticalOptions="Start">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="20" />
+                        <RowDefinition Height="30" />
                         <RowDefinition Height="40" />
-                        <RowDefinition Height="20" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Text="PRN Order" VerticalOptions="Center" />
+                    <BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="{StaticResource BrandGrayDark}" />
+                    <Label
+                        Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Text="PRN Order"
+                        VerticalOptions="Center" />
                     <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="0" Hint="PRN MG" InputViewPadding="0,10">
                         <syncfusion:SfNumericTextBox
                             x:Name="EntryPRNmg" FormatString="0.## mg" MaximumNumberDecimalDigits="2" SelectAllOnFocus="True"
                             Style="{StaticResource OrderEntryBox}"
-                            ValueChanged="RunCalcs" />
+                            ValueChanged="RunCalcs" Value="0" />
                     </inputLayout:SfTextInputLayout>
 
                     <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="1" Hint="Hours" InputViewPadding="0,10">
                         <syncfusion:SfNumericTextBox
-                            x:Name="EntryPRNHours" MaximumNumberDecimalDigits="0" Minimum="1" SelectAllOnFocus="True"
+                            x:Name="EntryPRNHours" Maximum="24" MaximumNumberDecimalDigits="0" Minimum="1"
+                            SelectAllOnFocus="True"
                             Style="{StaticResource OrderEntryBox}"
                             ValueChanged="RunCalcs" Value="1" />
                     </inputLayout:SfTextInputLayout>
-                    <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalOptions="End">
-                        <Label FontSize="Small" Text="Mg Per Hour" />
-                        <Label x:Name="LabelPRNMGPerHour" FontSize="Small" />
-                    </StackLayout>
+                    <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="End">
+                        <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                            <Label FontSize="Small" Text="Mg Per Hour:" />
+                            <Label x:Name="LabelPRNMGPerHour" FontSize="Small" />
+                        </StackLayout>
+                        <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                            <Label FontSize="Small" Text="Vials Per Day:" />
+                            <Label x:Name="LabelPRNVialsPerDay" FontSize="Small" />
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                            <Label FontSize="Small" Text="Cost Per Day:" />
+                            <Label x:Name="LabelPRNCostPerDay" FontSize="Small" />
+                        </StackLayout>
+                    </Grid>
                 </Grid>
-
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Units per day:" />
+                    <Label x:Name="LabelUnitsPerDay" Text="0" />
+                </StackLayout>
 
                 <ListView
                     x:Name="PCAsListView" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
                     ItemSelected="PCAsListView_ItemSelected"
-                    ItemsSource="{Binding PCAs}">
+                    ItemsSource="{Binding pcasandbags}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <Grid Padding="10">
                                     <Label Grid.Column="0" Text="{Binding PCASize, StringFormat='{0} ml'}" />
-                                    <Label Grid.Column="1" Text="{Binding PCAConcnAndUnits}" />
-                                    <Label Grid.Column="2" Text="{Binding PCAPrice, StringFormat='{0:C}'}" />
-                                    <Label x:Name="labelPCAID" Grid.Column="0" IsVisible="False" Text="{Binding ID}" />
+                                    <Label Grid.Column="1" Text="{Binding PCAPrice, StringFormat='{0:C}'}" />
+                                    <Label Grid.Column="2" Text="{Binding PCAPricePerUnit, StringFormat='{0:C}'}" />
+                                    <Label x:Name="labelPCAID" Grid.Column="0" IsVisible="False" Text="{Binding PCABagID}" />
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
