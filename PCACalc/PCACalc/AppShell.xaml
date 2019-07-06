@@ -70,6 +70,12 @@
         </Tab>
     </FlyoutItem>
 
+    <FlyoutItem Title="Settings" FlyoutIcon="settings.png">
+        <Tab Title="Settings" FlyoutIcon="settings.png">
+            <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" />
+        </Tab>
+    </FlyoutItem>
+
     <FlyoutItem Title="Helpers">
         <Tab Title="PCA Bags">
             <ShellContent ContentTemplate="{DataTemplate local:dbTableViewerPage}" />

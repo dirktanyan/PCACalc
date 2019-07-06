@@ -38,7 +38,7 @@ namespace PCACalc.Services
             VialPrice = 0;
         }
 
-        public double MGPerHour(bool PRN)
+        public double UnitsPerHour(bool PRN)
         {
             double mgperhour = 0;
             if (PRN == false)
@@ -51,6 +51,15 @@ namespace PCACalc.Services
             }
             
             return Math.Round(mgperhour, 3);
+        }
+
+        public double TotalUnitsPerDay()
+        {
+            double atcperhour = AtcUnits / AtcInterval;
+            double prnperhour = PrnUnits / PrnInterval;
+            double unitsperhour = atcperhour + prnperhour;
+
+            return Math.Round(unitsperhour * 24,3);
         }
 
         public int VialsPerDay(bool PRN)
@@ -70,14 +79,14 @@ namespace PCACalc.Services
             
             return vialsPerDose * dosesPerDay;
         }
-
-        public double UnitsPerDay()
+        public int TotalVialsPerDay()
         {
-            return Math.Round(
-                    (AtcUnits * (24 / AtcInterval)) +
-                    (PrnUnits * (24 / PrnInterval))
-                , 2);
+            int atc = VialsPerDay(false);
+            int prn = VialsPerDay(true);
+
+            return atc + prn;
         }
+        
 }
 
 }

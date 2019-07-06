@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PCACalc.Views.SettingsPage" xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:local="clr-namespace:PCACalc.ViewModels"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+    Title="Settings" mc:Ignorable="d">
+
+    <ContentPage.BindingContext>
+        <local:SettingsViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <inputLayout:SfTextInputLayout Hint="Pump Rental" HelperText="Cost Per Day">
+            <syncfusion:SfNumericTextBox Value="{Binding PumpRental}" FormatString="C" />
+        </inputLayout:SfTextInputLayout>
+    </ContentPage.Content>
+</ContentPage>
