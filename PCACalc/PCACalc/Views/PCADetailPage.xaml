@@ -18,14 +18,18 @@
                 <inputLayout:SfTextInputLayout Hint="Concentration" VerticalOptions="Center">
                     <syncfusion:SfNumericTextBox SelectAllOnFocus="True" Value="{Binding thisPCA.PCAConcn}" />
                 </inputLayout:SfTextInputLayout>
-                <Picker x:Name="UnitsPicker" SelectedItem="{Binding thisPCA.PCAUnits}" VerticalOptions="Center" WidthRequest="100">
+                <inputLayout:SfTextInputLayout Hint="Units" VerticalOptions="Center">
+                    <Entry Placeholder="mg" Text="{Binding thisPCA.PCAUnits}" />
+                </inputLayout:SfTextInputLayout>
+
+                <!--<Picker x:Name="UnitsPicker" SelectedItem="{Binding thisPCA.PCAUnits}" VerticalOptions="Center" WidthRequest="100">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>mg</x:String>
                             <x:String>mcg</x:String>
                         </x:Array>
                     </Picker.ItemsSource>
-                </Picker>
+                </Picker>-->
                 <Label Text="/ml" VerticalOptions="Center" />
             </StackLayout>
 

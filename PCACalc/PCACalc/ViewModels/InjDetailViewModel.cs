@@ -23,6 +23,7 @@ namespace PCACalc.ViewModels
             VialPrice = med.VialPrice;
             VialConcentration = med.VialConcentration;
             VialSize = med.VialSize;
+            VialUnits = med.VialUnits;
         }
         
         public async Task<bool> UpdateMedication(Med updatingMed)
@@ -72,7 +73,12 @@ namespace PCACalc.ViewModels
             get { return _vialsize; }
             set { SetProperty(ref _vialsize, value); }
         }
-
+        private string _vialunits;
+        public string VialUnits
+        {
+            get { return _vialunits; }
+            set { SetProperty(ref _vialunits, value); }
+        }
 
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName]string propertyName = "",

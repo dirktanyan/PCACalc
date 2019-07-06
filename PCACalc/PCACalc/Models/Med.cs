@@ -83,12 +83,23 @@ namespace PCACalc.Models
                 OnPropertyChanged(nameof(VialSize));
             }
         }
-
+        private string _vialunits;
+        public string VialUnits {
+            get
+            {
+                return _vialunits;
+            }
+            set
+            {
+                this._vialunits = value;
+                OnPropertyChanged(nameof(VialUnits));
+            }
+        }
         public string FullMedName
         {
             get
             {
-                return $"{ Name } { VialConcentration }mg/ml {VialSize}ml";
+                return $"{ Name } { VialConcentration } {VialUnits}/ml {VialSize}ml";
             }
         }
 

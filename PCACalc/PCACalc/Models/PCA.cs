@@ -20,5 +20,9 @@ namespace PCACalc.Models
                 return $"{PCADrug} {PCAConcn} {PCAUnits}/ml";
             }
         }
+        public override string ToString()
+        {
+            return $"{PCADrug} {PCAConcn} {PCAUnits}/ml";
+        }
     }
 }

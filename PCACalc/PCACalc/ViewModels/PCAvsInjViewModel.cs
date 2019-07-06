@@ -20,8 +20,8 @@ namespace PCACalc.ViewModels
         public List<PCABags> pcabaglist { get; set; }
         public ObservableCollection<PCAInfo> pcasandbags { get; set; }
         public Command LoadAssocPCAs { get; set; }
-        public Med selectedMed = new Med();
-        public PCA selectedPCA = new PCA();
+        public Med selectedMed { get; set; } = new Med();
+        public PCA selectedPCA { get; set; } = new PCA();
 
         public PCADataAccess PCADataStore = new PCADataAccess();
 

@@ -15,9 +15,15 @@
                 <Entry Completed="NameUpdated" Text="{Binding Medication.Name}" Unfocused="SfNumericTextBox_Unfocused" />
             </inputLayout:SfTextInputLayout>
 
-            <inputLayout:SfTextInputLayout Hint="Concentration">
-                <syncfusion:SfNumericTextBox Completed="SfNumericTextBox_Updated" FormatString="mg/ml" SelectAllOnFocus="True" Unfocused="SfNumericTextBox_Unfocused" Value="{Binding Medication.VialConcentration}" />
-            </inputLayout:SfTextInputLayout>
+            <StackLayout Orientation="Horizontal">
+                <inputLayout:SfTextInputLayout Hint="Concentration">
+                    <syncfusion:SfNumericTextBox Completed="SfNumericTextBox_Updated" SelectAllOnFocus="True" Unfocused="SfNumericTextBox_Unfocused" Value="{Binding Medication.VialConcentration}" />
+                </inputLayout:SfTextInputLayout>
+                <inputLayout:SfTextInputLayout Hint="Units">
+                    <Entry Completed="SfNumericTextBox_Updated" Placeholder="mg" Text="{Binding Medication.VialUnits}" Unfocused="SfNumericTextBox_Unfocused" />
+                </inputLayout:SfTextInputLayout>
+                <Label Text="/ml" VerticalOptions="Center" />
+            </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <inputLayout:SfTextInputLayout Hint="Vial Size">
                     <syncfusion:SfNumericTextBox Completed="SfNumericTextBox_Updated" FormatString="ml" SelectAllOnFocus="True" Unfocused="SfNumericTextBox_Unfocused" Value="{Binding Medication.VialSize}" />
@@ -25,7 +31,9 @@
                 <inputLayout:SfTextInputLayout Hint="Vial Price">
                     <syncfusion:SfNumericTextBox Completed="SfNumericTextBox_Updated" FormatString="c" SelectAllOnFocus="True" Unfocused="SfNumericTextBox_Unfocused" Value="{Binding Medication.VialPrice}" />
                 </inputLayout:SfTextInputLayout>
+
             </StackLayout>
+
         </StackLayout>
     </ContentPage.Content>
 
