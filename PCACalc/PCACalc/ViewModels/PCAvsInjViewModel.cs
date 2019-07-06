@@ -21,8 +21,6 @@ namespace PCACalc.ViewModels
         public Med selectedMed { get; set; } = new Med();
         public PCA selectedPCA { get; set; } = new PCA();
 
-        public PCADataAccess PCADataStore = new PCADataAccess();
-
         MedicationHelper medicationHelper = new MedicationHelper();
         public InjVsPCACalcs calcService = new InjVsPCACalcs();
 
@@ -72,7 +70,21 @@ namespace PCACalc.ViewModels
             {
                 selectedMed = value as Med;
                 Units = selectedMed.VialUnits;
+                VialPrice = selectedMed.VialPrice.ToString("c");
                 OnPropertyChanged(nameof(PickedMed));
+            }
+        }
+        private string _vialprice;
+        public string VialPrice
+        {
+            get
+            {
+                return _vialprice;
+            }
+            set
+            {
+                _vialprice = value;
+                OnPropertyChanged(nameof(VialPrice));
             }
         }
         public object PickedPCA
@@ -258,6 +270,7 @@ namespace PCACalc.ViewModels
 
             foreach(var _bag in bags)
             {
+                double _dayssupply = Math.Round((_bag.PCASize * selectedPCA.PCAConcn) / double.Parse(TotalUnitsPerDay), 2);
                 PCAInfo info = new PCAInfo
                 {
                     PCAID = selectedPCA.ID,
@@ -267,7 +280,8 @@ namespace PCACalc.ViewModels
                     PCASize = _bag.PCASize,
                     PCAPrice = _bag.PCAPrice,
                     PCAPricePerUnit = Math.Round(_bag.PCAPrice / (_bag.PCASize * selectedPCA.PCAConcn), 2),
-                    DaysSupply = Math.Round((_bag.PCASize * selectedPCA.PCAConcn) / double.Parse(TotalUnitsPerDay), 2)
+                    DaysSupply = _dayssupply,
+                    PCAPricePerDay = Math.Round(_bag.PCAPrice / (decimal)_dayssupply, 2) + decimal.Parse(PumpRental)
                 };
                 pcasandbags.Add(info);
             }
@@ -291,7 +305,7 @@ namespace PCACalc.ViewModels
             TotalVialsPerDay = calcService.TotalVialsPerDay().ToString();
             VialsCostPerDay = (selectedMed.VialPrice * int.Parse(TotalVialsPerDay)).ToString("c");
 
-            GetPCAsAndBags();
+            await GetPCAsAndBags();
             return true;
         }
     }
