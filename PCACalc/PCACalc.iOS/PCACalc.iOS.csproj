@@ -70,6 +70,9 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <BundleResource Include="Resources\materialdesignicons-webfont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -133,6 +136,9 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\cancel.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\settings.imageset\Contents.json">
@@ -228,18 +234,21 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="sqlite-net-pcl">
-      <Version>1.5.231</Version>
+      <Version>1.6.258-beta</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Core">
-      <Version>17.1.0.51</Version>
+      <Version>17.2.0.28-beta</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfChart">
+      <Version>17.1.0.53</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox">
-      <Version>17.1.0.51</Version>
+      <Version>17.2.0.28-beta</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.496342-pre2" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.555618" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
     <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>4.1.0.496342-pre2</Version>
+      <Version>4.1.0.555618</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:local="clr-namespace:PCACalc.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="PCACalc"
+    xmlns:icons="clr-namespace:PCACalc.Images"
     BackgroundColor="{DynamicResource BrandColor}"
     FlyoutBackgroundColor="{DynamicResource BrandGrayLight}"
     ForegroundColor="White"
@@ -20,10 +21,8 @@
     -->
     <!--<Shell.Resources>
         <ResourceDictionary>
-    -->
-    <!--  This doesn't appear to work very well, using direct settings above  -->
-    <!--
-            <Style x:Key="BaseStyle" TargetType="Element">
+        --><!--  This doesn't appear to work very well, using direct settings above  -->
+                <!--<Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{DynamicResource BrandColor }" />
                 <Setter Property="Shell.ForegroundColor" Value="{DynamicResource BrandColorDark}" />
                 <Setter Property="Shell.TitleColor" Value="White" />
@@ -34,44 +33,76 @@
                 <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource BrandColorLight}"/>
                 <Setter Property="Shell.TabBarTitleColor" Value="White"/>
                 <Setter Property="Shell.FlyoutBackgroundColor" Value="{DynamicResource  BrandColor }" />
-            </Style>
-            <Style TargetType="ShellItem" BasedOn="{StaticResource BaseStyle}" />
+            </Style>-->
+            <!--<Style TargetType="ShellItem" BasedOn="{StaticResource BaseStyle}" />--><!--
         </ResourceDictionary>
     </Shell.Resources>-->
 
     <!--  Your Pages  -->
-    <FlyoutItem Title="Infusions vs Injectables" FlyoutIcon="syringe.png">
-        <Tab Title="PVA vs Inj" Icon="syringe.png">
+    <!--<FlyoutItem Title="Test">
+        <Tab Title="Test">
+            <ShellContent ContentTemplate="{DataTemplate local:test}" />
+        </Tab>
+    </FlyoutItem>-->
+    <FlyoutItem Title="Infusions vs Injectables">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{x:Static icons:MaterialDesignIconFont.Needle}" Size="44" Color="{StaticResource IconColor}" />
+        </FlyoutItem.Icon>
+        <Tab Title="PVA vs Inj">
             <ShellContent ContentTemplate="{DataTemplate local:PCAvsInjPage}" />
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="Medications" FlyoutIcon="treatment.png">
-        <Tab Title="Injectables" Icon="syringe.png">
+    <FlyoutItem Title="Medications">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{x:Static icons:MaterialDesignIconFont.ClipboardPulse}" Size="44" Color="{StaticResource IconColor}" />
+        </FlyoutItem.Icon>
+        <Tab Title="Injectables">
+            <Tab.Icon>
+                <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{x:Static icons:MaterialDesignIconFont.Needle}" Size="44" Color="{StaticResource IconColor}" />
+            </Tab.Icon>
             <ShellContent ContentTemplate="{DataTemplate local:InjectionsPage}" />
         </Tab>
-        <Tab Title="PCAs" Icon="treatment.png">
+        <Tab Title="PCAs">
+            <Tab.Icon>
+                <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{x:Static icons:MaterialDesignIconFont.PaletteAdvanced}" Size="44" Color="{StaticResource IconColor}" />
+            </Tab.Icon>
             <ShellContent ContentTemplate="{DataTemplate local:PCAPage}" />
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="Time Remaining" FlyoutIcon="schedule.png">
-        <Tab Title="By Volume History" Icon="timeMachine.png">
+    <FlyoutItem Title="Time Remaining">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{x:Static icons:MaterialDesignIconFont.TimerSand}" Size="44" Color="{StaticResource IconColor}" />
+        </FlyoutItem.Icon>
+        <Tab Title="By Volume History">
+            <Tab.Icon>
+                <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{x:Static icons:MaterialDesignIconFont.AvTimer}" Size="44" Color="{StaticResource IconColor}" />
+            </Tab.Icon>
             <ShellContent ContentTemplate="{DataTemplate local:TRVolumePage}" />
         </Tab>
-        <Tab Title="By Prescription" Icon="treatment.png">
+        <Tab Title="By Prescription">
+            <Tab.Icon>
+                <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{x:Static icons:MaterialDesignIconFont.Pharmacy}" Size="44" Color="{StaticResource IconColor}" />
+            </Tab.Icon>
             <ShellContent ContentTemplate="{DataTemplate local:TRRxPage}" />
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="Concentration" FlyoutIcon="infusion.png">
-        <Tab Title="Concentration" Icon="infusion.png">
+    <FlyoutItem Title="Concentration">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{x:Static icons:MaterialDesignIconFont.BloodBag}" Size="44" Color="{StaticResource IconColor}" />
+        </FlyoutItem.Icon>
+        <Tab Title="Concentration">
             <ShellContent ContentTemplate="{DataTemplate local:ConcentrationPage}" />
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="Settings" FlyoutIcon="settings.png">
-        <Tab Title="Settings" FlyoutIcon="settings.png">
+    <FlyoutItem Title="Settings">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{x:Static icons:MaterialDesignIconFont.Settings}" Size="44" Color="{StaticResource IconColor}" />
+        </FlyoutItem.Icon>
+        <Tab Title="Settings">
             <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" />
         </Tab>
     </FlyoutItem>

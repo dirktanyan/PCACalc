@@ -2,6 +2,7 @@
 <ContentPage
     x:Class="PCACalc.Views.PCAvsInjPage" xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:PCACalc.ViewModels"
@@ -10,7 +11,7 @@
     Title="Infusions And Injections" Padding="0,20,0,0" mc:Ignorable="d">
     <ContentPage.Resources>
         <Style x:Key="OrderEntryBox" TargetType="syncfusion:SfNumericTextBox">
-            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontSize" Value="Medium" />
         </Style>
         <Style x:Key="OrderCalcResult" TargetType="Label">
             <Setter Property="FontSize" Value="Micro" />
@@ -35,14 +36,14 @@
                         SelectedItem="{Binding PickedMed}"
                         WidthRequest="275" />
                     <StackLayout Orientation="Vertical">
-                        <Label Style="{StaticResource OrderCalcResult}" Text="Cost Per Vial" />
-                        <Label x:Name="VialCost" Text="{Binding VialPrice}" />
+                        <Label Style="{StaticResource OrderCalcResult}" Text="Cost Per Vial" TextColor="{StaticResource BrandColorDark}" />
+                        <Label x:Name="VialCost" Text="{Binding VialPrice}" TextColor="{StaticResource BrandColorDark}" />
                     </StackLayout>
                 </StackLayout>
 
                 <Picker x:Name="PCAPicker" Title="-- Select PCA --" ItemDisplayBinding="{Binding PCAFullName}" ItemsSource="{Binding pcaList}" SelectedItem="{Binding PickedPCA}" />
-                <!--  ATC ORDER  -->
-                <Grid VerticalOptions="Start">
+                <!--#region  ATC Order-->
+                <Grid Padding="5" VerticalOptions="Start">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30" />
                         <RowDefinition Height="*" />
@@ -52,9 +53,10 @@
                         <ColumnDefinition Width="100" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="{StaticResource BrandGrayDark}" />
+                    <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" />
                     <Label
                         Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Center" Text="ATC Order"
+                        TextColor="{StaticResource BrandColor}"
                         VerticalOptions="Center" />
                     <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="0" Hint="{Binding Units}">
                         <syncfusion:SfNumericTextBox x:Name="EntryATCUnits" MaximumNumberDecimalDigits="2" SelectAllOnFocus="True" Style="{StaticResource OrderEntryBox}" Value="{Binding ATCOrderUnits}" />
@@ -81,8 +83,10 @@
                         </StackLayout>
                     </StackLayout>
                 </Grid>
-                <!--  PRN ORDER  -->
-                <Grid VerticalOptions="Start">
+                <!--#endregion-->
+
+                <!--#region  PRN Order-->
+                <Grid Padding="5" VerticalOptions="Start">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30" />
                         <RowDefinition Height="*" />
@@ -92,9 +96,11 @@
                         <ColumnDefinition Width="100" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="{StaticResource BrandGrayDark}" />
+                    <!--<BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="{StaticResource BrandGrayDark}" />-->
+                    <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" />
                     <Label
                         Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Center" Text="PRN Order"
+                        TextColor="{StaticResource BrandColor}"
                         VerticalOptions="Center" />
                     <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="0" Hint="{Binding Units}">
                         <syncfusion:SfNumericTextBox x:Name="EntryPRNUnits" MaximumNumberDecimalDigits="2" SelectAllOnFocus="True" Style="{StaticResource OrderEntryBox}" Value="{Binding PRNOrderUnits}" />
@@ -122,25 +128,26 @@
                         </StackLayout>
                     </StackLayout>
                 </Grid>
+                <!--#endregion-->
 
                 <!--#region  VIAL CALC TOTALS-->
-                <Grid>
+                <Grid Padding="5">
                     <Frame Grid.Row="0" Grid.Column="0" Style="{StaticResource VialCalcResultFrame}">
                         <StackLayout Orientation="Vertical">
                             <Label Style="{StaticResource OrderCalcResult}" Text="{Binding Units, StringFormat='Total {0} Per Day:'}" />
-                            <Label x:Name="LabelTotalUnitsPerDay" Text="{Binding TotalUnitsPerDay}" />
+                            <Label x:Name="LabelTotalUnitsPerDay" HorizontalOptions="Center" Text="{Binding TotalUnitsPerDay}" TextColor="{StaticResource BrandColor}" />
                         </StackLayout>
                     </Frame>
                     <Frame Grid.Row="0" Grid.Column="1" Style="{StaticResource VialCalcResultFrame}">
                         <StackLayout Orientation="Vertical">
                             <Label Style="{StaticResource OrderCalcResult}" Text="Total Vials Per Day:" />
-                            <Label x:Name="LabelTotalVialsPerDay" Text="{Binding TotalVialsPerDay}" />
+                            <Label x:Name="LabelTotalVialsPerDay" HorizontalOptions="Center" Text="{Binding TotalVialsPerDay}" TextColor="{StaticResource BrandColor}" />
                         </StackLayout>
                     </Frame>
                     <Frame Grid.Row="0" Grid.Column="2" Style="{StaticResource VialCalcResultFrame}">
                         <StackLayout Orientation="Vertical">
                             <Label Style="{StaticResource OrderCalcResult}" Text="Total Vial Cost Per Day:" />
-                            <Label x:Name="LabelTotalVialCostPerDay" Text="{Binding VialsCostPerDay}" />
+                            <Label x:Name="LabelTotalVialCostPerDay" HorizontalOptions="Center" Text="{Binding VialsCostPerDay}" TextColor="{StaticResource BrandColor}" />
                         </StackLayout>
                     </Frame>
                 </Grid>
@@ -149,23 +156,27 @@
                 <!--#region  PCA List-->
                 <ListView x:Name="PCAsListView" ItemsSource="{Binding pcasandbags}">
                     <ListView.Header>
-                        <Grid Padding="10">
-                            <Label Grid.Column="0" Text="Size" />
-                            <Label Grid.Column="1" Text="Price" />
-                            <Label Grid.Column="2" Text="{Binding Units, StringFormat='$/{0}'}" />
-                            <Label Grid.Column="3" Text="Days" />
-                            <Label Grid.Column="4" Text="$/Day" />
+                        <Grid Margin="0" Padding="5">
+                            <Frame Grid.Column="0" Grid.ColumnSpan="6" Padding="5" HasShadow="True" />
+                            <Label Grid.Column="0" HorizontalOptions="Center" Text="Size" VerticalOptions="End" />
+                            <Label Grid.Column="1" Text="Price" VerticalOptions="End" />
+                            <Label Grid.Column="2" Text="{Binding Units, StringFormat='$/{0}'}" VerticalOptions="End" />
+                            <Label Grid.Column="3" Text="Days" VerticalOptions="End" />
+                            <Label Grid.Column="4" Text="$/Day" VerticalOptions="End" />
+                            <Label Grid.Column="5" Text="Break Even (Days)" VerticalOptions="End" />
                         </Grid>
                     </ListView.Header>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid Padding="10">
-                                    <Label Grid.Column="0" Text="{Binding PCASize, StringFormat='{0} ml'}" />
-                                    <Label Grid.Column="1" Text="{Binding PCAPrice, StringFormat='{0:C}'}" />
-                                    <Label Grid.Column="2" Text="{Binding PCAPricePerUnit, StringFormat='{0:C}'}" />
-                                    <Label Grid.Column="3" Text="{Binding DaysSupply}" />
-                                    <Label Grid.Column="4" Text="{Binding PCAPricePerDay, StringFormat='{0:C}'}" />
+                                <Grid Padding="5" RowSpacing="1">
+                                    <Frame Grid.Column="0" Padding="5" HasShadow="True" />
+                                    <Label HorizontalOptions="Center" Text="{Binding PCASize, StringFormat='{0} ml'}" TextColor="{StaticResource BrandColorDark}" VerticalOptions="Center" />
+                                    <Label Grid.Column="1" Text="{Binding PCAPrice, StringFormat='{0:C}'}" VerticalOptions="Center" />
+                                    <Label Grid.Column="2" Text="{Binding PCAPricePerUnit, StringFormat='{0:C}'}" VerticalOptions="Center" />
+                                    <Label Grid.Column="3" Text="{Binding DaysSupply}" VerticalOptions="Center" />
+                                    <Label Grid.Column="4" Text="{Binding PCAPricePerDay, StringFormat='{0:C}'}" VerticalOptions="Center" />
+                                    <Label Grid.Column="5" Text="{Binding BreakEven}" TextColor="{StaticResource BrandAccentColor}" VerticalOptions="Center" />
                                     <Label x:Name="labelPCAID" Grid.Column="0" IsVisible="False" Text="{Binding PCABagID}" />
                                 </Grid>
                             </ViewCell>

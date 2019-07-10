@@ -17,6 +17,12 @@
         <x:Double x:Key="FinalResultLabelFontSize">16</x:Double>
         <x:Double x:Key="FinalResultFontSize">26</x:Double>
 
+        <!--  Icon Fonts  -->
+        <OnPlatform x:Key="MaterialFontFamily" x:TypeArguments="x:String">
+            <On Platform="iOS" Value="materialdesignicons-webfont" />
+            <On Platform="Android" Value="materialdesignicons-webfont.ttf#Material Design Icons" />
+        </OnPlatform>
+
         <!--  Colors  -->
         <!--<Color x:Key="BrandColor">#B0BEC5</Color>
         <Color x:Key="BrandColorLight">#E2F1F8</Color>
@@ -38,6 +44,7 @@
         <Color x:Key="BrandGrayLight">#FFFFFF</Color>
         <Color x:Key="BrandAccentColor">#21D321</Color>
         <Color x:Key="BrandAccentColorDark">#00A000</Color>
+        <Color x:Key="IconColor">#808E95</Color>
 
         <!--  Text Colors  -->
         <Color x:Key="PrimaryTextColor">#000000</Color>

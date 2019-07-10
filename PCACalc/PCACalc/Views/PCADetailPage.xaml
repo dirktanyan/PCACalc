@@ -2,7 +2,7 @@
 <ContentPage
     x:Class="PCACalc.Views.PCADetailPage" xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:icons="clr-namespace:PCACalc.Images"
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
@@ -45,7 +45,7 @@
                     <RowDefinition Height="200" />
                 </Grid.RowDefinitions>
 
-                <Frame Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{DynamicResource frameSettings}" />
+                <Frame Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource frameSettings}" />
                 <ListView
                     x:Name="PCABagsListView" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
                     ItemSelected="PCABagsListView_ItemSelected"
@@ -63,9 +63,21 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <StackLayout Grid.Row="0" Grid.Column="3" VerticalOptions="Center">
-                    <Button x:Name="addBag" Clicked="AddBag_Clicked" FontSize="Small" Text="Add" />
-                    <Button x:Name="editBag" Clicked="EditBag_Clicked" FontSize="Small" IsEnabled="False" Text="Edit" />
-                    <Button x:Name="deleteBag" Clicked="DeleteBag_Clicked" FontSize="Small" IsEnabled="False" Text="Delete" />
+                    <Button x:Name="addBag" Clicked="AddBag_Clicked" FontSize="Small">
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{x:Static icons:MaterialDesignIconFont.ShapeCirclePlus}" Size="24" Color="{StaticResource BrandAccentColor}" />
+                        </Button.ImageSource>
+                    </Button>
+                    <Button x:Name="editBag" Clicked="EditBag_Clicked" FontSize="Small" IsEnabled="False">
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{x:Static icons:MaterialDesignIconFont.CircleEditOutline}" Size="24"/>
+                        </Button.ImageSource>
+                    </Button>
+                    <Button x:Name="deleteBag" Clicked="DeleteBag_Clicked" FontSize="Small" IsEnabled="False">
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{x:Static icons:MaterialDesignIconFont.DeleteCircleOutline}" Size="24"/>
+                        </Button.ImageSource>
+                    </Button>
                 </StackLayout>
             </Grid>
 

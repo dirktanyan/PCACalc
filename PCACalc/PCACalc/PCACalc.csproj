@@ -11,12 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.1.0.51" />
-    <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="17.1.0.51" />
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.496342-pre2" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />  
-    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.1.0.496342-pre2" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.6.258-beta" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.28-beta" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.1.0.53" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="17.2.0.28-beta" />
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.555618" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />  
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.1.0.555618" />
   </ItemGroup>
 
   <ItemGroup>
@@ -66,6 +67,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\test.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\TRRxPage.xaml">

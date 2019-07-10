@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PCACalc.Views.test" xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+    <ContentPage.Content>
+        <!--#region  Chart-->
+        <chart:SfChart>
+            <!--<chart:DoughnutSeries
+                CapStyle="BothCurve" IsStackedDoughnut="True"
+                ItemsSource="{Binding mydatamodel.HighTemperature}"
+                Spacing="0.4" XBindingPath="PCASize" YBindingPath="PCAPricePerDay" />-->
+            <chart:SfChart.Series>
+                <chart:ColumnSeries ItemsSource="{Binding HighTemperature}" />
+            </chart:SfChart.Series>
+
+        </chart:SfChart>
+        <!--#endregion-->
+    </ContentPage.Content>
+</ContentPage>

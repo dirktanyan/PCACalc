@@ -281,7 +281,8 @@ namespace PCACalc.ViewModels
                     PCAPrice = _bag.PCAPrice,
                     PCAPricePerUnit = Math.Round(_bag.PCAPrice / (_bag.PCASize * selectedPCA.PCAConcn), 2),
                     DaysSupply = _dayssupply,
-                    PCAPricePerDay = Math.Round(_bag.PCAPrice / (decimal)_dayssupply, 2) + decimal.Parse(PumpRental)
+                    PCAPricePerDay = Math.Round(_bag.PCAPrice / (decimal)_dayssupply, 2) + decimal.Parse(PumpRental),
+                    BreakEven = Math.Round((double)(_bag.PCAPrice / (selectedMed.VialPrice * decimal.Parse(TotalVialsPerDay))),2)
                 };
                 pcasandbags.Add(info);
             }
@@ -322,5 +323,6 @@ namespace PCACalc.ViewModels
         public decimal PCAPricePerUnit { get; set; }
         public decimal PCAPricePerDay { get; set; }
         public double DaysSupply { get; set; }
+        public double BreakEven { get; set; }
     }
 }
