@@ -33,6 +33,7 @@ namespace PCACalc.Droid
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.SfChart_Fade_Out = global::PCACalc.Droid.Resource.Animation.SfChart_Fade_Out;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.SfChart_Scale_In = global::PCACalc.Droid.Resource.Animation.SfChart_Scale_In;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.SfChart_Scale_Out = global::PCACalc.Droid.Resource.Animation.SfChart_Scale_Out;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Drawable.input_layout_drop_down_icon = global::PCACalc.Droid.Resource.Drawable.input_layout_drop_down_icon;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Drawable.inputlayout_togglecollapseicon = global::PCACalc.Droid.Resource.Drawable.inputlayout_togglecollapseicon;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Drawable.inputlayout_togglevisibleicon = global::PCACalc.Droid.Resource.Drawable.inputlayout_togglevisibleicon;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.annotationLayout = global::PCACalc.Droid.Resource.Id.annotationLayout;
@@ -65,10 +66,13 @@ namespace PCACalc.Droid
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.q = global::PCACalc.Droid.Resource.String.q;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.quarter = global::PCACalc.Droid.Resource.String.quarter;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_close_label = global::PCACalc.Droid.Resource.String.sfchart_close_label;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_decrease_label = global::PCACalc.Droid.Resource.String.sfchart_decrease_label;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_high_label = global::PCACalc.Droid.Resource.String.sfchart_high_label;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_increase_label = global::PCACalc.Droid.Resource.String.sfchart_increase_label;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_low_label = global::PCACalc.Droid.Resource.String.sfchart_low_label;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_open_label = global::PCACalc.Droid.Resource.String.sfchart_open_label;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_others_label = global::PCACalc.Droid.Resource.String.sfchart_others_label;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_total_label = global::PCACalc.Droid.Resource.String.sfchart_total_label;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.w = global::PCACalc.Droid.Resource.String.w;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.week = global::PCACalc.Droid.Resource.String.week;
 			global::Com.Syncfusion.Numerictextbox.Resource.Attribute.allowNull = global::PCACalc.Droid.Resource.Attribute.allowNull;
@@ -10793,8 +10797,14 @@ namespace PCACalc.Droid
 			// aapt resource value: 0x7f0c0056
 			public const int sfchart_close_label = 2131492950;
 			
+			// aapt resource value: 0x7f0c0059
+			public const int sfchart_decrease_label = 2131492953;
+			
 			// aapt resource value: 0x7f0c0053
 			public const int sfchart_high_label = 2131492947;
+			
+			// aapt resource value: 0x7f0c0058
+			public const int sfchart_increase_label = 2131492952;
 			
 			// aapt resource value: 0x7f0c0054
 			public const int sfchart_low_label = 2131492948;
@@ -10804,6 +10814,9 @@ namespace PCACalc.Droid
 			
 			// aapt resource value: 0x7f0c0057
 			public const int sfchart_others_label = 2131492951;
+			
+			// aapt resource value: 0x7f0c005a
+			public const int sfchart_total_label = 2131492954;
 			
 			// aapt resource value: 0x7f0c004d
 			public const int status_bar_notification_info_overflow = 2131492941;

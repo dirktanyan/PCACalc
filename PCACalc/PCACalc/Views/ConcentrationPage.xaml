@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
-             xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
-             mc:Ignorable="d"
-             x:Class="PCACalc.Views.ConcentrationPage"
-             Title="Concentration">
+<ContentPage
+    x:Class="PCACalc.Views.ConcentrationPage" xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+    Title="Concentration" mc:Ignorable="d">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            
+
             <Style x:Key="boxViewSettings" TargetType="BoxView">
                 <Setter Property="Color" Value="{DynamicResource BrandColorLight}" />
                 <Setter Property="CornerRadius" Value="10" />
@@ -21,15 +20,15 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-        
+
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                    <Label Text="MG" Style="{StaticResource entryLabel}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    <Switch x:Name="SwitchMG" IsToggled="true" Toggled="selectUOM" HorizontalOptions="StartAndExpand" OnColor="{StaticResource BrandAccentColor}" />
-                    <Label Text="MCG" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
-                    <Switch x:Name="SwitchMCG" IsToggled="false" Toggled="selectUOM" HorizontalOptions="StartAndExpand" OnColor="{StaticResource BrandAccentColor}" />
+                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                    <Label HorizontalTextAlignment="Center" Style="{StaticResource entryLabel}" Text="MG" VerticalTextAlignment="Center" />
+                    <Switch x:Name="SwitchMG" HorizontalOptions="StartAndExpand" IsToggled="true" OnColor="{StaticResource BrandAccentColor}" Toggled="selectUOM" />
+                    <Label HorizontalTextAlignment="End" Text="MCG" VerticalTextAlignment="Center" />
+                    <Switch x:Name="SwitchMCG" HorizontalOptions="StartAndExpand" IsToggled="false" OnColor="{StaticResource BrandAccentColor}" Toggled="selectUOM" />
                 </StackLayout>
                 <Grid Padding="5,5,5,5">
                     <Grid.RowDefinitions>
@@ -40,27 +39,33 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <inputLayout:SfTextInputLayout Grid.Column="0" Grid.Row="0" Hint="Bag Volume:">
-                        <syncfusion:SfNumericTextBox x:Name="BagVolumeEntry" Completed="CalcConcentration" MaximumNumberDecimalDigits="0" FormatString="ml" Value="250" SelectAllOnFocus="True"/>
-                    </inputLayout:SfTextInputLayout>
-                    
-                    <inputLayout:SfTextInputLayout Grid.Column="1" Grid.Row="0" Hint="Basal Rate:">
-                        <syncfusion:SfNumericTextBox x:Name="BasalEntry" Completed="CalcConcentration" MaximumNumberDecimalDigits="2" FormatString="mg/hr" SelectAllOnFocus="True" />
-                    </inputLayout:SfTextInputLayout>
-                    
-                    <inputLayout:SfTextInputLayout Grid.Column="0" Grid.Row="1" Hint="Bolus Amount:">
-                        <syncfusion:SfNumericTextBox x:Name="BolusEntry" Completed="CalcConcentration" MaximumNumberDecimalDigits="2" FormatString="mg" SelectAllOnFocus="True"/>
+                    <inputLayout:SfTextInputLayout Grid.Row="0" Grid.Column="0" Hint="Bag Volume:">
+                        <syncfusion:SfNumericTextBox
+                            x:Name="BagVolumeEntry" Completed="CalcConcentration" FormatString="ml"
+                            MaximumNumberDecimalDigits="0" SelectAllOnFocus="True" Value="250" />
                     </inputLayout:SfTextInputLayout>
 
-                    <inputLayout:SfTextInputLayout Grid.Column="1" Grid.Row="1" Hint="Bolus Interval:" HelperText="Minutes">
-                        <syncfusion:SfNumericTextBox x:Name="BolusMinEntry" Completed="CalcConcentration" MaximumNumberDecimalDigits="0" FormatString="min" Value="15" SelectAllOnFocus="True" />
+                    <inputLayout:SfTextInputLayout Grid.Row="0" Grid.Column="1" Hint="Basal Rate:">
+                        <syncfusion:SfNumericTextBox x:Name="BasalEntry" Completed="CalcConcentration" FormatString="mg/hr" MaximumNumberDecimalDigits="2" SelectAllOnFocus="True" />
+                    </inputLayout:SfTextInputLayout>
+
+                    <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="0" Hint="Bolus Amount:">
+                        <syncfusion:SfNumericTextBox x:Name="BolusEntry" Completed="CalcConcentration" FormatString="mg" MaximumNumberDecimalDigits="2" SelectAllOnFocus="True" />
+                    </inputLayout:SfTextInputLayout>
+
+                    <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="1" HelperText="Minutes" Hint="Bolus Interval:">
+                        <syncfusion:SfNumericTextBox
+                            x:Name="BolusMinEntry" Completed="CalcConcentration" FormatString="min"
+                            MaximumNumberDecimalDigits="0" SelectAllOnFocus="True" Value="15" />
                     </inputLayout:SfTextInputLayout>
                 </Grid>
 
 
-                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                    <Label Style="{StaticResource entryLabel}" BindingContext="{x:Reference StepDays}" Text="{Binding Value,StringFormat='Days supply: {0}'}" VerticalTextAlignment="Center" />
-                    <Stepper x:Name="StepDays" Minimum="1" Maximum="14" Increment="1" Value="5"  ValueChanged="StepDays_ValueChanged"  />
+                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                    <Label BindingContext="{x:Reference StepDays}" Style="{StaticResource entryLabel}" Text="{Binding Value, StringFormat='Days supply: {0}'}" VerticalTextAlignment="Center" />
+                    <Stepper
+                        x:Name="StepDays" Increment="1" Maximum="14" Minimum="1" ValueChanged="StepDays_ValueChanged"
+                        Value="5" />
                 </StackLayout>
                 <Grid Padding="5,5,5,5">
                     <Grid.RowDefinitions>
@@ -68,30 +73,30 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"  Style="{StaticResource frameSettings}" />
-                    <Label Grid.Row="0" Grid.Column="0" Text="Total Per Hour:" Style="{StaticResource ResultLabel}" />
-                    <Label Grid.Row="1" Grid.Column="0" x:Name="TPHEntry" Style="{StaticResource CalcResult}" />
-                    
-                    <Frame Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"  Style="{StaticResource frameSettings}" />
-                    <Label Grid.Row="0" Grid.Column="1" Text="Total Per Day:" Style="{StaticResource ResultLabel}" />
-                    <Label Grid.Row="1" Grid.Column="1" x:Name="TPDEntry" Style="{StaticResource CalcResult}" />
+                    <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Style="{StaticResource frameSettings}" />
+                    <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource ResultLabel}" Text="Total Per Hour:" />
+                    <Label x:Name="TPHEntry" Grid.Row="1" Grid.Column="0" Style="{StaticResource CalcResult}" />
 
-                    <Frame Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"  Style="{StaticResource frameSettings}" />
-                    <Label Grid.Row="0" Grid.Column="2" BindingContext="{x:Reference StepDays}" Text="{Binding Value,StringFormat='Total per {0} days:'}" Style="{StaticResource ResultLabel}" />
-                    <Label Grid.Row="1" Grid.Column="2" x:Name="TP5DEntry" Style="{StaticResource CalcResult}" />
-                </Grid> 
+                    <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Style="{StaticResource frameSettings}" />
+                    <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource ResultLabel}" Text="Total Per Day:" />
+                    <Label x:Name="TPDEntry" Grid.Row="1" Grid.Column="1" Style="{StaticResource CalcResult}" />
+
+                    <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Style="{StaticResource frameSettings}" />
+                    <Label Grid.Row="0" Grid.Column="2" BindingContext="{x:Reference StepDays}" Style="{StaticResource ResultLabel}" Text="{Binding Value, StringFormat='Total per {0} days:'}" />
+                    <Label x:Name="TP5DEntry" Grid.Row="1" Grid.Column="2" Style="{StaticResource CalcResult}" />
+                </Grid>
                 <Grid Padding="5,5,5,5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="60" />
                     </Grid.RowDefinitions>
-                    <Frame Grid.Row="0" Grid.RowSpan="2"  Style="{StaticResource frameSettings}" />
-                    <Label Grid.Row="0" Text="Suggested Concentration:" Style="{StaticResource FinalResultLabel}" />
-                    <Label Grid.Row="1" x:Name="SugConcEntry" Text="0" Style="{StaticResource FinalResult}"/>
+                    <Frame Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource frameSettings}" />
+                    <Label Grid.Row="0" Style="{StaticResource FinalResultLabel}" Text="Suggested Concentration:" />
+                    <Label x:Name="SugConcEntry" Grid.Row="1" Style="{StaticResource FinalResult}" Text="0" />
                 </Grid>
 
             </StackLayout>
