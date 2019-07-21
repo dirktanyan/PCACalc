@@ -21,7 +21,7 @@ namespace PCACalc.ViewModels
             Medications = new ObservableCollection<Med>();
             LoadMedsCommand = new Command(async () => await ExecuteLoadMedsCommand());
 
-            MessagingCenter.Subscribe<NewInjPage, Med>(this, "AddItem", async (obj, item) =>
+            MessagingCenter.Subscribe<InjDetailViewModel, Med>(this, "AddItem", async (obj, item) =>
             {
                 var newMed = item as Med;
 
@@ -30,14 +30,14 @@ namespace PCACalc.ViewModels
                 await InjDataStore.AddMedicationAsync(newMed);
 
             });
-            MessagingCenter.Subscribe<InjDetailPage, Med>(this, "DeleteItem", async (obj, item) =>
+            MessagingCenter.Subscribe<InjDetailViewModel, Med>(this, "DeleteItem", async (obj, item) =>
               {
                   var doomedMed = item as Med;
                   Medications.Remove(doomedMed);
                   await InjDataStore.DeleteMedication(doomedMed.ID);
               });
 
-            MessagingCenter.Subscribe<InjDetailPage, Med>(this, "UpdateItem", async (obj, item) =>
+            MessagingCenter.Subscribe<InjDetailViewModel, Med>(this, "UpdateItem", async (obj, item) =>
             {
                 var updatedMed = item as Med;
                 Medications.Remove(updatedMed);

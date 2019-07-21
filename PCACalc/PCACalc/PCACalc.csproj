@@ -27,9 +27,6 @@
     <Compile Update="Views\InjectionsPage.xaml.cs">
       <DependentUpon>InjectionsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\NewInjPage.xaml.cs">
-      <DependentUpon>NewInjPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\PCAvsInjPage.xaml.cs">
       <DependentUpon>PCAvsInjPage.xaml</DependentUpon>
     </Compile>
@@ -52,9 +49,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\InjectionsPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\NewInjPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PCADetailPage.xaml">

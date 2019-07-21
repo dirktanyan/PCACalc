@@ -30,8 +30,8 @@ namespace PCACalc.Views
             selectedPCA = viewModel.thisPCA;
             PCABagList = viewModel.thisPCABagList;
 
-            if (selectedPCA.ID == 0)
-                ToolbarItems.RemoveAt(1);
+            //if (selectedPCA.ID == 0)
+            //    ToolbarItems.RemoveAt(1);
         }
 
         protected override void OnAppearing()
@@ -52,27 +52,21 @@ namespace PCACalc.Views
 
         //    //await viewModel.UpdateMedication(selectedMed);
         //}
-
         async void OnDeleteClick(object sender, EventArgs e)
         {
             bool result = await DisplayAlert("Delete PCA", string.Format("Are you sure you want to delete {0}?", selectedPCA.PCAFullName), "Yes", "No");
             if (result == false) return;
 
-            MessagingCenter.Send(this, "DeleteItem", selectedPCA);
-            //await Navigation.PushAsync(new PCAPage(), true);
+            viewModel.DeletePCA.Execute(null);
+
             await Navigation.PopAsync();
         }
 
-        async void OnSaveClick(object sender, EventArgs e)
-        {
-            MessagingCenter.Send(this, "AddItem", selectedPCA);
-            // await Navigation.PushAsync(new PCAPage(), true);
-            await Navigation.PopAsync();
-        }
-
-        //private void FieldUnfocused(object sender, FocusEventArgs e)
+        //async void OnSaveClick(object sender, EventArgs e)
         //{
-        //    FieldUpdated(sender, e);
+        //    MessagingCenter.Send(this, "AddItem", selectedPCA);
+        //    // await Navigation.PushAsync(new PCAPage(), true);
+        //    await Navigation.PopAsync();
         //}
 
         private void PCABagsListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -141,6 +135,11 @@ namespace PCACalc.Views
             deleteBag.IsEnabled = false;
             PCABagsListView.SelectedItem = null;
 
+        }
+
+        private void Entry_Unfocused(object sender, FocusEventArgs e)
+        {
+            viewModel.SavePCA();
         }
     }
 }

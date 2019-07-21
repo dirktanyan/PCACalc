@@ -16,7 +16,6 @@ namespace PCACalc.ViewModels
         public List<PCA> pcaList { get; set; }
         public List<PCABags> pcabaglist { get; set; }
         public ObservableCollection<PCAInfo> pcasandbags { get; set; }
-        public Command LoadAssocPCAs { get; set; }
         public Command RunCalcs { get; set; }
         public Med selectedMed { get; set; } = new Med();
         public PCA selectedPCA { get; set; } = new PCA();
@@ -26,17 +25,30 @@ namespace PCACalc.ViewModels
 
         public PCAvsInjViewModel()
         {
-            medicationList = medicationHelper.GetAllMeds();
-            pcaList = PCADataStore.GetPCAList();
 
             pcasandbags = new ObservableCollection<PCAInfo>();
 
             RunCalcs = new Command(async () => await RunCalculations());
+            medicationList = medicationHelper.GetAllMeds();
+            pcaList = PCADataStore.GetPCAList();
 
-            //PCAs = new ObservableCollection<PCA>();
-            //LoadAssocPCAs = new Command(async () => await LoadAssociatedPCAs());
+            MessagingCenter.Subscribe<InjDetailViewModel, Med>(this, "UpdateMedList", async (obj, item) =>
+            {
+                medicationList.Clear();
+                medicationList = medicationHelper.GetAllMeds();
+                OnPropertyChanged("medicationList");
+
+            });
+
+            MessagingCenter.Subscribe<PCADetailViewModel, PCA>(this, "UpdatePCAList", async (obj, item) =>
+            {
+                pcaList.Clear();
+                pcaList = PCADataStore.GetPCAList();
+                OnPropertyChanged("pcaList");
+
+            });
         }
-
+                
         #region Properties
         private string _pumprental = Preferences.Get(nameof(PumpRental), "10");
         public string PumpRental
@@ -68,10 +80,13 @@ namespace PCACalc.ViewModels
             }
             set
             {
-                selectedMed = value as Med;
-                Units = selectedMed.VialUnits;
-                VialPrice = selectedMed.VialPrice.ToString("c");
-                OnPropertyChanged(nameof(PickedMed));
+                if (value != null)
+                { 
+                    selectedMed = value as Med;
+                    Units = selectedMed.VialUnits;
+                    VialPrice = selectedMed.VialPrice.ToString("c");
+                    OnPropertyChanged(nameof(PickedMed));
+                }
             }
         }
         private string _vialprice;

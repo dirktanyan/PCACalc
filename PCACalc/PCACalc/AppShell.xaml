@@ -49,7 +49,7 @@
             <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{x:Static icons:MaterialDesignIconFont.Needle}" Size="44" Color="{StaticResource IconColor}" />
         </FlyoutItem.Icon>
         <Tab Title="PVA vs Inj">
-            <ShellContent ContentTemplate="{DataTemplate local:PCAvsInjPage}" />
+            <ShellContent ContentTemplate="{DataTemplate local:PCAvsInjPage}"  />
         </Tab>
     </FlyoutItem>
 

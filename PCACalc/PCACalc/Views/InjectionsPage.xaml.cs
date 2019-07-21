@@ -56,11 +56,12 @@ namespace PCACalc.Views
 
         async void OnAddClick(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewInjPage())
-            {
-                BarBackgroundColor = Color.FromHex("#00BBD3"),
-                BarTextColor = Color.White 
-            }) ;
+            //await Navigation.PushModalAsync(new NavigationPage(new NewInjPage())
+            //{
+            //    BarBackgroundColor = Color.FromHex("#00BBD3"),
+            //    BarTextColor = Color.White 
+            //}) ;
+            await Navigation.PushAsync(new InjDetailPage(new ViewModels.InjDetailViewModel()));
             
         }
 

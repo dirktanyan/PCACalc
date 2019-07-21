@@ -8,7 +8,7 @@
     xmlns:local="clr-namespace:PCACalc.ViewModels"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
-    Title="Infusions And Injections" Padding="0,20,0,0" mc:Ignorable="d">
+    Title="Infusions vs Injections" Padding="0,20,0,0" mc:Ignorable="d">
     <ContentPage.Resources>
         <Style x:Key="OrderEntryBox" TargetType="syncfusion:SfNumericTextBox">
             <Setter Property="FontSize" Value="Medium" />
@@ -18,6 +18,7 @@
         </Style>
         <Style x:Key="VialCalcResultFrame" TargetType="Frame">
             <Setter Property="Padding" Value="5,10,5,10" />
+            <Setter Property="BorderColor" Value="{StaticResource BrandGrayDark}" />
         </Style>
     </ContentPage.Resources>
 
@@ -53,7 +54,7 @@
                         <ColumnDefinition Width="100" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" />
+                    <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource frameSettings}" />
                     <Label
                         Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Center" Text="ATC Order"
                         TextColor="{StaticResource BrandColor}"
@@ -96,8 +97,7 @@
                         <ColumnDefinition Width="100" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <!--<BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="{StaticResource BrandGrayDark}" />-->
-                    <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" />
+                    <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource frameSettings}"/>
                     <Label
                         Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Center" Text="PRN Order"
                         TextColor="{StaticResource BrandColor}"
@@ -157,7 +157,7 @@
                 <ListView x:Name="PCAsListView" ItemsSource="{Binding pcasandbags}">
                     <ListView.Header>
                         <Grid Margin="0" Padding="5">
-                            <Frame Grid.Column="0" Grid.ColumnSpan="6" Padding="5" HasShadow="True" />
+                            <Frame Grid.Column="0" Grid.ColumnSpan="6" Padding="5" HasShadow="True" Style="{StaticResource VialCalcResultFrame}" />
                             <Label Grid.Column="0" HorizontalOptions="Center" Text="Size" VerticalOptions="End" />
                             <Label Grid.Column="1" Text="Price" VerticalOptions="End" />
                             <Label Grid.Column="2" Text="{Binding Units, StringFormat='$/{0}'}" VerticalOptions="End" />
@@ -170,7 +170,7 @@
                         <DataTemplate>
                             <ViewCell>
                                 <Grid Padding="5" RowSpacing="1">
-                                    <Frame Grid.Column="0" Padding="5" HasShadow="True" />
+                                    <Frame Grid.Column="0" Padding="5" HasShadow="True" Style="{StaticResource VialCalcResultFrame}" />
                                     <Label HorizontalOptions="Center" Text="{Binding PCASize, StringFormat='{0} ml'}" TextColor="{StaticResource BrandColorDark}" VerticalOptions="Center" />
                                     <Label Grid.Column="1" Text="{Binding PCAPrice, StringFormat='{0:C}'}" VerticalOptions="Center" />
                                     <Label Grid.Column="2" Text="{Binding PCAPricePerUnit, StringFormat='{0:C}'}" VerticalOptions="Center" />

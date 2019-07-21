@@ -20,7 +20,7 @@ namespace PCACalc.ViewModels
             PCAs = new ObservableCollection<PCA>();
             LoadPCAsCommand = new Command(async () => await ExecuteLoadMedsCommand());
 
-            MessagingCenter.Subscribe<PCADetailPage, PCA>(this, "AddItem", async (obj, item) =>
+            MessagingCenter.Subscribe<PCADetailViewModel, PCA>(this, "AddItem", async (obj, item) =>
             {
                 var newPCA = item as PCA;
 
@@ -37,7 +37,7 @@ namespace PCACalc.ViewModels
                 await PCADataStore.AddPCAAsync(newPCA);
 
             });
-            MessagingCenter.Subscribe<PCADetailPage, PCA>(this, "DeleteItem", async (obj, item) =>
+            MessagingCenter.Subscribe<PCADetailViewModel, PCA>(this, "DeleteItem", async (obj, item) =>
             {
                 var doomedPCA = item as PCA;
                 PCAs.Remove(doomedPCA);

@@ -18,6 +18,7 @@ namespace PCACalc.ViewModels
         public PCADataAccess PCADataStore = new PCADataAccess();
         public ObservableCollection<PCABags> thisPCABagList { get; set; }
         public Command LoadAssocPCABags { get; set; }
+        public Command DeletePCA { get; set; }
         public PCADetailViewModel(PCA pca = null)
         {
             if (pca == null)
@@ -32,6 +33,17 @@ namespace PCACalc.ViewModels
             thisPCABagList = new ObservableCollection<PCABags>();
 
             LoadAssocPCABags = new Command(async () => await LoadAssociatedPCABags());
+            DeletePCA = new Command(async () =>  
+                {
+                    MessagingCenter.Send(this, "DeleteItem", thisPCA); // message to PCAViewModel
+                    MessagingCenter.Send(this, "UpdatePCAList", thisPCA); // message to PCAvsInjViewModel
+                });
+        }
+
+        public void SavePCA()
+        {
+            MessagingCenter.Send(this, "AddItem", thisPCA); // message to PCAViewModel
+            MessagingCenter.Send(this, "UpdatePCAList", thisPCA); // message to PCAvsInjViewModel
         }
 
         public async Task<bool> AddUpdatePCABag(PCABags bag)
@@ -72,6 +84,43 @@ namespace PCACalc.ViewModels
             }
         }
 
+        public string PCADrug
+        {
+            get { return thisPCA.PCADrug; }
+            set
+            {
+                thisPCA.PCADrug = value;
+                OnPropertyChanged(nameof(PCADrug));
+            }
+        }
+        public int ID
+        {
+            get { return thisPCA.ID; }
+            set
+            {
+                thisPCA.ID = value;
+                OnPropertyChanged(nameof(ID));
+            }
+        }
+        public int PCAConcn
+        {
+            get { return thisPCA.PCAConcn; }
+            set
+            {
+                thisPCA.PCAConcn = value;
+                OnPropertyChanged(nameof(PCAConcn));
+            }
+        }
+        public string PCAUnits
+        {
+            get { return thisPCA.PCAUnits; }
+            set
+            {
+                thisPCA.PCAUnits = value;
+                OnPropertyChanged(nameof(PCAUnits));
+            }
+        }
+        
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")

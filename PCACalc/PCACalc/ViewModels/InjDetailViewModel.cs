@@ -17,67 +17,99 @@ namespace PCACalc.ViewModels
 
         public InjDetailViewModel(Med med = null)
         {
-            Medication = med;
-            ID = med.ID;
-            Name = med?.Name.ToString();
-            VialPrice = med.VialPrice;
-            VialConcentration = med.VialConcentration;
-            VialSize = med.VialSize;
-            VialUnits = med.VialUnits;
+            if (med == null)
+            {
+                Medication = new Med();
+            }
+            else
+            {
+                Medication = med;
+                ID = med.ID;
+                Name = med?.Name.ToString();
+                VialPrice = med.VialPrice;
+                VialConcentration = med.VialConcentration;
+                VialSize = med.VialSize;
+                VialUnits = med.VialUnits;
+            }
+            
         }
         
-        public async Task<bool> UpdateMedication(Med updatingMed)
+        public async Task<bool> UpdateMedication()
         {
-            await MedsDataStore.AddMedicationAsync(updatingMed);
+            MessagingCenter.Send(this, "UpdateItem", Medication);
+            // Update the Medication picker on PCAvsInjPage
+            MessagingCenter.Send(this, "UpdateMedList", Medication);
             return await Task.FromResult(true);
             
         }
 
-        public async Task DeleteMedication(Med medInstance)
+        public async Task<bool> DeleteMedication()
         {
-            await MedsDataStore.DeleteMedication(medInstance.ID);
+            MessagingCenter.Send(this, "DeleteItem", Medication);
+            // Update the Medication picker on PCAvsInjPage
+            MessagingCenter.Send(this, "UpdateMedList", Medication);
+            return await Task.FromResult(true);
+            //await MedsDataStore.DeleteMedication(medInstance.ID);
         }
 
-        string _name = string.Empty;
         public string Name
         {
-            get { return _name; }
-            set { SetProperty(ref _name, value); }
+            get { return Medication.Name; }
+            set
+            {
+                Medication.Name = value;
+                OnPropertyChanged(nameof(Name));
+            }
         }
 
-        private int _id;
         public int ID
         {
-            get { return _id; }
-            set { SetProperty(ref _id, value); }
+            get { return Medication.ID; }
+            set
+            {
+                Medication.ID = value;
+                OnPropertyChanged(nameof(ID));
+            }
         }
 
-        private decimal _vialprice;
         public decimal VialPrice
         {
-            get { return _vialprice; }
+            get { return Medication.VialPrice; }
 
-            set {SetProperty(ref _vialprice,value);}
+            set
+            {
+                Medication.VialPrice = value;
+                OnPropertyChanged(nameof(VialPrice));
+            }
         }
 
-        private float _vialconc;
         public float VialConcentration
         {
-            get { return _vialconc; }
-            set { SetProperty(ref _vialconc, value); }
+            get { return Medication.VialConcentration; }
+            set
+            {
+                Medication.VialConcentration = value;
+                OnPropertyChanged(nameof(VialConcentration));
+            }
         }
 
-        private float _vialsize;
         public float VialSize
         {
-            get { return _vialsize; }
-            set { SetProperty(ref _vialsize, value); }
+            get { return Medication.VialSize; }
+            set
+            {
+                Medication.VialSize = value;
+                OnPropertyChanged(nameof(VialSize));
+            }
         }
-        private string _vialunits;
         public string VialUnits
         {
-            get { return _vialunits; }
-            set { SetProperty(ref _vialunits, value); }
+            get { return Medication.VialUnits; }
+            set
+            {
+                Medication.VialUnits = value;
+                OnPropertyChanged(nameof(VialUnits));
+            }
         }
 
         protected bool SetProperty<T>(ref T backingStore, T value,
@@ -90,6 +122,7 @@ namespace PCACalc.ViewModels
             backingStore = value;
             onChanged?.Invoke();
             OnPropertyChanged(propertyName);
+
             return true;
         }
 
@@ -102,7 +135,7 @@ namespace PCACalc.ViewModels
                 return;
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+         }
         #endregion
     }
 }

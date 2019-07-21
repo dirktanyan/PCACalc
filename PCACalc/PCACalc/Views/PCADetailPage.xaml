@@ -11,15 +11,15 @@
     <ContentPage.Content>
         <StackLayout>
             <inputLayout:SfTextInputLayout Hint="Drug Name">
-                <Entry Text="{Binding thisPCA.PCADrug}" />
+                <Entry Text="{Binding PCADrug}" Unfocused="Entry_Unfocused" />
             </inputLayout:SfTextInputLayout>
 
             <StackLayout Orientation="Horizontal">
                 <inputLayout:SfTextInputLayout Hint="Concentration" VerticalOptions="Center">
-                    <syncfusion:SfNumericTextBox SelectAllOnFocus="True" Value="{Binding thisPCA.PCAConcn}" />
+                    <syncfusion:SfNumericTextBox SelectAllOnFocus="True" Unfocused="Entry_Unfocused" Value="{Binding PCAConcn}" />
                 </inputLayout:SfTextInputLayout>
                 <inputLayout:SfTextInputLayout Hint="Units" VerticalOptions="Center">
-                    <Entry Placeholder="mg" Text="{Binding thisPCA.PCAUnits}" />
+                    <Entry Placeholder="mg" Text="{Binding PCAUnits}" Unfocused="Entry_Unfocused" />
                 </inputLayout:SfTextInputLayout>
 
                 <!--<Picker x:Name="UnitsPicker" SelectedItem="{Binding thisPCA.PCAUnits}" VerticalOptions="Center" WidthRequest="100">
@@ -70,12 +70,12 @@
                     </Button>
                     <Button x:Name="editBag" Clicked="EditBag_Clicked" FontSize="Small" IsEnabled="False">
                         <Button.ImageSource>
-                            <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{x:Static icons:MaterialDesignIconFont.CircleEditOutline}" Size="24"/>
+                            <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{x:Static icons:MaterialDesignIconFont.CircleEditOutline}" Size="24" />
                         </Button.ImageSource>
                     </Button>
                     <Button x:Name="deleteBag" Clicked="DeleteBag_Clicked" FontSize="Small" IsEnabled="False">
                         <Button.ImageSource>
-                            <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{x:Static icons:MaterialDesignIconFont.DeleteCircleOutline}" Size="24"/>
+                            <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{x:Static icons:MaterialDesignIconFont.DeleteCircleOutline}" Size="24" />
                         </Button.ImageSource>
                     </Button>
                 </StackLayout>
@@ -95,7 +95,6 @@
     </ContentPage.Content>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="Save" Activated="OnSaveClick" Order="Primary" Priority="0" />
         <ToolbarItem Name="Delete" Activated="OnDeleteClick" Order="Secondary" Priority="1" />
     </ContentPage.ToolbarItems>
 </ContentPage>

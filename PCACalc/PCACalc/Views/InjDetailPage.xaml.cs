@@ -60,8 +60,8 @@ namespace PCACalc.Views
             bool result = await DisplayAlert("Delete Injectable", string.Format("Are you sure you want to delete {0}?", selectedMed.FullMedName), "Yes", "No");
             if (result == false) return;
 
-            MessagingCenter.Send(this, "DeleteItem", selectedMed);
-            await Navigation.PushAsync(new InjectionsPage(),true);
+            await viewModel.DeleteMedication();
+            await Navigation.PopAsync();
 
             //await viewModel.DeleteMedication(selectedMed);
         }
@@ -69,6 +69,11 @@ namespace PCACalc.Views
         private void SfNumericTextBox_Unfocused(object sender, Xamarin.Forms.FocusEventArgs e)
         {
             SfNumericTextBox_Updated(sender, e);
+        }
+
+        private void Entry_Unfocused(object sender, Xamarin.Forms.FocusEventArgs e)
+        {
+            viewModel.UpdateMedication();
         }
     }
 }
