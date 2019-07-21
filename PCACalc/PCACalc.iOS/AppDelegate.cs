@@ -34,8 +34,7 @@ namespace PCACalc.iOS
 
             SfTextInputLayoutRenderer.Init();
             new SfNumericTextBoxRenderer();
-            Syncfusion.SfChart.XForms.iOS.Renderers.SfChartRenderer.Init();
-
+            
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

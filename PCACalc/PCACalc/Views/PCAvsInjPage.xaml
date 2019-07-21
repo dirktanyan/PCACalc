@@ -1,14 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="PCACalc.Views.PCAvsInjPage" xmlns="http://xamarin.com/schemas/2014/forms"
+    x:Class="PCACalc.Views.PCAvsInjPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:PCACalc.ViewModels"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
-    Title="Infusions vs Injections" Padding="0,20,0,0" mc:Ignorable="d">
+    Title="Infusions vs Injections"
+    Padding="0,20,0,0"
+    mc:Ignorable="d">
     <ContentPage.Resources>
         <Style x:Key="OrderEntryBox" TargetType="syncfusion:SfNumericTextBox">
             <Setter Property="FontSize" Value="Medium" />
@@ -31,18 +33,30 @@
             <StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Picker
-                        x:Name="MedicationPicker" Title="-- Select Injectable --"
+                        x:Name="MedicationPicker"
+                        Title="-- Select Injectable --"
                         ItemDisplayBinding="{Binding FullMedName}"
                         ItemsSource="{Binding medicationList}"
                         SelectedItem="{Binding PickedMed}"
                         WidthRequest="275" />
                     <StackLayout Orientation="Vertical">
-                        <Label Style="{StaticResource OrderCalcResult}" Text="Cost Per Vial" TextColor="{StaticResource BrandColorDark}" />
-                        <Label x:Name="VialCost" Text="{Binding VialPrice}" TextColor="{StaticResource BrandColorDark}" />
+                        <Label
+                            Style="{StaticResource OrderCalcResult}"
+                            Text="Cost Per Vial"
+                            TextColor="{StaticResource BrandColorDark}" />
+                        <Label
+                            x:Name="VialCost"
+                            Text="{Binding VialPrice}"
+                            TextColor="{StaticResource BrandColorDark}" />
                     </StackLayout>
                 </StackLayout>
 
-                <Picker x:Name="PCAPicker" Title="-- Select PCA --" ItemDisplayBinding="{Binding PCAFullName}" ItemsSource="{Binding pcaList}" SelectedItem="{Binding PickedPCA}" />
+                <Picker
+                    x:Name="PCAPicker"
+                    Title="-- Select PCA --"
+                    ItemDisplayBinding="{Binding PCAFullName}"
+                    ItemsSource="{Binding pcaList}"
+                    SelectedItem="{Binding PickedPCA}" />
                 <!--#region  ATC Order-->
                 <Grid Padding="5" VerticalOptions="Start">
                     <Grid.RowDefinitions>
@@ -54,33 +68,69 @@
                         <ColumnDefinition Width="100" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource frameSettings}" />
+                    <Frame
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Style="{StaticResource frameSettings}" />
                     <Label
-                        Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Center" Text="ATC Order"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        HorizontalOptions="Center"
+                        Text="ATC Order"
                         TextColor="{StaticResource BrandColor}"
                         VerticalOptions="Center" />
-                    <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="0" Hint="{Binding Units}">
-                        <syncfusion:SfNumericTextBox x:Name="EntryATCUnits" MaximumNumberDecimalDigits="2" SelectAllOnFocus="True" Style="{StaticResource OrderEntryBox}" Value="{Binding ATCOrderUnits}" />
-                    </inputLayout:SfTextInputLayout>
-                    <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="1" Hint="Hours">
+                    <inputLayout:SfTextInputLayout
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Hint="{Binding Units}">
                         <syncfusion:SfNumericTextBox
-                            x:Name="EntryATCHours" Maximum="24" MaximumNumberDecimalDigits="0" Minimum="1"
+                            x:Name="EntryATCUnits"
+                            MaximumNumberDecimalDigits="2"
+                            SelectAllOnFocus="True"
+                            Style="{StaticResource OrderEntryBox}"
+                            Value="{Binding ATCOrderUnits}" />
+                    </inputLayout:SfTextInputLayout>
+                    <inputLayout:SfTextInputLayout
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Hint="Hours">
+                        <syncfusion:SfNumericTextBox
+                            x:Name="EntryATCHours"
+                            Maximum="24"
+                            MaximumNumberDecimalDigits="0"
+                            Minimum="1"
                             SelectAllOnFocus="True"
                             Style="{StaticResource OrderEntryBox}"
                             Value="{Binding ATCOrderInterval}" />
                     </inputLayout:SfTextInputLayout>
-                    <StackLayout Grid.Row="1" Grid.Column="2" Padding="1" Orientation="Vertical">
+                    <StackLayout
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Padding="1"
+                        Orientation="Vertical">
                         <StackLayout Orientation="Horizontal">
                             <Label Style="{StaticResource OrderCalcResult}" Text="{Binding Units, StringFormat='{0} Per Hour:'}" />
-                            <Label x:Name="LabelATCUnitsPerHour" Style="{StaticResource OrderCalcResult}" Text="{Binding ATCUnitsPerHour}" />
+                            <Label
+                                x:Name="LabelATCUnitsPerHour"
+                                Style="{StaticResource OrderCalcResult}"
+                                Text="{Binding ATCUnitsPerHour}" />
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Label Style="{StaticResource OrderCalcResult}" Text="Vials Per Day:" />
-                            <Label x:Name="LabelATCVialsPerDay" Style="{StaticResource OrderCalcResult}" Text="{Binding ATCVialsPerDay}" />
+                            <Label
+                                x:Name="LabelATCVialsPerDay"
+                                Style="{StaticResource OrderCalcResult}"
+                                Text="{Binding ATCVialsPerDay}" />
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Label Style="{StaticResource OrderCalcResult}" Text="Cost Per Day:" />
-                            <Label x:Name="LabelATCCostPerDay" Style="{StaticResource OrderCalcResult}" Text="{Binding ATCCostPerDay}" />
+                            <Label
+                                x:Name="LabelATCCostPerDay"
+                                Style="{StaticResource OrderCalcResult}"
+                                Text="{Binding ATCCostPerDay}" />
                         </StackLayout>
                     </StackLayout>
                 </Grid>
@@ -97,18 +147,41 @@
                         <ColumnDefinition Width="100" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource frameSettings}"/>
+                    <Frame
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Style="{StaticResource frameSettings}" />
                     <Label
-                        Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Center" Text="PRN Order"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        HorizontalOptions="Center"
+                        Text="PRN Order"
                         TextColor="{StaticResource BrandColor}"
                         VerticalOptions="Center" />
-                    <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="0" Hint="{Binding Units}">
-                        <syncfusion:SfNumericTextBox x:Name="EntryPRNUnits" MaximumNumberDecimalDigits="2" SelectAllOnFocus="True" Style="{StaticResource OrderEntryBox}" Value="{Binding PRNOrderUnits}" />
+                    <inputLayout:SfTextInputLayout
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Hint="{Binding Units}">
+                        <syncfusion:SfNumericTextBox
+                            x:Name="EntryPRNUnits"
+                            MaximumNumberDecimalDigits="2"
+                            SelectAllOnFocus="True"
+                            Style="{StaticResource OrderEntryBox}"
+                            Value="{Binding PRNOrderUnits}" />
                     </inputLayout:SfTextInputLayout>
 
-                    <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="1" Hint="Hours">
+                    <inputLayout:SfTextInputLayout
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Hint="Hours">
                         <syncfusion:SfNumericTextBox
-                            x:Name="EntryPRNHours" Maximum="24" MaximumNumberDecimalDigits="0" Minimum="1"
+                            x:Name="EntryPRNHours"
+                            Maximum="24"
+                            MaximumNumberDecimalDigits="0"
+                            Minimum="1"
                             SelectAllOnFocus="True"
                             Style="{StaticResource OrderEntryBox}"
                             Value="{Binding PRNOrderInterval}" />
@@ -116,15 +189,24 @@
                     <StackLayout Grid.Row="1" Grid.Column="2">
                         <StackLayout Orientation="Horizontal">
                             <Label Style="{StaticResource OrderCalcResult}" Text="{Binding Units, StringFormat='{0} per hour:'}" />
-                            <Label x:Name="LabelPRNMGPerHour" Style="{StaticResource OrderCalcResult}" Text="{Binding PRNUnitsPerHour}" />
+                            <Label
+                                x:Name="LabelPRNMGPerHour"
+                                Style="{StaticResource OrderCalcResult}"
+                                Text="{Binding PRNUnitsPerHour}" />
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Label Style="{StaticResource OrderCalcResult}" Text="Vials Per Day:" />
-                            <Label x:Name="LabelPRNVialsPerDay" Style="{StaticResource OrderCalcResult}" Text="{Binding PRNVialsPerDay}" />
+                            <Label
+                                x:Name="LabelPRNVialsPerDay"
+                                Style="{StaticResource OrderCalcResult}"
+                                Text="{Binding PRNVialsPerDay}" />
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Label Style="{StaticResource OrderCalcResult}" Text="Cost Per Day:" />
-                            <Label x:Name="LabelPRNCostPerDay" Style="{StaticResource OrderCalcResult}" Text="{Binding PRNCostPerDay}" />
+                            <Label
+                                x:Name="LabelPRNCostPerDay"
+                                Style="{StaticResource OrderCalcResult}"
+                                Text="{Binding PRNCostPerDay}" />
                         </StackLayout>
                     </StackLayout>
                 </Grid>
@@ -132,22 +214,43 @@
 
                 <!--#region  VIAL CALC TOTALS-->
                 <Grid Padding="5">
-                    <Frame Grid.Row="0" Grid.Column="0" Style="{StaticResource VialCalcResultFrame}">
+                    <Frame
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Style="{StaticResource VialCalcResultFrame}">
                         <StackLayout Orientation="Vertical">
                             <Label Style="{StaticResource OrderCalcResult}" Text="{Binding Units, StringFormat='Total {0} Per Day:'}" />
-                            <Label x:Name="LabelTotalUnitsPerDay" HorizontalOptions="Center" Text="{Binding TotalUnitsPerDay}" TextColor="{StaticResource BrandColor}" />
+                            <Label
+                                x:Name="LabelTotalUnitsPerDay"
+                                HorizontalOptions="Center"
+                                Text="{Binding TotalUnitsPerDay}"
+                                TextColor="{StaticResource BrandColor}" />
                         </StackLayout>
                     </Frame>
-                    <Frame Grid.Row="0" Grid.Column="1" Style="{StaticResource VialCalcResultFrame}">
+                    <Frame
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Style="{StaticResource VialCalcResultFrame}">
                         <StackLayout Orientation="Vertical">
                             <Label Style="{StaticResource OrderCalcResult}" Text="Total Vials Per Day:" />
-                            <Label x:Name="LabelTotalVialsPerDay" HorizontalOptions="Center" Text="{Binding TotalVialsPerDay}" TextColor="{StaticResource BrandColor}" />
+                            <Label
+                                x:Name="LabelTotalVialsPerDay"
+                                HorizontalOptions="Center"
+                                Text="{Binding TotalVialsPerDay}"
+                                TextColor="{StaticResource BrandColor}" />
                         </StackLayout>
                     </Frame>
-                    <Frame Grid.Row="0" Grid.Column="2" Style="{StaticResource VialCalcResultFrame}">
+                    <Frame
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Style="{StaticResource VialCalcResultFrame}">
                         <StackLayout Orientation="Vertical">
                             <Label Style="{StaticResource OrderCalcResult}" Text="Total Vial Cost Per Day:" />
-                            <Label x:Name="LabelTotalVialCostPerDay" HorizontalOptions="Center" Text="{Binding VialsCostPerDay}" TextColor="{StaticResource BrandColor}" />
+                            <Label
+                                x:Name="LabelTotalVialCostPerDay"
+                                HorizontalOptions="Center"
+                                Text="{Binding VialsCostPerDay}"
+                                TextColor="{StaticResource BrandColor}" />
                         </StackLayout>
                     </Frame>
                 </Grid>
@@ -157,27 +260,79 @@
                 <ListView x:Name="PCAsListView" ItemsSource="{Binding pcasandbags}">
                     <ListView.Header>
                         <Grid Margin="0" Padding="5">
-                            <Frame Grid.Column="0" Grid.ColumnSpan="6" Padding="5" HasShadow="True" Style="{StaticResource VialCalcResultFrame}" />
-                            <Label Grid.Column="0" HorizontalOptions="Center" Text="Size" VerticalOptions="End" />
-                            <Label Grid.Column="1" Text="Price" VerticalOptions="End" />
-                            <Label Grid.Column="2" Text="{Binding Units, StringFormat='$/{0}'}" VerticalOptions="End" />
-                            <Label Grid.Column="3" Text="Days" VerticalOptions="End" />
-                            <Label Grid.Column="4" Text="$/Day" VerticalOptions="End" />
-                            <Label Grid.Column="5" Text="Break Even (Days)" VerticalOptions="End" />
+                            <Frame
+                                Grid.Column="0"
+                                Grid.ColumnSpan="6"
+                                Padding="5"
+                                HasShadow="True"
+                                Style="{StaticResource VialCalcResultFrame}" />
+                            <Label
+                                Grid.Column="0"
+                                HorizontalOptions="Center"
+                                Text="Size"
+                                VerticalOptions="End" />
+                            <Label
+                                Grid.Column="1"
+                                Text="Price"
+                                VerticalOptions="End" />
+                            <Label
+                                Grid.Column="2"
+                                Text="{Binding Units, StringFormat='$/{0}'}"
+                                VerticalOptions="End" />
+                            <Label
+                                Grid.Column="3"
+                                Text="Days"
+                                VerticalOptions="End" />
+                            <Label
+                                Grid.Column="4"
+                                Text="$/Day"
+                                VerticalOptions="End" />
+                            <Label
+                                Grid.Column="5"
+                                Text="Break Even (Days)"
+                                VerticalOptions="End" />
                         </Grid>
                     </ListView.Header>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <Grid Padding="5" RowSpacing="1">
-                                    <Frame Grid.Column="0" Padding="5" HasShadow="True" Style="{StaticResource VialCalcResultFrame}" />
-                                    <Label HorizontalOptions="Center" Text="{Binding PCASize, StringFormat='{0} ml'}" TextColor="{StaticResource BrandColorDark}" VerticalOptions="Center" />
-                                    <Label Grid.Column="1" Text="{Binding PCAPrice, StringFormat='{0:C}'}" VerticalOptions="Center" />
-                                    <Label Grid.Column="2" Text="{Binding PCAPricePerUnit, StringFormat='{0:C}'}" VerticalOptions="Center" />
-                                    <Label Grid.Column="3" Text="{Binding DaysSupply}" VerticalOptions="Center" />
-                                    <Label Grid.Column="4" Text="{Binding PCAPricePerDay, StringFormat='{0:C}'}" VerticalOptions="Center" />
-                                    <Label Grid.Column="5" Text="{Binding BreakEven}" TextColor="{StaticResource BrandAccentColor}" VerticalOptions="Center" />
-                                    <Label x:Name="labelPCAID" Grid.Column="0" IsVisible="False" Text="{Binding PCABagID}" />
+                                    <Frame
+                                        Grid.Column="0"
+                                        Padding="5"
+                                        HasShadow="True"
+                                        Style="{StaticResource VialCalcResultFrame}" />
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        Text="{Binding PCASize, StringFormat='{0} ml'}"
+                                        TextColor="{StaticResource BrandColorDark}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Column="1"
+                                        Text="{Binding PCAPrice, StringFormat='{0:C}'}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Column="2"
+                                        Text="{Binding PCAPricePerUnit, StringFormat='{0:C}'}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Column="3"
+                                        Text="{Binding DaysSupply}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Column="4"
+                                        Text="{Binding PCAPricePerDay, StringFormat='{0:C}'}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Column="5"
+                                        Text="{Binding BreakEven}"
+                                        TextColor="{StaticResource BrandAccentColor}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        x:Name="labelPCAID"
+                                        Grid.Column="0"
+                                        IsVisible="False"
+                                        Text="{Binding PCABagID}" />
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

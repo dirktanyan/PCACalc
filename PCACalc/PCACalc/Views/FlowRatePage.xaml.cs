@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace PCACalc.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FlowRate : ContentPage
+    public partial class FlowRatePage : ContentPage
     {
-        public FlowRate()
+        public FlowRatePage()
         {
             InitializeComponent();
         }

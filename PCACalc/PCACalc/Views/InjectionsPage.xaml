@@ -1,14 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="PCACalc.Views.InjectionsPage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="Injections" mc:Ignorable="d">
+<ContentPage
+    x:Class="PCACalc.Views.InjectionsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Injectables"
+    mc:Ignorable="d">
 
     <ContentPage.Content>
-        <ListView x:Name="MedsListView" IsRefreshing="{Binding IsBusy, Mode=OneWay}" ItemSelected="OnItemSelected" ItemsSource="{Binding Medications}">
+        <ListView
+            x:Name="MedsListView"
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+            ItemSelected="OnItemSelected"
+            ItemsSource="{Binding Medications}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Padding="10">
-                            <Label FontSize="16" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" Text="{Binding FullMedName}" />
+                            <Label
+                                FontSize="16"
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemTextStyle}"
+                                Text="{Binding FullMedName}" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
@@ -16,6 +30,10 @@
         </ListView>
     </ContentPage.Content>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="Add" Activated="OnAddClick" Order="Secondary" Priority="0" />
+        <ToolbarItem
+            Name="Add"
+            Activated="OnAddClick"
+            Order="Secondary"
+            Priority="0" />
     </ContentPage.ToolbarItems>
 </ContentPage>

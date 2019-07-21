@@ -1,13 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="PCACalc.Views.FlowRate" xmlns="http://xamarin.com/schemas/2014/forms"
+    x:Class="PCACalc.Views.FlowRatePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="Flow Rate"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:local="clr-namespace:PCACalc.ViewModels"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+    Title="Flow Rate"
     mc:Ignorable="d">
+
+    <ContentPage.BindingContext>
+        <local:FlowRateViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <Style x:Key="OrderEntryBox" TargetType="syncfusion:SfNumericTextBox">
+            <Setter Property="FontSize" Value="Medium" />
+        </Style>
+        <Style x:Key="CalcResult" TargetType="Label">
+            <Setter Property="FontSize" Value="Micro" />
+        </Style>
+        <Style x:Key="VialCalcResultFrame" TargetType="Frame">
+            <Setter Property="Padding" Value="5,10,5,10" />
+            <Setter Property="BorderColor" Value="{StaticResource BrandGrayDark}" />
+        </Style>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label HorizontalOptions="CenterAndExpand" Text="Welcome to Xamarin.Forms!" VerticalOptions="CenterAndExpand" />
+        <StackLayout Padding="5,5,5,5">
+            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                <Label Text="Units:" />
+                <Switch IsToggled="{Binding UnitChoice}" />
+                <Label Text="{Binding Units}" />
+            </StackLayout>
+
+            <inputLayout:SfTextInputLayout Hint="PCA Concentration">
+                <syncfusion:SfNumericTextBox
+                    FormatString="{Binding Units, StringFormat='{0}/ml'}"
+                    Style="{StaticResource OrderEntryBox}"
+                    Value="{Binding PCAConcentration}" 
+                    SelectAllOnFocus="True"/>
+            </inputLayout:SfTextInputLayout>
+
+            <inputLayout:SfTextInputLayout Hint="Basal Rate">
+                <syncfusion:SfNumericTextBox 
+                    Style="{StaticResource OrderEntryBox}" 
+                    Value="{Binding OrderedBasalRate}"
+                    FormatString="{Binding Units, StringFormat='{0} per hour'}"
+                    SelectAllOnFocus="True"/>
+            </inputLayout:SfTextInputLayout>
+
+            <Frame Style="{StaticResource frameSettings}">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Label Text="{Binding FlowRate}" TextColor="{StaticResource BrandColor}" Style="{StaticResource FinalResult}" />
+                    <Label Style="{StaticResource CalcResult}" Text="ml/hour" VerticalOptions="End" />
+                </StackLayout>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

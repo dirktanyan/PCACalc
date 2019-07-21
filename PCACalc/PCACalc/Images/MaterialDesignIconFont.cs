@@ -21,5 +21,6 @@ namespace PCACalc.Images
         public const string ShapeCirclePlus = "\uf65d";
         public const string CircleEditOutline = "\uf8d4";
         public const string DeleteCircleOutline = "\ufb64";
+        public const string ClipboardFlow = "\uf6c7";
     }
 }
