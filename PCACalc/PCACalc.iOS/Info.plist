@@ -39,11 +39,13 @@
 			<string>Document Type 1</string>
 		</dict>
 	</array>
-  <key>UIAppFonts</key>
-  <array>
-    <string>materialdesignicons-webfont.ttf</string>
-  </array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>materialdesignicons-webfont.ttf</string>
+	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
 </dict>
 </plist>

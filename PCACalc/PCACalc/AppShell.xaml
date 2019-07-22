@@ -50,6 +50,21 @@
         </Tab>
     </FlyoutItem>-->
 
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid BackgroundColor="Black" HeightRequest="150">
+                <Image Aspect="AspectFill" Source="pumpflyout.png" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Title"
+                    HorizontalTextAlignment="Center"
+                    Text="PCA Calculator"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
     <FlyoutItem Title="Flow Rate">
         <FlyoutItem.Icon>
             <FontImageSource
@@ -185,23 +200,6 @@
 
 
     <!--  // These may be provided inline as below or as separate classes.  -->
-
-    <Shell.FlyoutHeaderTemplate>
-        <DataTemplate>
-            <StackLayout>
-                <!--<Image Source="pharmacist.png" />-->
-                <Label
-                    BackgroundColor="{StaticResource BrandColor}"
-                    FontFamily="{StaticResource LightFontFamily}"
-                    FontSize="20"
-                    HorizontalTextAlignment="Center"
-                    Text="PCA Calculator"
-                    TextColor="White"
-                    VerticalTextAlignment="Center" />
-            </StackLayout>
-        </DataTemplate>
-    </Shell.FlyoutHeaderTemplate>
-
 
     <!--// ItemTemplate is for ShellItems as displayed in a Flyout
     <Shell.ItemTemplate>
